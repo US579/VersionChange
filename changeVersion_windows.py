@@ -7,11 +7,9 @@ def changeVersion(filename):
     flag = 1
     with open(filename, "r", encoding="utf-8") as f1:
         for line in f1:
-            
             ignore = versionNumber = re.search('^#.*',line.strip())
             if ignore: 
                 file_data += line
-                print(ignore)
                 continue
             versionNumber = re.search('version: .*',line)
             if flag and versionNumber:
@@ -25,7 +23,6 @@ def changeVersion(filename):
                 flag = 0
                 continue
             if versionNumber:
-                print(versionNumber.group())
                 string = versionNumber.group()
                 string = string.split(' ')
                 oldVersion = string[-1]
@@ -66,6 +63,10 @@ if __name__ == "__main__":
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile(sys.argv[1], 'tags.yml',Noinclude)
     allpath = tags + release
-    for path in allpath:
-        changeVersion(path)
+    try:
+        for path in allpath:
+            changeVersion(path)
+        print('bump version successfully')
+    except:
+        print('bump version failed')
     
