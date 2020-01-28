@@ -37,7 +37,6 @@ Example
 
 ```
 >> python3 changeVersion.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz
-
 ```
 
 #### windows 
@@ -53,7 +52,6 @@ Example
 
 ```
 >> ./changeVersion_windows /Users/steven.liu/Desktop/MYOB/compliance-content-nz
-
 ```
 
 
