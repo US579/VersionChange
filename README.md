@@ -1,8 +1,8 @@
-# VersionChange
+# compliance-content-nz VersionChange
 
 ## env
 
-this script is for increasing all the version of compliance-content-nz by 1
+this script is for increasing all the version of compliance-content-nz by one
 
 * for mac version need to install `python3` 
 
