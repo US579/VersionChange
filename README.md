@@ -2,23 +2,23 @@
 
 ## env
 
-this script is for increasing all the version of compliance-content-nz by one
+This script is for increasing all the version of compliance-content-nz by one
 
-this includeing all the version under `Releases` folder and all the `tags.yml` files version
+This includeing all the version under `Releases` folder and all the `tags.yml` files version
 
-* for mac version need to install `python3` 
+* For mac version need to install `python3` 
 
-this can be done by 
+This can be done by 
 
 ```
 >> brew install python3
 ```
 
-* for windows version 
+* For windows version 
 
-the python3 env have already been packed and all in dist and build folder
+The python3 env have already been packed and all in dist and build folder
 
-it can be run directory
+It can be run directory
 
 
 ## How To Run
@@ -26,7 +26,7 @@ it can be run directory
 
 ####  Mac
 
-open the terminal
+Open the terminal
 
 ```
 >> cd VersionChange
@@ -35,7 +35,7 @@ open the terminal
 
 #### windows 
 
-open the terminal
+Open the terminal
 
 ```
 >> cd VersionChange
