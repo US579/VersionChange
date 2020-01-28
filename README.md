@@ -4,7 +4,7 @@
 
 this script is for increasing all the version of compliance-content-nz by one
 
-this includeing all the file under `Releases` folder and all the `tags.yml` version
+this includeing all the files under `Releases` folder and all the `tags.yml` files version
 
 * for mac version need to install `python3` 
 
