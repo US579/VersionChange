@@ -56,9 +56,9 @@ if __name__ == "__main__":
     try:
         sys.argv[1]
     except:
-        print("usage: changeVersion <the root absoulte path of compliance-content-nz>")
+        print("usage: ./changeVersion_windows <the root absoulte path of compliance-content-nz>")
         print('for example:')
-        print('             ./changeVersion /Users/steven.liu/Desktop/MYOB/compliance-content-nz')
+        print('             ./changeVersion_windows /Users/steven.liu/Desktop/MYOB/compliance-content-nz')
         sys.exit()
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile(sys.argv[1], 'tags.yml',Noinclude)
