@@ -30,7 +30,7 @@ Open the terminal
 
 ```
 >> cd VersionChange
->> python3 changeVersion.py <your root absoulte path of `compliance-content-nz` in your local dirve>
+>> python3 changeVersion.py <your root absoulte path of `compliance-content-nz` in your local drive>
 ```
 
 Example
@@ -46,7 +46,7 @@ Open the terminal
 ```
 >> cd VersionChange
 >> cd dist
->> ./changeVersion_windows <your root absoulte path of `compliance-content-nz` in your local dirve>
+>> ./changeVersion_windows <your root absoulte path of `compliance-content-nz` in your local drive>
 ```
 Example 
 
