@@ -18,7 +18,7 @@ This can be done by
 
 The python3 env have already been packed and all in dist and build folder
 
-It can be run directory
+It can be run directly
 
 
 ## How To Run
