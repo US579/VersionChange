@@ -33,6 +33,13 @@ Open the terminal
 >> python3 changeVersion.py <your root absoulte path of compliance-content-nz>
 ```
 
+Example
+
+```
+>> python3 changeVersion.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz
+
+```
+
 #### windows 
 
 Open the terminal
@@ -40,9 +47,14 @@ Open the terminal
 ```
 >> cd VersionChange
 >> cd dist
->> ./changeVersion <your root absoulte path of compliance-content-nz>
+>> ./changeVersion_windows <your root absoulte path of compliance-content-nz>
 ```
+Example 
 
+```
+>> ./changeVersion_windows /Users/steven.liu/Desktop/MYOB/compliance-content-nz
+
+```
 
 
 
