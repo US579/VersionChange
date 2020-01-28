@@ -4,7 +4,7 @@
 
 this script is for increasing all the version of compliance-content-nz by one
 
-this includeing all the files under `Releases` folder and all the `tags.yml` files version
+this includeing all the version under `Releases` folder and all the `tags.yml` files version
 
 * for mac version need to install `python3` 
 
@@ -24,7 +24,6 @@ it can be run directory
 ## How To Run
 
 
-
 ####  Mac
 
 open the terminal
@@ -41,8 +40,6 @@ open the terminal
 ```
 >> cd VersionChange
 >> cd dist
->> dir
->> yourpath/VersionChange_dist
 >> ./changeVersion <your root absoulte path of compliance-content-nz>
 ```
 
