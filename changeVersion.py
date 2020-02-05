@@ -38,8 +38,8 @@ def changeVersion(filename):
                 newVersion = "'" + '.'.join(string) + "'"
                 line = line.replace(oldVersion, newVersion)
             file_data += line
-    with open(filename,"w",encoding="utf-8") as f:
-        f.write(file_data)
+    # with open(filename,"w",encoding="utf-8") as f:
+    #     f.write(file_data)
 
 
 def findfile(start, name, Noinclude):
@@ -58,9 +58,44 @@ def findfile(start, name, Noinclude):
                 lis2.extend([os.path.normpath(os.path.join(start, relpath, i)) for i in files])
     return lis,lis2
 
-def compare():
-    pass
 
+def compare(release,tags):
+    tags = [i for i in tags if '2020' in i]
+    release = [i for i in release if '2020' in i]
+    for i in release:
+        readFile(i,tags)
+
+def readFile(file,tags):
+    map = {}
+    with open(file,'r', encoding="utf-8") as f:
+        lis = list(f)
+        for i in range(len(lis)-1):
+            version = re.search('^    version: .*',lis[i])
+            if version:
+                form = re.search('tax-forms-nz.*',lis[i-1])
+                if form:
+                    print(lis[i-1].strip('\n'))
+                    print(lis[i].strip('\n'))
+                    formV = lis[i-1].strip('\n').split('.')[-1][:-1]
+                    v = lis[i].strip('\n').strip().replace("'",'')
+                    map[formV] = v
+    print(map)
+    for key in map:
+        for j in tags:
+            if key+'/' in j:
+                print(j)
+                with open(j,'r',encoding='utf-8') as f:
+                    fi = list(f)[-1].strip('\n')
+                    tags_file = ''.join(fi.split(' '))
+                    release_file = ''.join(map[key].split(' '))
+                    if tags_file == release_file:
+                        return True
+                    print(j)
+                    print("tags version: " ,tags_file)
+                    print('release version: ', release_file)
+                    print()
+                    return False
+                    
 
 if __name__ == "__main__":
     try:
@@ -73,12 +108,13 @@ if __name__ == "__main__":
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile(sys.argv[1], 'tags.yml',Noinclude)
     allpath = tags + release
-    try:
-        for path in allpath:
-            changeVersion(path)
-        print('bump version successfully')
-        compare()
-    except:
-        print('bump version failed')
+    # try:
+    for path in allpath:
+        changeVersion(path)
+    print('bump version successfully')
+    if compare(release,tags):
+        print('all pass')
+    # except:
+    #     print('bump version failed')
     
     
