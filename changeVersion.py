@@ -62,13 +62,20 @@ def findfile(start, name, Noinclude):
 def compare(release,tags):
     tags = [i for i in tags if '2020' in i]
     release = [i for i in release if '2020' in i]
-    print(tags)
+    # print(tags)
+    flag = 0
     for i in release:
-        readFile(i,tags)
+        if readFile(i,tags) == False:
+            flag = 1
+    if flag:
+        return False
+    return True
+
 
 
 def readFile(file,tags):
     map = {}
+    flag = 1
     with open(file,'r', encoding="utf-8") as f:
         lis = list(f)
         for i in range(len(lis)):
@@ -84,20 +91,23 @@ def readFile(file,tags):
     for key in map:
         for j in tags:
             if key+'/' in j:
-                print(j)
+                # print(j)
                 with open(j,'r',encoding='utf-8') as f:
                     fi = list(f)[-1].strip('\n')
                     tags_file = ''.join(fi.split(' '))
                     release_file = ''.join(map[key].split(' '))
-                    print("tags version: " ,tags_file)
-                    print('release version: ', release_file)
+                    # print("tags version: " ,tags_file)
+                    # print('release version: ', release_file)
                     if tags_file == release_file:
-                        return True
+                        continue
+                    flag = 0
                     print(j)
                     print("tags version: " ,tags_file)
                     print('release version: ', release_file)
                     print()
-                    return False
+    if not flag:
+        return False
+    return True
                     
 
 if __name__ == "__main__":
@@ -111,15 +121,15 @@ if __name__ == "__main__":
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile(sys.argv[1], 'tags.yml',Noinclude)
     allpath = tags + release
-    # try:
-    for path in allpath:
-        changeVersion(path)
-    print('bump version successfully')
-    if compare(release,tags):
-        print('Comparison All Pass')
-    else:
-        print('fail')
-    # except:
-    #     print('bump version failed')
+    try:
+        for path in allpath:
+            changeVersion(path)
+        print('bump version successfully')
+        if compare(release,tags):
+            print('Comparison All Pass')
+        else:
+            print('failed')
+    except:
+        print('bump version failed')
     
     
