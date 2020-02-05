@@ -2,13 +2,25 @@ import re
 import os
 import sys
 
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
 def changeVersion(filename):
     file_data = ""
     flag = 1
     pas = 0
     with open(filename, "r", encoding="utf-8") as f1:
         for line in f1:
-            # add ##ignore below will not change the code under this sign
+            # add "##ignore below" will not change the code under this sign
             workpaper = re.search('##ignore below',line)
             if workpaper or pas:
                 file_data += line
@@ -67,10 +79,11 @@ def compare(release,tags):
     for i in release:
         if readFile(i,tags) == False:
             flag = 1
+            print(i)
+            print()
     if flag:
         return False
     return True
-
 
 
 def readFile(file,tags):
@@ -101,10 +114,10 @@ def readFile(file,tags):
                     if tags_file == release_file:
                         continue
                     flag = 0
-                    print(j)
+                    print()
                     print("tags version: " ,tags_file)
                     print('release version: ', release_file)
-                    print()
+                    print(j)
     if not flag:
         return False
     return True
@@ -124,11 +137,11 @@ if __name__ == "__main__":
     try:
         for path in allpath:
             changeVersion(path)
-        print('bump version successfully')
+        # print(f"{bcolors.HEADER}Bump version successfully{bcolors.ENDC}")
         if compare(release,tags):
-            print('Comparison All Pass')
+            print(f"{bcolors.OKGREEN}Comparison All Pass{bcolors.ENDC}")
         else:
-            print('failed')
+            print(f"{bcolors.FAIL}Comparison Failed{bcolors.ENDC}")
     except:
         print('bump version failed')
     
