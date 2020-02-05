@@ -5,9 +5,16 @@ import sys
 def changeVersion(filename):
     file_data = ""
     flag = 1
+    pas = 0
     with open(filename, "r", encoding="utf-8") as f1:
         for line in f1:
-            ignore = versionNumber = re.search('^#.*',line.strip())
+            # add ##ignore below will not change the code under this sign
+            workpaper = re.search('##ignore below',line)
+            if workpaper or pas:
+                file_data += line
+                pas = 1
+                continue
+            ignore = re.search('^#.*',line.strip())
             if ignore: 
                 file_data += line
                 continue
