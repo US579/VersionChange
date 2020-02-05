@@ -62,24 +62,25 @@ def findfile(start, name, Noinclude):
 def compare(release,tags):
     tags = [i for i in tags if '2020' in i]
     release = [i for i in release if '2020' in i]
+    print(tags)
     for i in release:
         readFile(i,tags)
+
 
 def readFile(file,tags):
     map = {}
     with open(file,'r', encoding="utf-8") as f:
         lis = list(f)
-        for i in range(len(lis)-1):
+        for i in range(len(lis)):
             version = re.search('^    version: .*',lis[i])
             if version:
                 form = re.search('tax-forms-nz.*',lis[i-1])
                 if form:
-                    print(lis[i-1].strip('\n'))
-                    print(lis[i].strip('\n'))
                     formV = lis[i-1].strip('\n').split('.')[-1][:-1]
                     v = lis[i].strip('\n').strip().replace("'",'')
                     map[formV] = v
-    print(map)
+    # print(map)
+    # print(tags)
     for key in map:
         for j in tags:
             if key+'/' in j:
@@ -88,6 +89,8 @@ def readFile(file,tags):
                     fi = list(f)[-1].strip('\n')
                     tags_file = ''.join(fi.split(' '))
                     release_file = ''.join(map[key].split(' '))
+                    print("tags version: " ,tags_file)
+                    print('release version: ', release_file)
                     if tags_file == release_file:
                         return True
                     print(j)
@@ -113,7 +116,9 @@ if __name__ == "__main__":
         changeVersion(path)
     print('bump version successfully')
     if compare(release,tags):
-        print('all pass')
+        print('Comparison All Pass')
+    else:
+        print('fail')
     # except:
     #     print('bump version failed')
     
