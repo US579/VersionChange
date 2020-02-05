@@ -58,6 +58,10 @@ def findfile(start, name, Noinclude):
                 lis2.extend([os.path.normpath(os.path.join(start, relpath, i)) for i in files])
     return lis,lis2
 
+def compare():
+    pass
+
+
 if __name__ == "__main__":
     try:
         sys.argv[1]
@@ -73,6 +77,8 @@ if __name__ == "__main__":
         for path in allpath:
             changeVersion(path)
         print('bump version successfully')
+        compare()
     except:
         print('bump version failed')
+    
     
