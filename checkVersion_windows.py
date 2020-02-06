@@ -127,7 +127,7 @@ if __name__ == "__main__":
     except:
         print(f"{bcolors.OKBLUE}USEAGE:{bcolors.ENDC}",' python3 version.py <the root absoulte path of compliance-content-nz>"')
         print('For example:')
-        print('python3 checkVersion.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz')
+        print('python3 checkVersion_windows.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz')
         print('If your want to increament all version by 1 add `-i` behind above command')
         sys.exit()
 
