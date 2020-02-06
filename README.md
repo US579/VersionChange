@@ -1,4 +1,4 @@
-# compliance-content-nz VersionChange (Python script to increment Version no.)
+# Compliance-content-nz VersionChange (increment Version no.)
 
 ## env
 
