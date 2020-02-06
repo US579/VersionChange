@@ -46,13 +46,15 @@ Open the terminal
 ```
 >> cd VersionChange
 >> cd dist
->> ./changeVersion_windows <your root absoulte path of `compliance-content-nz` in your local drive>
+>> py checkVersion_windows.py <your root absoulte path of `compliance-content-nz` in your local drive>
 ```
 Example 
 
 ```
->> ./changeVersion_windows /Users/steven.liu/Desktop/MYOB/compliance-content-nz
+>> py checkVersion_windows.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz
 ```
+if you want increament all the version add `-i`  flag behind
 
-
-
+```
+>> py checkVersion_windows.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz -i
+```
