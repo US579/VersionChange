@@ -134,6 +134,7 @@ if __name__ == "__main__":
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile(sys.argv[1], 'tags.yml',Noinclude)
     allpath = tags + release
+    
     try:
         increament = sys.argv[2]
         if increament == '-i':
@@ -146,6 +147,4 @@ if __name__ == "__main__":
         print(f"{bcolors.OKGREEN}Pass All Comparison{bcolors.ENDC}")
     else:
         print(f"{bcolors.FAIL}Comparison Failed{bcolors.ENDC}")
-
-
 

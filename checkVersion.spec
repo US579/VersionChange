@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['checkVersion.py'],
-             pathex=['/Users/steven.liu/iCloud Drive (Archive)/Desktop/VersionChange'],
+             pathex=['/Users/steven.liu/Desktop/VersionChange'],
              binaries=[],
              datas=[],
              hiddenimports=[],
