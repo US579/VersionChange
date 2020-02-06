@@ -95,27 +95,21 @@ def readFile(file,tags):
                     formV = lis[i-1].strip('\n').split('.')[-1][:-1]
                     v = lis[i].strip('\n').strip().replace("'",'')
                     map[formV] = v
-    # print(map)
-    # store = []
     for key in map:
         for j in tags:
             if key+'/' in j:
                 if 'ir3' in map and 'ir3nr' in map and 'IR3NR/' in j and 'ir3nr/' in j: continue
                 if 'ir3' not in map and 'ir3nr' in map and'IR3/' in j and 'ir3nr/' in j: continue
-                # print(j)
                 with open(j,'r',encoding='utf-8') as f:
                     fi = list(f)[-1].strip('\n')
                     tags_file = ''.join(fi.split(' '))
                     release_file = ''.join(map[key].split(' '))
-                    # if key in store:
-                    #     continue
                     if tags_file == release_file: continue
                     flag = 0
                     print()
                     print(f"{bcolors.OKBLUE}tags version:    {bcolors.ENDC}",tags_file)
                     print(f"{bcolors.OKGREEN}release version: {bcolors.ENDC}",release_file)
                     print(f"{bcolors.OKBLUE}{j}{bcolors.ENDC}")
-    # print(store)
     if not flag:
         return False
     return True

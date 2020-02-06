@@ -214,8 +214,8 @@
    'PYMODULE'),
   ('struct', '/opt/anaconda3/lib/python3.7/struct.py', 'PYMODULE'),
   ('fnmatch', '/opt/anaconda3/lib/python3.7/fnmatch.py', 'PYMODULE'),
-  ('typing', '/opt/anaconda3/lib/python3.7/typing.py', 'PYMODULE'),
   ('_py_abc', '/opt/anaconda3/lib/python3.7/_py_abc.py', 'PYMODULE'),
+  ('typing', '/opt/anaconda3/lib/python3.7/typing.py', 'PYMODULE'),
   ('stringprep', '/opt/anaconda3/lib/python3.7/stringprep.py', 'PYMODULE'),
   ('os', '/opt/anaconda3/lib/python3.7/os.py', 'PYMODULE'),
   ('ntpath', '/opt/anaconda3/lib/python3.7/ntpath.py', 'PYMODULE')])
