@@ -125,9 +125,9 @@ if __name__ == "__main__":
     try:
         sys.argv[1]
     except:
-        print(f"{bcolors.OKBLUE}USEAGE:{bcolors.ENDC}",' python3 version.py <the root absoulte path of compliance-content-nz>"')
+        print(f"{bcolors.OKBLUE}USEAGE:{bcolors.ENDC}",'py checkVersion_windows.py <the root absoulte path of compliance-content-nz>"')
         print('For example:')
-        print('python3 checkVersion_windows.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz')
+        print('py checkVersion_windows.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz')
         print('If your want to increament all version by 1 add `-i` behind above command')
         sys.exit()
 
@@ -141,7 +141,6 @@ if __name__ == "__main__":
     tags = ['/'.join(item.split('\\')) for item in tags]
     release = ['/'.join(item.split('\\')) for item in release]
     allpath = tags + release
-
     try:
         increament = sys.argv[2]
         if increament == '-i':
