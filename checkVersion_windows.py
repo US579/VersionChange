@@ -131,6 +131,10 @@ if __name__ == "__main__":
         print('If your want to increament all version by 1 add `-i` behind above command')
         sys.exit()
 
+    if not os.path.exists(sys.argv[1]):
+        print(f"{bcolors.FAIL}Path is not exists {bcolors.ENDC}")
+        sys.exit()
+
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile(sys.argv[1], 'tags.yml',Noinclude)
     # ******
@@ -143,10 +147,11 @@ if __name__ == "__main__":
         if increament == '-i':
             for path in allpath:
                 changeVersion(path)
-        print(f"{bcolors.HEADER}Bump version successfully{bcolors.ENDC}")
+        print(f"{bcolors.HEADER}Bump version successfully🚀 🚀 🚀 🚀 🚀{bcolors.ENDC}")
     except:
         pass
     if compare(release,tags):
-        print(f"{bcolors.OKGREEN}Pass All Comparison{bcolors.ENDC}")
+        print(f"{bcolors.OKGREEN}Pass All Comparison ✅{bcolors.ENDC}")
     else:
         print(f"{bcolors.FAIL}Comparison Failed{bcolors.ENDC}")
+
