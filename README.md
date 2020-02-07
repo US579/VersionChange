@@ -24,23 +24,6 @@ It can be run directly
 ## How To Run
 
 
-####  Mac
-
-Open the terminal
-
-```
->> cd VersionChange
->> python3 changeVersion.py <your root absoulte path of `compliance-content-nz` in your local drive>
-```
-
-Example
-
-```
->> python3 changeVersion.py /Users/steven.liu/Desktop/MYOB/compliance-content-nz
-```
-
-#### windows 
-
 Open the terminal
 
 ```
