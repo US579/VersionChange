@@ -45,7 +45,6 @@ Open the terminal
 
 ```
 >> cd VersionChange
->> cd dist
 >> py checkVersion_windows.py <your root absoulte path of `compliance-content-nz` in your local drive>
 ```
 Example 
