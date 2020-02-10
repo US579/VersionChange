@@ -37,8 +37,11 @@ def form2mappings(dic,form,row):
     print('Description:',row['Description'])
     print('Standard message:',row['Standard message'])
     if form in ['ALL','CALC','44','44E','3N+D44','3NR','REB']:return
-    with open(dic[form], "r", encoding="utf-8") as f1:
-        print(list(f1))
+    with open(dic[form], "a", encoding="utf-8") as f1:
+        f1.write('  FieldErrorMappings:\n')
+        f1.write('    '+str(row['Standard codes'])+':\n')
+        f1.write('      Standard message: '+row['Standard message']+'\n')
+        f1.write('      description: '+row['Description']+'\n')
 
 
 if __name__ == "__main__":
