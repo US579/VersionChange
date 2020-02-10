@@ -1,0 +1,105 @@
+---
+name: Prepayments
+model:
+  fields:
+    PeriodStartDate:
+      type: date
+    PeriodEndDate:
+      type: date
+
+    GridList:
+      type: list
+      fields:
+        Description:
+          type: text
+        PaymentAmount:
+          type: number
+        PaymentStartDate:
+          type: date
+        PaymentEndDate:
+          type: date
+        PaymentDays:
+          type: number
+          value: = MAX(0,GridList#CURR#PaymentEndDate - GridList#CURR#PaymentStartDate + 1)
+        PaidinPeriod:
+          type: number
+          value: = 
+                IF(AND(GridList#CURR#PaymentStartDate >= PeriodStartDate,
+                        GridList#CURR#PaymentStartDate <= PeriodEndDate),
+                    GridList#CURR#PaymentAmount,
+                    0
+                    )
+        AmortiseStartDate:
+          type: date
+          value: = MAX(PeriodStartDate,GridList#CURR#PaymentStartDate)
+        AmortiseEndDate:
+          type: date
+          value: = MIN(PeriodEndDate,GridList#CURR#PaymentEndDate)
+        AmortiseDays:
+          type: number
+          value: = MAX(0,GridList#CURR#AmortiseEndDate - GridList#CURR#AmortiseStartDate + 1)
+        AmortiseAmount:
+          type: number  
+          value: 
+              = IF(GridList#CURR#PaymentDays <= 0,
+                    0,
+                    ROUND(GridList#CURR#PaymentAmount 
+                        * GridList#CURR#AmortiseDays / GridList#CURR#PaymentDays,2)
+                    )
+        
+    TotalPaymentAmount:
+      type: number
+      value: = SUM(GridList:PaymentAmount)
+    TotalPaidinPeriod:
+      type: number
+      value: = SUM(GridList:PaidinPeriod)
+    TotalAmortiseAmount:
+      type: number
+      value: = SUM(GridList:AmortiseAmount)
+
+    OpeningBalance:
+      type: number
+    ClosingBalance:
+      type: number
+      value: = 
+          OpeningBalance + TotalPaidinPeriod - TotalAmortiseAmount
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '= ClosingBalance - TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

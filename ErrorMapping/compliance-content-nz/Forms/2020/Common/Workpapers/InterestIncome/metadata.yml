@@ -1,0 +1,6 @@
+---
+name: Interest income
+classificationGroups:
+  - income
+  - otherIncome  
+disabled: false

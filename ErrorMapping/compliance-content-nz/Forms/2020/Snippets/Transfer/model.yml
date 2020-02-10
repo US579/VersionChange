@@ -1,0 +1,66 @@
+model:
+  fields:
+    transferRefundTo:
+      fields:
+        transferAccountType:
+          options:
+            - label: Income tax
+              value: INC
+            - label: Approved issuer levy
+              value: AIL
+            - label: Account information provider
+              value: AIP
+            - label: Common reporting standard
+              value: CRS
+            - label: Dividend withholding tax
+              value: DWT
+            - label: Fringe benefit tax
+              value: FBT
+            - label: Gaming machine duty
+              value: GMD
+            - label: GST on goods sold in satisfaction of debt
+              value: GSD
+            - label: Goods and services tax
+              value: GST
+            - label: Resident withholding tax on interest
+              value: IPS
+            - label: Resident withholding tax on interest (exempt recipient)
+              value: IPE
+            - label: Non-resident withholding tax
+              value: NRT
+            - label: Portfolio investment entity tax
+              value: PIE
+            - label: Payroll subsidy account
+              value: PRS
+            - label: 'Tax credits - donations, childcare, housekeeper'
+              value: REB
+            - label: Resident land withholding tax
+              value: RLT
+            - label: Resident withholding tax on specified dividends
+              value: RWT
+            - label: Student loan
+              value: SLS
+            - label: Working for families tax credits
+              value: FAM
+          type: select
+        transferAmount:
+          decimals: 2
+          type: number
+        transferAssociatedCustomer:
+          defaultValue: false
+          type: boolean
+        transferFilingPeriod:
+          defaultValue: 31/03/2019
+          type: date
+        transferIRD:
+          type: number
+      maxRows: 10
+      type: list
+    transferRemaining:
+      decimals: 2
+      type: number
+    transferTotal:
+      decimals: 2
+      type: number
+      value: '= SUM (transferRefundTo:transferAmount)'
+name: Transfer

@@ -1,0 +1,160 @@
+- block: section
+  children:
+    - id: submissionKey
+      label: Submission key
+- block: section
+  children:
+    - block:  section
+      children:
+        - control:  grid
+          name: passiveChildIncGrid
+          columns: 
+            - title:  'Name'
+              grow: true
+              size: lg
+            - title:  'Shared care'
+              size: lg
+            - title:  'IRD number'
+              size: md
+            - title:  'Amount'
+              size: md
+          rows:
+            - id: passiveChildIncList
+              columns:
+                - key:  childIncome_childName
+                - key:  childIncome_sharedCareIndicator
+                  showAs: dropdown
+                - key:  childIncome_childIrdNumber
+                  format: '1234'
+                - key:  childIncome_passiveIncome
+                  format: '1,234.10'
+      title:  Passive income of children
+    - block:  section
+      children:
+        - control:  grid
+          name: nonResPartnerGrid
+          columns:
+            - title:  'Name'
+              size: lg
+            - title:  Country of residence
+              size: lg
+            - title:  'IRD number'
+              size: md
+            - title:  'Amount in NZD'
+              size: md
+          rows:
+            - columns:
+                - id: partnersName
+                - id: partnersCountry
+                - id: partnersIrdNumber
+                  format: '1234'
+                - id: partnersPassiveIncome
+                  format: '1,234.10'
+      title:  Income of a non-resident spouse or partner
+    - block:  section
+      children:
+        - control:  grid
+          name: otherPaymentsGrid
+          columns: 
+            - title:  'Type of payment'
+              grow: true
+              size: xl
+            - title:  'Amount'
+              size: lg
+          rows:
+            - id: otherPaymentsList
+              columns:
+                - key:  otherPayment_paymentType
+                - key:  otherPayment_paymentAmount
+                  format: '1,234.10'
+      title:  Other payments
+    - block:  section
+      children:
+        - id: retirementContributions
+          label:  Retirement contributions
+          format: '1,234.10'
+        - id: depreciationRecovered
+          label:  Depreciation recovered
+          format: '1,234.10'
+      title:  ' '
+  title:  'Section A - Working for families tax credits customers'
+- block:  section
+  children:
+    - id: distributionFromTrusts
+      label:  Distribution from trusts
+      format: '1,234.10'
+    - id: employerProvidedVehicle
+      label:  Employer-provided motor vehicles
+      format: '1,234.10'
+    - id: voucherAndOtherSTCF
+      label:  Vouchers and short-term charge facilities
+      format: '1,234.10'
+    - id: nonLockedInPIEIncome
+      label:  Non-locked-in portfolio investment entities (PIE)
+      format: '1,234.10'
+    - id:  pensionsAndAnnuities
+      label:  Certain pensions and annuities (50% of received)
+      format: '1,234.10'
+    - id: distributionsFromRetirementSavings
+      label:  Distribution from retirement/superannuation schemes
+    - id: taxExemptOverseasPensions
+      label:  Tax-exempt overseas pensions
+      format: '1,234.10'
+    - id: taxExemptIncome
+      label:  Tax-exempt income
+      format: '1,234.10'
+    - id: incomeFromPIE
+      label:  Income from retirement/superannuation schemes PIE
+      format: '1,234.10'
+  title:  Section B - All customers
+  tooltip:
+    description: Include 50% of the amount of annuities or pension received in the tax year. Don’t include NZ Super (paid by Work and Income).
+
+- block:  section
+  children:
+    - id: attributableTrusteeIncome
+      label:  Attributable trustee income
+      format: '1,234.10'
+    - id: attributableFringeBenefits
+      label:  Attributable fringe benefits
+      format: '1,234.10'
+    - id: amountOfLosses
+      label:  Losses offset against income from another activity
+      format: '1,234.10'
+    - id: incomeEqualisationMainSchemeDeposits
+      label:  Income equalisation main scheme deposits
+      format: '1,234.10'
+    - block:  section
+      children:
+        - id: incomeEqualisationMainSchemeRefunds
+          label:  Income equalisation refund (less interest) deposits on or after 1 April 2011
+          format: '1,234.10'
+        - id: slIncomeEqualisationMainSchemeRefunds
+          label:  Student loan borrowers – income equalisation refund (less interest) deposits on or after 1 April 2014 
+          format: '1,234.10'
+      title:  Income equalisation man scheme refunds
+    - block:  section
+      children:
+        - id: attributedIncomeMajorShareholderCC_netIncomeForCompanyIncomeYear
+          label:  Company's net total income for company's income year
+          format: '1,234.10'
+        - id: attributedIncomeMajorShareholderCC_percentageOfSharesHeld
+          label:  Percentage of shares held in the company on last day of company's income year
+          format: '1,234.10%'
+        - id: attributedIncomeMajorShareholderCC_totalDividendsPaidByCompany
+          label:  Total dividends paid by company for company's income year
+          format: '1,234.10'
+      title:  Attributed income of a major shareholder in a close company
+    - block:  section
+      children:
+        - id: attributedDependentIncomeMajorShareholderCC_netIncomeForCompanyIncomeYear
+          label:  Company's net total income for company's income year
+          format: '1,234.10'
+        - id: attributedDependentIncomeMajorShareholderCC_percentageOfSharesHeld
+          label:  Percentage of shares held in company on last day of company's income year
+          format: '1,234.10%'
+        - id: attributedDependentIncomeMajorShareholderCC_totalDividendsPaidByCompany
+          label:  Total dividends paid by company for company's income year
+          format: '1,234.10'
+      title:  Attributed dependent child/children's income of a major shareholder in a close company - WfFTC customers only
+  title:  Section C - Business activities

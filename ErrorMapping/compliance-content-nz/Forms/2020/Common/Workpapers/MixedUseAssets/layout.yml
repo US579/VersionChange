@@ -1,0 +1,121 @@
+---
+
+- block: section
+  children:
+    - id: AssetDescription
+      label: Asset description
+    - id: IncomeEarningDays
+      label: Income earning days
+      format: '1234'
+    - id: PrivateDays
+      label: Private use days # (private)
+      tooltip:
+        description: An asset must be unused for at least 62 days during the year, see https://www.ird.govt.nz/topics/income-tax/mixed-use-assets
+        type: info
+      format: '1234'
+    - id: TotalDays
+      label: Counted days (income earning + private)
+      format: '1234'
+      style: subtotal
+    - id: DeductiblePercentage
+      label: Deductible percentage
+      format: '1234.12%'
+      style: total
+
+- block: section
+  title: Analysis of costs
+  children:
+    - control: grid
+      name: Costs
+      columns:
+        - title: Description
+          allowGroup: true
+          defaultGroup: false
+        - title: Amount (incl GST)
+        - group:
+            title: GST (if claimed)        
+            columns:
+              - title: Rate
+                size: sm
+              - title: GST amount
+        - group:
+            title: Deductible
+            columns: 
+              - title: Amount
+              - title: GST (if any)
+        - group:
+            title: Non-deductible
+            columns:
+              - title: Amount
+              - title: GST adjustment
+      rows:
+        - id: GridList
+          columns:
+            - key: Description
+            - key: NetAmount
+            - key: GSTRate
+              format: 1234.12%
+            - key: GSTAmount
+            - key: DeductibleAmount
+            - key: DeductibleGST
+            - key: NonDeductibleAmount
+            - key: NonDeductibleGST
+        - rowType: total
+          columns:
+            -
+            - id: TotalNetAmount
+            -
+            - id: TotalGSTAmount
+            - id: TotalDeductibleAmount
+            - id: TotalDeductibleGST
+            - id: TotalNonDeductibleAmount
+            - id: TotalNonDeductibleGST
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+- block: section
+  title: GST adjustment
+  children:
+    - id: AdjustmentRequired
+      label: Is a GST adjustment required for non-deductible entertainment?
+      showAs: radio
+    - id: GSTAdjustment
+      label: GST adjustment required in box 9 of next GST return
+      visible: = AdjustmentRequired
+      style: subtotal
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

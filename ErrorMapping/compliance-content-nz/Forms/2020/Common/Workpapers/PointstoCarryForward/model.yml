@@ -1,0 +1,9 @@
+---
+model:
+  fields:
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+name: Points to carry forward

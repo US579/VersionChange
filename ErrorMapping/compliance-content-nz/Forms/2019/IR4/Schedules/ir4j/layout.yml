@@ -1,0 +1,91 @@
+- block: section
+  children:
+    - id: irdNumber
+      label: IRD number
+      visible:  =FALSE
+      format: '1234'
+    - id: submissionKey
+      label: Submission key
+      visible: =FALSE
+    - id: openingBalance
+      format: '(1,234.10)'
+      label: Opening balance at 1 April
+  title:  Opening balance
+- block: section
+  children:
+    - block: section
+      children:
+        - format: '1,234.10'
+          id: incomeTaxPaid
+          label: Income tax paid for 1989 and subsequent years
+        - format: '1,234.10'
+          id: totalRWTOnInterest
+          label: RWT on interest received
+      title: Payments
+    - block: section
+      children:
+        - format: '1,234.10'
+          id: imputationAndFDPCredits
+          label: Imputation and FDP credits received
+        - control: repeatingSection
+          fields:
+            - key: otherCreditsDescription
+              label: Other - description
+            - format: '1,234.10'
+              key: otherCreditsAmount
+              label: Other credits
+          id: otherCreditsRepeatingSection
+        - id: otherCredits
+          format: '1,234.10'
+          label: Total other credits
+      title: Imputation
+    - format: '1,234.10'
+      id: totalCredits
+      label: Total credits
+      style: subtotal
+  title: Credits
+- block: section
+  children:
+    - block: section
+      children:
+        - format: '1,234.10'
+          id: incomeTaxRefunded
+          label: Income tax refunded for 1989 and later years
+      title: Refunds
+    - block: section
+      children:
+        - format: '1,234.10'
+          id: imputationCreditsAttached
+          label: Imputation credits attached to dividends paid
+        - control: repeatingSection
+          fields:
+            - key: OtherDebitsDescription
+              label: Other - description
+              tooltip:
+                description: Please specify
+            - format: '1,234.10'
+              key: otherDebitsAmount
+              label: Other debits
+          id: otherDebitsRepeatingSection
+        - id: otherDebits
+          label:  Total other debits
+      title: Imputation
+    - format: '1,234.10'
+      id: totalDebits
+      label: Total debits
+      style: subtotal
+  title: Debits
+- block: section
+  children:
+    - format: '(1,234.10)'
+      id: closingBalance
+      label: Closing balance at 31 March
+      style: total
+    - format: '1,234.10'
+      id: adjustments
+      label: Adjustments to reduce further income tax
+    - format: '(1,234.10)'
+      id: furtherIncomeTaxPayable
+      label: Further income tax payable
+      style: total
+  title:  Closing balance

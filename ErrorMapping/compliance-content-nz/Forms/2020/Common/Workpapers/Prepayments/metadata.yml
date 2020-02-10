@@ -1,0 +1,6 @@
+---
+name: Prepayments
+classificationGroups:
+  - asset
+  - liability
+disabled: false

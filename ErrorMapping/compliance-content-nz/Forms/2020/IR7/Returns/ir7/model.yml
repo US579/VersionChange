@@ -1,0 +1,241 @@
+---
+name: IR7 Look-through company return
+model:
+  fields:
+    irdNumber:
+      type: number
+      decimals: 0
+      mandatory: true
+    nonResidentIndicator:
+      defaultValue: false
+      type: boolean
+    isNilReturn:
+      defaultValue: false
+      type: boolean
+    isFinalReturn:
+      defaultValue: false
+      type: boolean
+    isAmended:
+      defaultValue: false
+      type: boolean
+    amendReason:
+      mandatory: = isAmended <> FALSE
+      options:
+        - label: Calculation error
+          value: MATH
+        - label: Incorrect amount entered
+          value: KEY
+        - label: Transposition error
+          value: TRNSPO
+        - label: Other
+          value: OTHER
+      type: select
+    amendDetails:
+      mandatory: = isAmended <> FALSE
+      type: text
+    submissionKey:
+      maxLength: 32
+      type: text
+    schedularPayments_totalIncome:
+      decimals: 2
+      type: number
+    schedularPayments_withholdingTaxDeducted:
+      decimals: 2
+      type: number
+    interestIncome_totalTaxPaid:
+      decimals: 2
+      type: number
+    interestIncome_totalIncome:
+      decimals: 2
+      type: number
+    pieIncome_totalTaxCredits:
+      decimals: 2
+      type: number
+    pieIncome_totalIncome:
+      decimals: 2
+      type: number      
+    dividendIncome_totalImputationCredits:
+      decimals: 2
+      type: number
+    dividendIncome_totalRWTCredits:
+      decimals: 2
+      type: number
+    dividendIncome_totalGrossDividends:
+      decimals: 2
+      type: number
+    maoriAuthorityDistributions_totalMACredits:
+      decimals: 2
+      type: number
+    maoriAuthorityDistributions_totalMADistributions:
+      decimals: 2
+      type: number
+    partnershipIncome_totalTaxCredits:
+      decimals: 2
+      type: number
+    partnershipIncome_totalIncome:
+      decimals: 2
+      type: number
+    ltcIncome_totalTaxCredits:
+      decimals: 2
+      type: number
+    ltcIncome_totalIncome:
+      decimals: 2
+      type: number
+    ltcNonAllowableDeductions:
+      decimals: 2
+      type: number
+    ltcPriorYearNonAllowableDeductionsClaimed:
+      decimals: 2
+      type: number
+    ltcAdjustedIncome:
+      decimals: 2
+      type: number
+      value:  =IF(ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed > 0,
+               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed, 
+               NULL)
+    overseasIncome_totalTaxPaid:
+      decimals: 2
+      type: number
+    overseasIncome_totalIncome:
+      decimals: 2
+      type: number
+    residentialRentalIncome_Indicator:
+      type: select
+      options:
+        - label: Portfolio
+          value: P
+        - label: Individual
+          value: I
+        - label: Combined
+          value: C
+    residentialRentalIncome_totalIncome:
+      type: number
+      decimals: 2
+    residentialRentalIncome_residentialRentalDeductions:
+      type: number
+      decimals: 2
+    businessIncome:
+      decimals: 2
+      type: number
+    netRentalIncome:
+      decimals: 2
+      type: number
+    otherIncome:
+      decimals: 2
+      type: number
+    rlwtCredit:
+      decimals: 2
+      type: number
+    saleOfProperty:
+      decimals: 2
+      type: number
+    totalIncome:
+      decimals: 2
+      type: number
+      value:  =schedularPayments_totalIncome + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + 
+                partnershipIncome_totalIncome + ltcAdjustedIncome + overseasIncome_totalIncome + pieIncome_totalIncome + businessIncome + netRentalIncome + otherIncome + 
+                saleOfProperty + residentialRentalIncome_totalIncome
+    totalExpenses:
+      decimals: 2
+      type: number
+    totalIncomeLossAfterExpenses:
+      decimals: 2
+      type: number
+      value: =totalIncome - totalExpenses
+    extinguishedLosses:
+      decimals: 2
+      type: number
+    priorYearsDeductions:
+      decimals: 2
+      type: number
+    deductionsClaimedThisYear:
+      decimals: 2
+      type: number
+      value:  =extinguishedLosses - priorYearsDeductions
+    attributionType:
+      type: select
+      mandatory: true
+      options:
+        - value:  Partnership
+          label:  Partnership
+        - value:  Look-through company
+          label:  Look-through company
+    lookThrough:
+      type: boolean
+      value:  =IF(attributionType = "Look-through company",TRUE,FALSE)
+    partnership:
+      type: boolean
+      value:  =IF(attributionType = "Partnership",TRUE,FALSE)
+    cfcFIFdisclosure:
+      defaultValue: false
+      type: boolean
+    partnerLTCRepeat:
+      type: list
+      fields:
+        incomeAttribution_name:
+          type: text
+        incomeAttribution_irdNumber:
+          type: number
+          decimals: 0
+        incomeAttribution_attributionOfIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfInterestIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfDividendIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfMADistributions:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfOverseasIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfResidentialRentalIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfRentalIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfPassiveIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfOtherIncome:
+          type: number
+          decimals: 2
+        incomeAttribution_totalIncome:
+          type: number
+          decimals: 2
+          value:  =partnerLTCRepeat#CURR#incomeAttribution_shareOfInterestIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfDividendIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfMADistributions + partnerLTCRepeat#CURR#incomeAttribution_shareOfOverseasIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfRentalIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfPassiveIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfOtherIncome
+        incomeAttribution_deductionForExtinguishedLoss:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfResidentialRentalDeductions:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfOverseasTaxPaid:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfImputationCredits:
+          type: number
+          decimals: 2
+        incomeAttribution_shareOfOtherTaxCredits:
+          type: number
+          decimals: 2
+        incomeAttribution_nonAllowableDeductionsThisYear:
+          type: number
+          decimals: 2
+        incomeAttribution_nonAllowableDeductionsBroughtForward:
+          type: number
+          decimals: 2
+        incomeAttribution_priorYearNonAllowableDeductionsClaimed:
+          type: number
+          decimals: 2
+        incomeAttribution_nonAllowableDeductionsCarriedForward:
+          type: number
+          decimals: 2
+
+
+          
+    

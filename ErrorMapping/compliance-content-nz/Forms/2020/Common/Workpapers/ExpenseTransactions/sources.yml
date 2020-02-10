@@ -1,0 +1,20 @@
+---
+LedgerAmounts:
+  source: ledger/account-balances
+  fields:
+    AccountCode: AccountCode
+    Balance: ClosingBalance
+
+expenses:
+  source: ledger/transactions
+  fields:
+    AccountCode: AccountNumber
+    Date: Date
+    Memo: Description
+    TrialBalanceAmount: NetAmount
+    GSTAmount: Tax
+    GrossAmount: GrossAmount
+LedgerDetails:
+  source: ledger/account-details
+  fields:
+    AccountName: Name

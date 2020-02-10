@@ -1,0 +1,86 @@
+---
+- block: section
+  children:
+    - control: grid
+      name: ARgrid
+      columns:
+        - title: 'Date'
+          size: md
+        - title: 'Invoice No'
+          size: md
+          allowGroup: true
+        - title: 'Description'
+          allowGroup: true
+          defaultGroup: false
+          size: lg
+          grow: true
+        - title: 'Gross amount'
+          subtotal: true
+          size: md
+        - title: 'GST rate'
+          allowGroup: true
+          defaultGroup: false
+          size: md
+        - title: 'GST amount'
+          subtotal: true          
+          size: md
+        - title: 'Net amount'
+          subtotal: true
+          size: md
+      rows:
+        - id: ARList
+          columns:
+            - key: Date
+            - key: InvoiceNo
+            - key: Description
+            - key: GrossAmount
+            - key: GSTRate
+              format: '1234.10%'
+            - key: GSTAmount
+            - key: NetAmount
+        - rowType: total
+          columns:
+            - Total
+            -
+            -
+            - id: TotalGrossAmount
+            - 
+            - id: TotalGSTAmount
+            - id: TotalNetAmount
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance                  
+            -
+            - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

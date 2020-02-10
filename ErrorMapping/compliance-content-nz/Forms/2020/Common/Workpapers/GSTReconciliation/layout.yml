@@ -1,0 +1,821 @@
+---
+- block: section
+  children:
+    - id: GSTPeriod
+      label: GST period
+    - id: GSTBasis
+      label: GST basis
+    - id: GSTRate
+      label: GST rate
+  
+## Section to analyse GST returns and compare to amount paid / refunded
+- block: section
+  children:
+    - id: AnalyseReturns
+      label: Do you wish to undertake a detailed analysis of all of the GST returns for the period?
+      showAs: radio
+
+##  6 monthly returns
+#- block: section
+#  title: GST Return analysis
+#  visible: = AND(AnalyseReturns,GSTPeriod="6")
+#  children:
+    - control: grid
+      name: GSTOutstanding6
+      visible: = AND(AnalyseReturns,GSTPeriod="6")
+      columns:
+        - title: Period end
+        - group:
+            title: GST collected (outputs)
+            columns:
+              - title: Total outputs
+              - title: Zero rated
+              - title: GST on outputs
+        - group:
+            title: GST paid (inputs)
+            columns:
+              - title: Total inputs
+              - title: GST on inputs
+        - title: Adjustment (+ve or -ve)
+        - title: Net GST due
+        - title: GST paid / (refunded)
+        - title: GST Outstanding
+      rows:
+        - columns:
+            - id: PeriodEnd1
+            - id: Outputs1
+            - id: ZeroRated1
+            - id: GSTonOutputs1
+            - id: Inputs1
+            - id: GSTonInputs1
+            - id: Adjustments1
+            - id: NetGSTDue1
+            - id: GSTPaid1
+            - id: GSTOutstanding1
+        - columns:
+            - id: PeriodEnd2
+            - id: Outputs2
+            - id: ZeroRated2
+            - id: GSTonOutputs2
+            - id: Inputs2
+            - id: GSTonInputs2
+            - id: Adjustments2
+            - id: NetGSTDue2
+            - id: GSTPaid2
+            - id: GSTOutstanding2
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalOutputs
+            - id: TotalZeroRated
+            - id: TotalGSTonOutputs
+            - id: TotalInputs
+            - id: TotalGSTonInputs
+            - id: TotalAdjustments
+            - id: TotalNetGSTDue
+            - id: TotalGSTPaid
+            - id: TotalGSTOutstanding
+
+##  2 monthly returns
+#- block: section
+#  title: GST Return analysis
+#  visible: = AND(AnalyseReturns,GSTPeriod="2")
+#  children:
+    - control: grid
+      name: GSTOutstanding2
+      visible: = AND(AnalyseReturns,GSTPeriod="2")
+      columns:
+        - title: Period end
+        - group:
+            title: GST collected (outputs)
+            columns:
+              - title: Total outputs
+              - title: Zero rated
+              - title: GST on outputs
+        - group:
+            title: GST paid (inputs)
+            columns:
+              - title: Total inputs
+              - title: GST on inputs
+        - title: Adjustment (+ve or -ve)
+        - title: Net GST due
+        - title: GST paid / (refunded)
+        - title: GST Outstanding
+      rows:
+        - columns:
+            - id: PeriodEnd1
+            - id: Outputs1
+            - id: ZeroRated1
+            - id: GSTonOutputs1
+            - id: Inputs1
+            - id: GSTonInputs1
+            - id: Adjustments1
+            - id: NetGSTDue1
+            - id: GSTPaid1
+            - id: GSTOutstanding1
+        - columns:
+            - id: PeriodEnd2
+            - id: Outputs2
+            - id: ZeroRated2
+            - id: GSTonOutputs2
+            - id: Inputs2
+            - id: GSTonInputs2
+            - id: Adjustments2
+            - id: NetGSTDue2
+            - id: GSTPaid2
+            - id: GSTOutstanding2
+        - columns:
+            - id: PeriodEnd3
+            - id: Outputs3
+            - id: ZeroRated3
+            - id: GSTonOutputs3
+            - id: Inputs3
+            - id: GSTonInputs3
+            - id: Adjustments3
+            - id: NetGSTDue3
+            - id: GSTPaid3
+            - id: GSTOutstanding3
+        - columns:
+            - id: PeriodEnd4
+            - id: Outputs4
+            - id: ZeroRated4
+            - id: GSTonOutputs4
+            - id: Inputs4
+            - id: GSTonInputs4
+            - id: Adjustments4
+            - id: NetGSTDue4
+            - id: GSTPaid4
+            - id: GSTOutstanding4
+        - columns:
+            - id: PeriodEnd5
+            - id: Outputs5
+            - id: ZeroRated5
+            - id: GSTonOutputs5
+            - id: Inputs5
+            - id: GSTonInputs5
+            - id: Adjustments5
+            - id: NetGSTDue5
+            - id: GSTPaid5
+            - id: GSTOutstanding5
+        - columns:
+            - id: PeriodEnd6
+            - id: Outputs6
+            - id: ZeroRated6
+            - id: GSTonOutputs6
+            - id: Inputs6
+            - id: GSTonInputs6
+            - id: Adjustments6
+            - id: NetGSTDue6
+            - id: GSTPaid6
+            - id: GSTOutstanding6
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalOutputs
+            - id: TotalZeroRated
+            - id: TotalGSTonOutputs
+            - id: TotalInputs
+            - id: TotalGSTonInputs
+            - id: TotalAdjustments
+            - id: TotalNetGSTDue
+            - id: TotalGSTPaid
+            - id: TotalGSTOutstanding
+
+##  1 monthly returns
+#- block: section
+#  title: GST Return analysis
+#  visible: = AND(AnalyseReturns,GSTPeriod="1")
+#  children:
+    - control: grid
+      name: GSTOutstanding1
+      visible: = AND(AnalyseReturns,GSTPeriod="1")
+      columns:
+        - title: Period end
+        - group:
+            title: GST collected (outputs)
+            columns:
+              - title: Total outputs
+              - title: Zero rated
+              - title: GST on outputs
+        - group:
+            title: GST paid (inputs)
+            columns:
+              - title: Total inputs
+              - title: GST on inputs
+        - title: Adjustment (+ve or -ve)
+        - title: Net GST due
+        - title: GST paid / (refunded)
+        - title: GST Outstanding
+      rows:
+        - columns:
+            - id: PeriodEnd1
+            - id: Outputs1
+            - id: ZeroRated1
+            - id: GSTonOutputs1
+            - id: Inputs1
+            - id: GSTonInputs1
+            - id: Adjustments1
+            - id: NetGSTDue1
+            - id: GSTPaid1
+            - id: GSTOutstanding1
+        - columns:
+            - id: PeriodEnd2
+            - id: Outputs2
+            - id: ZeroRated2
+            - id: GSTonOutputs2
+            - id: Inputs2
+            - id: GSTonInputs2
+            - id: Adjustments2
+            - id: NetGSTDue2
+            - id: GSTPaid2
+            - id: GSTOutstanding2
+        - columns:
+            - id: PeriodEnd3
+            - id: Outputs3
+            - id: ZeroRated3
+            - id: GSTonOutputs3
+            - id: Inputs3
+            - id: GSTonInputs3
+            - id: Adjustments3
+            - id: NetGSTDue3
+            - id: GSTPaid3
+            - id: GSTOutstanding3
+        - columns:
+            - id: PeriodEnd4
+            - id: Outputs4
+            - id: ZeroRated4
+            - id: GSTonOutputs4
+            - id: Inputs4
+            - id: GSTonInputs4
+            - id: Adjustments4
+            - id: NetGSTDue4
+            - id: GSTPaid4
+            - id: GSTOutstanding4
+        - columns:
+            - id: PeriodEnd5
+            - id: Outputs5
+            - id: ZeroRated5
+            - id: GSTonOutputs5
+            - id: Inputs5
+            - id: GSTonInputs5
+            - id: Adjustments5
+            - id: NetGSTDue5
+            - id: GSTPaid5
+            - id: GSTOutstanding5
+        - columns:
+            - id: PeriodEnd6
+            - id: Outputs6
+            - id: ZeroRated6
+            - id: GSTonOutputs6
+            - id: Inputs6
+            - id: GSTonInputs6
+            - id: Adjustments6
+            - id: NetGSTDue6
+            - id: GSTPaid6
+            - id: GSTOutstanding6
+        - columns:
+            - id: PeriodEnd7
+            - id: Outputs7
+            - id: ZeroRated7
+            - id: GSTonOutputs7
+            - id: Inputs7
+            - id: GSTonInputs7
+            - id: Adjustments7
+            - id: NetGSTDue7
+            - id: GSTPaid7
+            - id: GSTOutstanding7
+        - columns:
+            - id: PeriodEnd8
+            - id: Outputs8
+            - id: ZeroRated8
+            - id: GSTonOutputs8
+            - id: Inputs8
+            - id: GSTonInputs8
+            - id: Adjustments8
+            - id: NetGSTDue8
+            - id: GSTPaid8
+            - id: GSTOutstanding8
+        - columns:
+            - id: PeriodEnd9
+            - id: Outputs9
+            - id: ZeroRated9
+            - id: GSTonOutputs9
+            - id: Inputs9
+            - id: GSTonInputs9
+            - id: Adjustments9
+            - id: NetGSTDue9
+            - id: GSTPaid9
+            - id: GSTOutstanding9
+        - columns:
+            - id: PeriodEnd10
+            - id: Outputs10
+            - id: ZeroRated10
+            - id: GSTonOutputs10
+            - id: Inputs10
+            - id: GSTonInputs10
+            - id: Adjustments10
+            - id: NetGSTDue10
+            - id: GSTPaid10
+            - id: GSTOutstanding10
+        - columns:
+            - id: PeriodEnd11
+            - id: Outputs11
+            - id: ZeroRated11
+            - id: GSTonOutputs11
+            - id: Inputs11
+            - id: GSTonInputs11
+            - id: Adjustments11
+            - id: NetGSTDue11
+            - id: GSTPaid11
+            - id: GSTOutstanding11
+        - columns:
+            - id: PeriodEnd12
+            - id: Outputs12
+            - id: ZeroRated12
+            - id: GSTonOutputs12
+            - id: Inputs12
+            - id: GSTonInputs12
+            - id: Adjustments12
+            - id: NetGSTDue12
+            - id: GSTPaid12
+            - id: GSTOutstanding12
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalOutputs
+            - id: TotalZeroRated
+            - id: TotalGSTonOutputs
+            - id: TotalInputs
+            - id: TotalGSTonInputs
+            - id: TotalAdjustments
+            - id: TotalNetGSTDue
+            - id: TotalGSTPaid
+            - id: TotalGSTOutstanding
+
+# section to compare Returns against calculated GST for each period
+#- block: section
+#  title: Compare returns to period calculation
+#  visible: = AND(AnalyseReturns,CompareReturnstoGL,GSTPeriod="6")
+#  children:
+    - id: CompareReturnstoGL
+      label: Do you wish to compare each GST return with calculated values for each period?
+      showAs: radio
+      visible: = AnalyseReturns
+
+    # 6 monthly period
+    - control: grid
+      name: CompareReturns6
+      visible: = AND(AnalyseReturns,CompareReturnstoGL,GSTPeriod="6")
+      columns:
+        - title: Period end
+        - group:
+            title: GST on outputs
+            columns:
+              - title: From returns
+              - title: Calculated
+              - title: Difference
+        - group:
+            title: GST on inputs
+            columns:
+              - title: From returns
+              - title: Calculated
+              - title: Difference
+      rows:
+        - columns:
+            - id: ClcPeriodEnd1
+            - id: ClcGSTonOutputs1
+            - id: CalculatedGSTonOutputs1
+            - id: DifferenceonOutputs1
+            - id: ClcGSTonInputs1
+            - id: CalculatedGSTonInputs1
+            - id: DifferenceonInputs1
+        - columns:
+            - id: ClcPeriodEnd2
+            - id: ClcGSTonOutputs2
+            - id: CalculatedGSTonOutputs2
+            - id: DifferenceonOutputs2
+            - id: ClcGSTonInputs2
+            - id: CalculatedGSTonInputs2
+            - id: DifferenceonInputs2
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalGSTonOutputs
+            - id: TotalCalculatedGSTonOutputs
+            - id: TotalDifferenceonOutputs
+            - id: TotalGSTonInputs
+            - id: TotalCalculatedGSTonInputs
+            - id: TotalDifferenceonInputs
+        
+
+    # 2 monthly period
+    - control: grid
+      name: CompareReturns2
+      visible: = AND(AnalyseReturns,CompareReturnstoGL,GSTPeriod="2")
+      columns:
+        - title: Period end
+        - group:
+            title: GST on outputs
+            columns:
+              - title: From returns
+              - title: Calculated
+              - title: Difference
+        - group:
+            title: GST on inputs
+            columns:
+              - title: From returns
+              - title: Calculated
+              - title: Difference
+      rows:
+        - columns:
+            - id: ClcPeriodEnd1
+            - id: ClcGSTonOutputs1
+            - id: CalculatedGSTonOutputs1
+            - id: DifferenceonOutputs1
+            - id: ClcGSTonInputs1
+            - id: CalculatedGSTonInputs1
+            - id: DifferenceonInputs1
+        - columns:
+            - id: ClcPeriodEnd2
+            - id: ClcGSTonOutputs2
+            - id: CalculatedGSTonOutputs2
+            - id: DifferenceonOutputs2
+            - id: ClcGSTonInputs2
+            - id: CalculatedGSTonInputs2
+            - id: DifferenceonInputs2
+        - columns:
+            - id: ClcPeriodEnd3
+            - id: ClcGSTonOutputs3
+            - id: CalculatedGSTonOutputs3
+            - id: DifferenceonOutputs3
+            - id: ClcGSTonInputs3
+            - id: CalculatedGSTonInputs3
+            - id: DifferenceonInputs3
+        - columns:
+            - id: ClcPeriodEnd4
+            - id: ClcGSTonOutputs4
+            - id: CalculatedGSTonOutputs4
+            - id: DifferenceonOutputs4
+            - id: ClcGSTonInputs4
+            - id: CalculatedGSTonInputs4
+            - id: DifferenceonInputs4
+        - columns:
+            - id: ClcPeriodEnd5
+            - id: ClcGSTonOutputs5
+            - id: CalculatedGSTonOutputs5
+            - id: DifferenceonOutputs5
+            - id: ClcGSTonInputs5
+            - id: CalculatedGSTonInputs5
+            - id: DifferenceonInputs5
+        - columns:
+            - id: ClcPeriodEnd6
+            - id: ClcGSTonOutputs6
+            - id: CalculatedGSTonOutputs6
+            - id: DifferenceonOutputs6
+            - id: ClcGSTonInputs6
+            - id: CalculatedGSTonInputs6
+            - id: DifferenceonInputs6
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalGSTonOutputs
+            - id: TotalCalculatedGSTonOutputs
+            - id: TotalDifferenceonOutputs
+            - id: TotalGSTonInputs
+            - id: TotalCalculatedGSTonInputs
+            - id: TotalDifferenceonInputs
+
+# 1 monthly period
+#- block: section
+#  title: Compare returns to period calculation
+#  visible: = AND(AnalyseReturns,CompareReturnstoGL,GSTPeriod="1")
+#  children:
+    - control: grid
+      name: CompareReturns1
+      visible: = AND(AnalyseReturns,CompareReturnstoGL,GSTPeriod="1")
+      columns:
+        - title: Period end
+        - group:
+            title: GST on outputs
+            columns:
+              - title: From returns
+              - title: Calculated
+              - title: Difference
+        - group:
+            title: GST on inputs
+            columns:
+              - title: From returns
+              - title: Calculated
+              - title: Difference
+      rows:
+        - columns:
+            - id: ClcPeriodEnd1
+            - id: ClcGSTonOutputs1
+            - id: CalculatedGSTonOutputs1
+            - id: DifferenceonOutputs1
+            - id: ClcGSTonInputs1
+            - id: CalculatedGSTonInputs1
+            - id: DifferenceonInputs1
+        - columns:
+            - id: ClcPeriodEnd2
+            - id: ClcGSTonOutputs2
+            - id: CalculatedGSTonOutputs2
+            - id: DifferenceonOutputs2
+            - id: ClcGSTonInputs2
+            - id: CalculatedGSTonInputs2
+            - id: DifferenceonInputs2
+        - columns:
+            - id: ClcPeriodEnd3
+            - id: ClcGSTonOutputs3
+            - id: CalculatedGSTonOutputs3
+            - id: DifferenceonOutputs3
+            - id: ClcGSTonInputs3
+            - id: CalculatedGSTonInputs3
+            - id: DifferenceonInputs3
+        - columns:
+            - id: ClcPeriodEnd4
+            - id: ClcGSTonOutputs4
+            - id: CalculatedGSTonOutputs4
+            - id: DifferenceonOutputs4
+            - id: ClcGSTonInputs4
+            - id: CalculatedGSTonInputs4
+            - id: DifferenceonInputs4
+        - columns:
+            - id: ClcPeriodEnd5
+            - id: ClcGSTonOutputs5
+            - id: CalculatedGSTonOutputs5
+            - id: DifferenceonOutputs5
+            - id: ClcGSTonInputs5
+            - id: CalculatedGSTonInputs5
+            - id: DifferenceonInputs5
+        - columns:
+            - id: ClcPeriodEnd6
+            - id: ClcGSTonOutputs6
+            - id: CalculatedGSTonOutputs6
+            - id: DifferenceonOutputs6
+            - id: ClcGSTonInputs6
+            - id: CalculatedGSTonInputs6
+            - id: DifferenceonInputs6
+        - columns:
+            - id: ClcPeriodEnd7
+            - id: ClcGSTonOutputs7
+            - id: CalculatedGSTonOutputs7
+            - id: DifferenceonOutputs7
+            - id: ClcGSTonInputs7
+            - id: CalculatedGSTonInputs7
+            - id: DifferenceonInputs7
+        - columns:
+            - id: ClcPeriodEnd8
+            - id: ClcGSTonOutputs8
+            - id: CalculatedGSTonOutputs8
+            - id: DifferenceonOutputs8
+            - id: ClcGSTonInputs8
+            - id: CalculatedGSTonInputs8
+            - id: DifferenceonInputs8
+        - columns:
+            - id: ClcPeriodEnd9
+            - id: ClcGSTonOutputs9
+            - id: CalculatedGSTonOutputs9
+            - id: DifferenceonOutputs9
+            - id: ClcGSTonInputs9
+            - id: CalculatedGSTonInputs9
+            - id: DifferenceonInputs9
+        - columns:
+            - id: ClcPeriodEnd10
+            - id: ClcGSTonOutputs10
+            - id: CalculatedGSTonOutputs10
+            - id: DifferenceonOutputs10
+            - id: ClcGSTonInputs10
+            - id: CalculatedGSTonInputs10
+            - id: DifferenceonInputs10
+        - columns:
+            - id: ClcPeriodEnd11
+            - id: ClcGSTonOutputs11
+            - id: CalculatedGSTonOutputs11
+            - id: DifferenceonOutputs11
+            - id: ClcGSTonInputs11
+            - id: CalculatedGSTonInputs11
+            - id: DifferenceonInputs11
+        - columns:
+            - id: ClcPeriodEnd12
+            - id: ClcGSTonOutputs12
+            - id: CalculatedGSTonOutputs12
+            - id: DifferenceonOutputs12
+            - id: ClcGSTonInputs12
+            - id: CalculatedGSTonInputs12
+            - id: DifferenceonInputs12
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalGSTonOutputs
+            - id: TotalCalculatedGSTonOutputs
+            - id: TotalDifferenceonOutputs
+            - id: TotalGSTonInputs
+            - id: TotalCalculatedGSTonInputs
+            - id: TotalDifferenceonInputs
+
+## Main reconciliation
+- block: section
+  title: GST outstanding at the end of the period
+  children:
+
+## If AnalyseReturns = true, then get the Net GST due from the previous section
+    - control: grid
+      visible: = AnalyseReturns
+      name: GSTReconciliation1
+      columns:
+        - title: 'Description'
+        - title: 'GST collected'
+        - title: 'GST paid'
+        - title: 'Net GST due'
+      rows:
+        - columns:
+            - GST outstanding per analysis of return (above)
+            -
+            -
+            - id: TotalGSTOutstanding
+        - id: OtherGSTOutstanding
+          columns:
+            - key: Description
+              placeholder: Enter details of any other GST outstanding
+            - key: GSTCollected
+            - key: GSTPaid
+            - key: NetGST
+        - rowType: total
+          columns:
+            - Total GST outstanding as returned
+            - 
+            - 
+            - id: TotalGSTOutstandingplusOther
+
+## if AnalyseReturns <> true than user enters Net GST Due
+    - control: grid
+      visible: = IF(AnalyseReturns,FALSE,TRUE)
+      name: GSTReconciliation2
+      columns:
+        - title: 'Description'
+        - title: 'GST collected'
+        - title: 'GST paid'
+        - title: 'Net GST due'
+      rows:
+        - columns:
+            - GST outstanding from final return for the period
+            - id: CollectedfromLastReturn
+            - id: PaidfromLastReturn
+            - id: NetGSTfromLastReturn
+        - id: OtherGSTOutstanding
+          columns:
+            - key: Description
+              placeholder: Enter details of any other GST outstanding
+            - key: GSTCollected
+            - key: GSTPaid
+            - key: NetGST
+        - rowType: total
+          columns:
+            - Total GST outstanding as returned
+            - id: TotalGSTCollectedplusOther
+            - id: TotalGSTPaidplusOther
+            - id: TotalGSTOutstandingplusOther
+
+# Timing differences
+# ONly apply if on a payments basis
+- block: section
+  title: Timing adjustments (payments basis only)
+  visible: '= IF(GSTBasis="P",TRUE,FALSE)'
+  children:
+    - control: grid
+      name: TimeingAdjustments
+      columns:
+        - Description
+        - GST collected
+        - GST paid
+        - Net GST
+      rows:
+        - columns:
+            - GST on accounts receivable
+            - id: ARGSTCollected
+            - 
+            - id: ARGSTDue
+        - columns:
+            - GST on accounts payable
+            - 
+            - id: APGSTPaid
+            - id: APGSTDue
+        - id: OtherTimingAdjustments
+          columns:
+            - key: Description
+              placeholder: Enter any other timing adjustments
+            - key: GSTCollected
+            - key: GSTPaid
+            - key: GSTDue
+        - rowType: total
+          columns:
+            - Total timing adjustments
+            - id: TotalTimingGSTCollected
+            - id: TotalTimingGSTPaid
+            - id: TotalTimingGSTDue
+        - rowType: total
+          columns:
+            - Net GST due before other adjustments
+            - 
+            - 
+            - id: TotalGSTDueBeforeAdjustments
+
+## Other adjustments
+- block: section
+  title: Other adjustments (payments basis only)
+  visible: '= IF(GSTBasis="P",TRUE,FALSE)'
+  children:
+    - control: grid
+      name: OtherAdjustments
+      columns:
+        - Description
+        - GST collected
+        - GST paid
+        - Net GST        
+      rows:
+        - columns:
+          - GST adjustments from home office expenses
+          - id: HomeOfficeGSTCollected
+          - id: HomeOfficeGSTPaid
+          - id: HomeOfficeGSTDue
+        - columns:
+          - GST adjustments from entertainment expenses
+          - id: EntertainmentGSTCollected
+          - id: EntertainmentGSTPaid
+          - id: EntertainmentGSTDue
+        - columns:
+          - GST adjustment from FBT
+          - id: FBTGSTCollected
+          - id: FBTGSTPaid
+          - id: FBTGSTDue
+        - columns:
+          - Adjustments from periodic comparison (above)
+          - id: PeriodicGSTCollected
+          - id: PeriodicGSTPaid
+          - id: PeriodicGSTDue
+        - id: OtherAdjustments
+          columns:
+            - key: Description
+              placeholder: Enter any other adjustments
+            - key: GSTCollected
+            - key: GSTPaid
+            - key: GSTDue
+        - rowType: total
+          columns:
+            - Total other adjustments
+            - id: TotalOtherAdjustmentsGSTCollected
+            - id: TotalOtherAdjustmentsGSTPaid
+            - id: TotalOtherAdjustmentsGSTDue
+
+## Final total
+        - columns:
+            - ""
+            - ""
+            - ""
+            - ""
+        - rowType: total
+          columns:
+            - Total GST Due
+            - 
+            - 
+            - id: TotalFinalNetGSTDue
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: Totals
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

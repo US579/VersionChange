@@ -1,0 +1,202 @@
+model:
+  fields:
+    accountsPayable:
+      decimals: 2
+      type: number
+    accountsReceivable:
+      decimals: 2
+      type: number
+    additionsToFixedAssets:
+      decimals: 2
+      type: number
+    badDebts:
+      decimals: 2
+      type: number
+    buildings:
+      decimals: 2
+      type: number
+    cashAndDeposits:
+      decimals: 2
+      type: number
+    closingStock:
+      decimals: 2
+      type: number
+    contractorPayments:
+      decimals: 2
+      type: number
+    currentAccountYearEndBalances:
+      decimals: 2
+      type: number
+    currentLoans:
+      decimals: 2
+      type: number
+    currentYearTaxableProfitLoss:
+      decimals: 2
+      type: number
+      value: =netProfitLossBeforeTax + taxAdjustments
+    depreciationAndAmortisation:
+      decimals: 2
+      type: number
+    disposalOfFixedAssets:
+      decimals: 2
+      type: number
+    dividendsPaid:
+      decimals: 2
+      type: number
+    dividendsReceived:
+      decimals: 2
+      type: number
+    drawings:
+      decimals: 2
+      type: number
+    exceptionalItems:
+      decimals: 2
+      type: number
+    fees:
+      decimals: 2
+      type: number
+    furnitureAndFittings:
+      decimals: 2
+      type: number
+    grossProfit:
+      decimals: 2
+      type: number
+      value: >-
+        =grossSalesAndServiceIncome - ( openingStock + purchases - closingStock
+        )
+    grossSalesAndServiceIncome:
+      decimals: 2
+      type: number
+    insurance:
+      decimals: 2
+      type: number
+    intangibles:
+      decimals: 2
+      type: number
+    interestExpense:
+      decimals: 2
+      type: number
+    interestReceived:
+      decimals: 2
+      type: number
+    land:
+      decimals: 2
+      type: number
+    multipleActivity:
+      defaultValue: false
+      type: boolean
+    netProfitLossBeforeTax:
+      decimals: 2
+      type: number
+      value: =totalIncome - totalExpenses + exceptionalItems
+    nonCurrentLiabilities:
+      decimals: 2
+      type: number
+    openingStock:
+      decimals: 2
+      type: number
+    otherCurrentAssets:
+      decimals: 2
+      type: number
+    otherCurrentLiabilities:
+      decimals: 2
+      type: number
+    otherExpenses:
+      decimals: 2
+      type: number
+    otherFixedAssets:
+      decimals: 2
+      type: number
+    otherIncome:
+      decimals: 2
+      type: number
+    otherNonCurrentAssets:
+      decimals: 2
+      type: number
+    ownersEquity:
+      decimals: 2
+      type: number
+    plantAndMachinery:
+      decimals: 2
+      type: number
+    provisions:
+      decimals: 2
+      type: number
+    purchases:
+      decimals: 2
+      type: number
+    rates:
+      decimals: 2
+      type: number
+    relatedPartyRemuneration:
+      decimals: 2
+      type: number
+    rentLeaseLicenceIncome:
+      decimals: 2
+      type: number
+    rentsLeasesLicences:
+      decimals: 2
+      type: number
+    repairsAndMaintenance:
+      decimals: 2
+      type: number
+    researchAndDevelopment:
+      decimals: 2
+      type: number
+    salariesAndWages:
+      decimals: 2
+      type: number
+    sharesAndOwnershipInterests:
+      decimals: 2
+      type: number
+    submissionKey:
+      type: number
+    taxAdjustments:
+      decimals: 2
+      type: number
+    taxDeductibleLossOnDisposalOfFixedAssets:
+      decimals: 2
+      type: number
+    taxDepreciation:
+      decimals: 2
+      type: number
+    termDeposits:
+      decimals: 2
+      type: number
+    totalAssets:
+      decimals: 2
+      type: number
+      value: >-
+        =accountsReceivable + cashAndDeposits + otherCurrentAssets + vehicles +
+        plantAndMachinery + furnitureAndFittings + land + buildings +
+        otherFixedAssets + intangibles + sharesAndOwnershipInterests +
+        termDeposits + otherNonCurrentAssets
+    totalCurrentLiabilities:
+      decimals: 2
+      type: number
+      value: =provisions + accountsPayable + currentLoans + otherCurrentLiabilities
+    totalExpenses:
+      decimals: 2
+      type: number
+      value: >-
+        =badDebts + depreciationAndAmortisation + insurance + interestExpense +
+        fees + rates + rentsLeasesLicences + repairsAndMaintenance +
+        researchAndDevelopment + relatedPartyRemuneration + salariesAndWages +
+        contractorPayments + otherExpenses
+    totalIncome:
+      decimals: 2
+      type: number
+      value: >-
+        =grossProfit + interestReceived + dividendsReceived +
+        rentLeaseLicenceIncome + otherIncome
+    totalLiabilities:
+      decimals: 2
+      type: number
+      value: =totalCurrentLiabilities + nonCurrentLiabilities
+    unTaxedRealisedGainsAndReceipts:
+      decimals: 2
+      type: number
+    vehicles:
+      decimals: 2
+      type: number
+name: NZTax_IR10

@@ -1,0 +1,73 @@
+---
+version: 0.0.35
+type: 'Compliance-IR4-Company-2019-NZ'
+
+params:
+  name: 'IR4 Company'
+  region: 'nz'
+  # filingEndpoint: '/sbr/ird/ir4/v1'
+  year: 2019
+  complianceType: 'IR4'
+  print:
+    - type: TaxReturn
+
+rules:
+  tax-forms-nz.ir4:
+    version: '2019.0.26'
+    params:
+      type: 'TaxReturn'
+      lodgeable: true
+      min: 1
+      max: 1
+      rolloverFromOnline: true
+      rolloverWithDataOnline: true
+  tax-forms-nz.ir10:
+    version: '2019.0.23'
+    params:
+      name: 'Financial statements summary'
+      type: 'Schedule'
+      lodgeable: true
+      min: 0
+      max: 1
+  # tax-forms-nz.ir833:
+  #   version: '2019.0.0'
+  #   params:
+  #     name: 'Property sale information'
+  #     type: 'Schedule'
+  #     lodgeable: true
+  #     min: 0
+  #     max: 20
+  tax-forms-nz.ir4j:
+    version: '2019.0.15'
+    params:
+      name: 'Annual imputation return'
+      type: 'Schedule'
+      lodgeable: true
+      min: 0
+      max: 1
+  # specific workpapers
+  workpapers-nz.CurrentAccountInterest:
+    version: '2019.0.9'
+    params:
+      type: 'TrialBalanceWorkpaper'
+      lodgeable: false
+      rolloverFromOnline: true
+      rolloverWithDataOnline: false
+      metadata:
+        name: Current account - interest on overdrawn
+        classificationGroups:
+          - asset
+          - liability
+        disabled: false
+  workpapers-nz.ShareholderContinuity:
+    version: '2019.0.9'
+    params:
+      type: 'TrialBalanceWorkpaper'
+      lodgeable: false
+      rolloverFromOnline: true
+      rolloverWithDataOnline: false
+      metadata:
+        name: Shareholder Continuity
+        classificationGroups:
+          - equity
+        disabled: false

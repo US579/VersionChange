@@ -1,0 +1,5 @@
+---
+name: Inventory / stock on hand   
+classificationGroups:
+  - asset 
+disabled: false

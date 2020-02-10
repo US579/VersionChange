@@ -1,0 +1,6 @@
+---
+name: Entertainment
+classificationGroups:
+  - Expense
+  - OtherExpense
+disabled: false

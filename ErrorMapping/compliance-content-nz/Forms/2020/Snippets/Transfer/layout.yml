@@ -1,0 +1,27 @@
+- block: section
+  children:
+    - addButtonText: Add another transfer
+      control: repeatingSection
+      fields:
+        - key: transferIRD
+          label: IRD number receiving transfer
+          placeholder: transferIrdNumber
+        - key: transferAccountType
+          label: Account type
+        - key: transferFilingPeriod
+          label: Filing period
+        - key: transferAssociatedCustomer
+          label: Associated?
+          showAs: radio
+        - key: transferAmount
+          label: Amount
+          placeholder: transferAmount
+      id: transferRefundTo
+      sectionTitle: 'Transfer refund to:'
+    - id: transferTotal
+      label: Total amount to be transferred
+      placeholder: transferTotal
+    - id: transferRemaining
+      label: 'Balance to be refunded '
+      placeholder: transferRemaining
+  title: Refunds

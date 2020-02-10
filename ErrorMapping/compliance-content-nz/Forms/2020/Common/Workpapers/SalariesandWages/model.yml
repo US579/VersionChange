@@ -1,0 +1,149 @@
+---
+name: Salaries and wages
+model:
+
+  fields:
+
+    ComparetoIRD:
+      type: boolean
+      defaultValue: true
+
+    PayrollGross:
+      type: number
+    PayrollNotLiableforACC:
+      type: number
+    PayrollPaye:
+      type: number
+    PayrollKiwisaverEmployee:
+      type: number
+    PayrollKiwisaverEmployer:
+      type: number
+    PayrollEsct:
+      type: number
+    PayrollStudentLoan:
+      type: number
+    PayrollChildSupport:
+      type: number
+
+    IRDGross:
+      type: number
+    IRNotLiableforACC:
+      type: number
+    IRDPaye:
+      type: number
+    IRDKiwisaverEmployee:
+      type: number
+    IRDKiwisaverEmployer:
+      type: number
+    IRDEsct:
+      type: number
+    IRDStudentLoan:
+      type: number
+    IRDChildSupport:
+      type: number
+
+    VarianceGross:
+      type: number
+      value: = PayrollGross - IRDGross
+    VarianceNotLiableforACC:
+      type: number
+      value: = PayrollNotLiableforACC - IRNotLiableforACC    
+    VariancePaye:
+      type: number
+      value: = PayrollPaye - IRDPaye
+    VarianceKiwisaverEmployee:
+      type: number
+      value: = PayrollKiwisaverEmployee - IRDKiwisaverEmployee
+    VarianceKiwisaverEmployer:
+      type: number
+      value: = PayrollKiwisaverEmployer - IRDKiwisaverEmployer      
+    VarianceEsct:
+      type: number
+      value: = PayrollEsct - IRDEsct
+    VarianceStudentLoan:
+      type: number
+      value: = PayrollStudentLoan - IRDStudentLoan
+    VarianceChildSupport:
+      type: number
+      value: = PayrollChildSupport - IRDChildSupport
+
+    TotalGross:
+      type: number
+      value: = PayrollGross
+    TotalKiwisaverEmployer:
+      type: number
+      value: = PayrollKiwisaverEmployer
+    TotalEsct:
+      type: number
+      value: = PayrollEsct
+
+    TotalGrossWages:
+      type: number
+      value: = TotalGross + TotalKiwisaverEmployer + TotalEsct
+
+    TotalSchedularPayments:
+      type: number
+
+    NetSalariesandWages:
+      type: number 
+      value: = TotalGross - TotalSchedularPayments
+
+    NonTaxable:
+      type: number
+    HolidayPayEOY:
+      type: number
+    HolidayPayBOY:
+      type: number
+
+    OtherAdjustments:
+      type: list
+      fields: 
+        Description:
+          type: text
+        Amount:
+          type: number
+
+    TotaltoReconcile:
+      type: number
+      value: = TotalGrossWages - TotalSchedularPayments + NonTaxable + HolidayPayEOY + HolidayPayBOY
+                + SUM(OtherAdjustments:Amount)
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+  
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '=TotaltoReconcile - TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

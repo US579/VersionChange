@@ -1,0 +1,148 @@
+---
+ato:
+  form: not used
+lodgement:
+  Documents:
+    Form: '3NR'
+    FormFields:
+      SubmissionKey:
+        source: fe/submissionKey
+      NzSuperIndicator:
+        source: fe/nzSuperIndicator
+      TotalInterestRWT:
+        source: fe/totalInterestRWT
+      TotalInterest:
+        source: fe/totalInterest
+      NrwtOnTotalInterest:
+        source: fe/nrwtOnTotalInterest
+      TotalDividendCredits:
+        source: fe/totalDividendCredits
+      TotalDividends:
+        source: fe/totalDividends
+      NrwtOnTotalDividends:
+        source: fe/nrwtOnTotalDividends
+      TotalWithholdingTaxOnRoyalties:
+        source: fe/totalWithholdingTaxOnRoyalties
+      TotalRoyalties:
+        source: fe/totalRoyalties
+      NrwtOnTotalRoyalties:
+        source: fe/nrwtOnTotalRoyalties
+      TotalTaxCredits:
+        source: fe/totalTaxCredits
+      TotalNRWT:
+        source: fe/totalNRWTTax
+      NzIncomeWithTaxDeducted:
+        TotalTaxPaid:
+          source: fe/totalPAYEDeducted
+        TotalIncome:
+          source: fe/totalGrossIncome
+      MaoriAuthorityDistributions:
+        TotalMACredits:
+          source: fe/maoriAuthorityDistributions_totalMACredits
+        TotalMADistributions:
+          source: fe/maoriAuthorityDistributions_totalMADistributions
+      PieIncome:
+        TotalTaxCredits:
+          source: fe/pieIncome_totalTaxCredits
+        TotalIncome:
+          source: fe/pieIncome_totalIncome
+      PartnershipIncome:
+        TotalTaxCredits:
+          source: fe/partnershipIncome_totalTaxCredits
+        TotalIncome:
+          source: fe/partnershipIncome_totalIncome
+      EstateTrustIncome:
+        TotalTaxCredits:
+          source: fe/estateTrustIncome_totalTaxCredits
+        TotalIncome:
+          source: fe/estateTrustIncome_totalIncome
+      LtcIncome:
+        TotalTaxCredits:
+          source: fe/ltcIncome_totalTaxCredits
+        TotalIncome:
+          source: fe/ltcIncome_totalIncome
+      LtcNonAllowableDeductions:
+        source: fe/ltcNonAllowableDeductions
+      LtcPriorYearNonAllowableDeductionsClaimed:
+        source: fe/ltcPriorYearNonAllowableDeductionsClaimed
+      LtcAdjustedIncome:
+        source: fe/ltcAdjustedIncome
+      OtherCredits:
+        source: fe/otherCredits
+      ResidentialRentalIncome:
+        Indicator:
+          source: fe/residentialRentalIncome_Indicator
+        TotalIncome:
+          source: fe/residentialRentalIncome_totalIncome
+        ResidentialRentalDeductions:
+          source: fe/residentialRentalIncome_residentialRentalDeductions
+        ExcessDeductionsBroughtForward:
+          source: fe/residentialRentalIncome_excessDeductionsBroughtForward
+        DeductionsClaimedThisYear:
+          source: fe/residentialRentalIncome_deductionsClaimedThisYear
+        NetIncome:
+          source: fe/residentialRentalIncome_netIncome
+        ExcessDeductionsCarriedForward:
+          source: fe/residentialRentalIncome_excessDeductionsCarriedForward
+      NetRentalIncome:
+        source: fe/netRentalIncome
+      SelfEmployedIncome:
+        source: fe/selfEmployedIncome
+      OtherIncome:
+        source: fe/otherIncome
+      SaleOfProperty:
+        source: fe/saleOfProperty
+      RlwtCredit:
+        source: fe/rlwtCredit
+      OtherExpenses:
+        source: fe/otherExpenses
+      LossesBroughtForward:
+        source: fe/lossesBroughtForward
+      LossesClaimedThisYear:
+        source: fe/lossesClaimedThisYear
+      TotalTaxableIncome:
+        source: fe/totalTaxableIncome
+      WorkedInNZ:
+        source: fe/workedInNZ
+      IncomeEarned:
+        source: fe/incomeEarned
+      WeeksWorked:
+        source: fe/weeksWorked
+      DaysWorked:
+        source: fe/daysWorked
+      ArrivalDate:
+        source: fe/arrivalDate
+      DepartureDate:
+        source: fe/departureDate
+      ImputationBroughtForward:
+        source: fe/imputationBroughtForward
+      TaxOnTaxableIncome:
+        source: fe/taxOnTaxableIncome
+      ResearchAndDevelopment:
+        NonrefundableCredit:
+          source: fe/researchAndDevelopment_nonrefundableCredit
+      ResidualIncomeTax:
+        source: fe/residualIncomeTax
+      EarlyPaymentDiscountEligibility:
+        source: fe/earlyPaymentDiscountEligibility
+      OverpaymentProvisionalTax:
+        source: fe/overpaymentProvisionalTax
+      ProvisionalTax:
+        ProvisionalTaxOption:
+          source: fe/provisionalTax_provisionalTaxOption
+        ProvisionalTaxPayable:
+          source: fe/provisionalTax_provisionalTaxPayable
+        ProvisionalTaxStartDate:
+          source: fe/provisionalTax_provisionalTaxStartDate
+      PartYearReturnIndicator:
+        source: fe/partYearReturnIndicator
+      PartYearReason:
+        source: fe/partYearReason
+      PartYearStartDate:
+        source: fe/partYearStartDate
+      PartYearEndDate:
+        source: fe/partYearEndDate
+      DateLeftNZ:
+        source: fe/dateLeftNZ
+      TimePlannedToBeAway:
+        source: fe/timePlannedToBeAway

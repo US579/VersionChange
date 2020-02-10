@@ -1,0 +1,63 @@
+- block: section
+  title: Brightline test
+  children:
+    - id: brightLine
+      label: Is this property sale subject to the test?
+      showAs: radio
+- block: section
+  title: Property details
+  children:
+    - id: propertyTitle
+      label: Property title number
+    - id: propertyAddress1
+      label: Address line 1
+    - id: propertyAddress2
+      label: Address line 2
+    - id: propertySuburb
+      label: Suburb
+    - id: propertyCity
+      label: City
+    - id: propertyPostcode
+      label: Postcode
+    - id: dateofPurchase
+      label: Date of purchase
+    - id: dateofSale
+      label: Date of sale
+
+- block: section
+  title: Property sale details
+  children:
+    - block: section
+      title: Sale price
+      children:
+        - id: salePrice
+          label: Sale price
+          format: '1,234.10'
+    - block: section
+      title: Costs
+      children:
+        - id: purchasePrice
+          label: Purchase price
+          format: '1,234.10'
+        - id: deductibleCosts
+          label: Deductible costs
+          format: '1,234.10'
+        - id: totalCosts
+          label: Total costs
+          format: '1,234.10'
+          style: subtotal
+    - block: section
+      title: Net profit/(loss)
+      children:
+        - id: netProfit
+          label: Net profit/(loss)
+          style: subtotal
+          format: '(1,234.10)'
+        - id: shareofOwnership
+          label: Share of ownership (%)
+          format: '1234.10%'
+        - id: shareofNetProfit
+          label: Your share of net profit/(loss)
+          style: total
+          format: '(1,234.10)'
+  

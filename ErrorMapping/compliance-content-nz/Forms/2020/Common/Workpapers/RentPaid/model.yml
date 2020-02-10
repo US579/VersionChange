@@ -1,0 +1,78 @@
+---
+name: Recurring payments
+model:
+  fields:
+    GridList:
+      type: list
+      fields:     
+        Description:
+          type: text
+        NumberofPayments:
+          type: number
+        RentRate:
+          type: number
+        GrossRent:
+          type: number
+          value: = GridList#CURR#NumberofPayments * GridList#CURR#RentRate
+        GSTRate:
+          type: number
+          defaultValue: '15'
+        GSTAmount:
+          type: number
+          value: = ROUND(GridList#CURR#GrossRent * GridList#CURR#GSTRate/(100+GridList#CURR#GSTRate),2)
+        NetRent :
+          type: number
+          value: = GridList#CURR#GrossRent - GridList#CURR#GSTAmount
+    TotalNumberofPayments:
+      type: number
+      value: = SUM(GridList:NumberofPayments)
+    TotalGrossRent:
+      type: number
+      value: = SUM(GridList:GrossRent)
+    TotalGSTAmount:
+      type: number
+      value: = SUM(GridList:GSTAmount)
+    TotalNetRent:
+      type: number
+      value: = SUM(GridList:NetRent)
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+        
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '=TotalNetRent - TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+

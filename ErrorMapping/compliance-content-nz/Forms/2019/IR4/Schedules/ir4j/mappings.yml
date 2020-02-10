@@ -1,0 +1,31 @@
+---
+ato:
+  form: not used
+lodgement:
+  Documents:
+    Form: '4J'
+    FormFields:
+      SubmissionKey:
+        source: fe/submissionKey
+      OpeningBalance:
+        source: fe/openingBalance
+      IncomeTaxPaid:
+        source: fe/incomeTaxPaid
+      TotalRWTOnInterest:
+        source: fe/totalRWTOnInterest
+      ImputationAndFDPCredits:
+        source: fe/imputationAndFDPCredits
+      OtherCredits:
+        source: otherCredits
+      IncomeTaxRefunded:
+        source: fe/incomeTaxRefunded
+      ImputationCreditsAttached:
+        source: fe/imputationCreditsAttached
+      OtherDebits:
+        source: fe/otherDebits
+      ClosingBalance:
+        source: fe/closingBalance
+      Adjustments:
+        source: fe/adjustments
+      FurtherIncomeTaxPayable:
+        source: fe/furtherIncomeTaxPayable

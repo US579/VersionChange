@@ -1,0 +1,59 @@
+name: Student loan
+model:
+  fields:
+    <<: !include
+      source: ../../../Common/slCalculatorModel.yml
+      path: slCalculatorFields
+    slLoanBalance:
+      type: number
+      decimals: 2
+    slAdjSalariesWages:
+      type:  number
+      decimals: 2
+    othAssessInc:
+      type: number
+      decimals: 2
+    adjustments:
+      type: number
+      decimals: 2
+    slAdjNetIncome:
+      type: number
+      decimals: 2
+      value:  =othAssessInc + adjustments
+    interimPayments:
+      type: number
+      decimals: 2
+    voluntaryPayments:
+      type: number
+      decimals: 2
+    totalRepayments:
+      type: number
+      decimals: 2
+      value:  =interimPayments + voluntaryPayments
+    slSubtotal3:
+      type: number
+      decimals: 2
+      value:  =slEoyRepayObligation  - totalRepayments
+    finalLoanOverpaymentOverride:
+      type: number
+      decimals: 2
+    overpaymentReduceSL:
+      type: boolean
+      defaultValue: false
+    interimPmtOption:
+      mandatory: = TRUE
+      type: select
+      defaultValue: S
+      options:
+        - label: Standard
+          value: S
+        - label: Estimated
+          value: E
+        - label: Not liable
+          value: N
+    estSalaryWages:
+      type: number
+      decimals: 2
+    estOtherIncome:
+      type: number
+      decimals: 2

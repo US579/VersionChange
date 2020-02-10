@@ -1,0 +1,5 @@
+---
+name: Accounts receivable
+classificationGroups:
+  - asset
+disabled: false

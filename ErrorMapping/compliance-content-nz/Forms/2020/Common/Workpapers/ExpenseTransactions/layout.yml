@@ -1,0 +1,128 @@
+---
+- block: section
+  children:
+    - control: grid
+      name: Expenses workpaper
+      columns:
+        - title: Account code
+          allowGroup: true
+          defaultGroup: true
+          size: md
+        - title: Date
+          defaultSort: asc
+        - title: Memo
+          allowGroup: true
+          defaultGroup: false
+        - title: Net amount
+          subtotal: true
+        - title: GST amount
+          allowHide: true
+          subtotal: true
+        - title: Gross amount
+          allowHide: true
+          subtotal: true
+        - title: 'Deductible %'
+          allowGroup: true
+          defaultGroup: false
+          size: md
+        - group:
+            title: Deductible
+            columns:
+              - title: Amount
+                subtotal: true
+              - title: GST
+                subtotal: true
+        - group:
+            title: Non-deductible
+            columns:
+              - title: Amount
+                subtotal: true
+              - title: GST
+                subtotal: true          
+      rows:
+        - id: expenses
+          columns:
+            - key: AccountCode
+              clickable: false
+            - key: Date
+              clickable: false
+            - key: Memo
+              clickable: false
+            - key: TrialBalanceAmount
+              clickable: false
+            - key: GSTAmount
+              clickable: false 
+            - key: GrossAmount
+              clickable: false
+            - key: PercentageDeductible
+            - key: DeductibleAmount
+            - key: DeductibleGST
+            - key: NonDeductibleAmount
+            - key: NonDeductibleGST
+        - rowType: total
+          columns:
+            - Total
+            -
+            -
+            - id: TotalTrialBalance
+            - id: TotalGSTAmount
+            - id: TotalGrossAmount
+            -
+            - id: TotalDeductibleAmount
+            - id: TotalDeductibleGST
+            - id: TotalNonDeductbleAmount
+            - id: TotalNonDeductibleGST
+
+#    - control: label
+#      text: ' '
+#      type: 'tertiary'
+#    - id: TotalDeductibleAmount
+#      label: Deductible amount (includes GST)
+        
+# - block: section
+#   title: 'Ledger amounts'
+#   children:
+#     - control: grid
+#       name: LedgerAmountsGrid
+#       columns:
+#         - title: Account code
+#           size: md
+#         - title: Account name
+#           size: lg
+#         - title: Balance
+#       rows:
+#         - id: LedgerAmounts
+#           columns:
+#             - key: AccountCode
+#             - key: AccountName
+#             - key: Balance
+#         - rowType: total
+#           columns:
+#             - Total
+#             -
+#             - id: TotalBalance
+#         - rowType: total
+#           columns:
+#             - Variance
+#             -
+#             - id: Variance
+
+- block: section
+  title: GST adjustment
+  children:
+    - id: AdjustmentRequired
+      label: Is a GST adjustment required for GST claimed on non-deductible expense?
+      showAs: radio
+    - id: GSTAdjustment
+      label: GST adjustment required in Box 9 of next GST return
+      visible: = AdjustmentRequired
+      
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

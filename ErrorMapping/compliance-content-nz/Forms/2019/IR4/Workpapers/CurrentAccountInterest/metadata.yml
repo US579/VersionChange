@@ -1,0 +1,6 @@
+---
+name: Current account - interest on overdrawn
+classificationGroups:
+  - asset
+  - liability
+disabled: false

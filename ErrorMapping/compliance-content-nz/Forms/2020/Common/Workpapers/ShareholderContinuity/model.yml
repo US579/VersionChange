@@ -1,0 +1,56 @@
+---
+name: Shareholder continuity
+model:
+  fields:
+    DateofChange:
+      type: date
+    GridList:
+      type: list
+      fields:
+        ShareholderName:
+          type: text
+        SharesBefore:
+          type: number
+        PercentageBefore:
+          type: number
+          value: = IF(TotalSharesBefore = 0,
+            0,
+            GridList#CURR#SharesBefore / TotalSharesBefore * 100
+            )
+        SharesAfter:
+          type: number
+        PercentageAfter:
+          type: number
+          value: = IF(TotalSharesAfter = 0,
+            0,
+            GridList#CURR#SharesAfter / TotalSharesAfter * 100
+            )
+        MinimumHolding:
+          type: number
+          value: = IF(
+            GridList#CURR#PercentageBefore < GridList#CURR#PercentageAfter,
+            ROUND(GridList#CURR#PercentageBefore,2),
+            ROUND(GridList#CURR#PercentageAfter,2)
+            )
+
+    TotalSharesBefore:
+      type: number
+      value: "=SUM(GridList:SharesBefore)"
+    TotalPercentageBefore:
+      type: number
+      value: =SUM(GridList:PercentageBefore)
+    TotalSharesAfter:
+      type: number
+      value: "=SUM(GridList:SharesAfter)"
+    TotalPercentageAfter:
+      type: number
+      value: =SUM(GridList:PercentageAfter)
+    TotalMinimumHolding:
+      type: number
+      value: =SUM(GridList:MinimumHolding)
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

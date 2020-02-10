@@ -1,0 +1,77 @@
+---
+name: Term deposit interest accrual
+model:
+  fields:
+    EndofPeriodDate:
+      type: date
+#    DaysinYear:
+#      type: number
+#      value: = YEAR(EndofPeriodDate)
+    GridList:
+      type: list
+      fields: 
+        Description:
+          type: text
+        BalanceperBank:
+          type: number
+        InterestRate:
+          type: number
+        DateInterestPaid:
+          type: date
+        NumberofDays:
+          type: number
+          value: = MAX(0,EndofPeriodDate - GridList#CURR#DateInterestPaid)
+          
+        AccruedInterest:
+          type: number
+          value: = ROUND( GridList#CURR#BalanceperBank 
+                    * (GridList#CURR#InterestRate / 100)
+                    * (GridList#CURR#NumberofDays / 365) , 2)
+
+    TotalBalanceperBank:
+      type: number
+      value: = SUM(GridList:BalanceperBank)
+    TotalAccruedInterest:
+      type: number
+      value: = SUM(GridList:AccruedInterest)
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: = SUM(LedgerAmounts:Balance)
+    Variance:
+      type: number
+      value: = TotalBalanceperBank - TotalBalance
+
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

@@ -1,0 +1,44 @@
+ato:
+  form: not used
+lodgement:
+  Documents:
+    Form: '833'
+    FormFields:
+    SubmissionKey: 
+    BrightLine: 
+      source: fe/brightLine
+    PropertyTitle: 
+      source: fe/propertyTitle
+    PropertyAddress1: 
+      source: fe/propertyAddress1
+    PropertyAddress2: 
+      source: fe/propertyAddress2
+    PropertySuburb:
+      source: fe/propertySuburb
+    PropertyCity:
+      source: fe/propertyCity
+    PropertyPostCode:
+      source: fe/propertyPostcode
+    DateOfPurchase:
+      source: fe/dateofPurchase
+    DateOfSale:
+      source: fe/dateofSale
+    SalePrice:
+      source: fe/salePrice
+    PurchasePrice:
+      source: fe/purchasePrice
+    DeductibleCosts:
+      source: fe/deductibleCosts
+    TotalCosts:
+      source: fe/totalCosts
+    NetProfitLoss:
+      source: fe/netProfit
+    ShareOfOwnership:
+      source: fe/shareofOwnership
+    ShareOfNetProfit:
+      source: fe/shareofNetProfit
+  FieldErrorMappings:
+    2072:
+      standardMessage: "Date of sale can't be before date of purchase"
+      description: "Date of sale can't be before date of purchase"
+      formsengineField: "dateofSale"  

@@ -1,0 +1,111 @@
+---
+name: Mixed use assets
+model:
+  fields:
+    AssetDescription:
+      type: text
+    IncomeEarningDays:
+      type: number
+    PrivateDays:
+      type: number
+    TotalDays:
+      type: number
+      value: = IncomeEarningDays + PrivateDays
+    DeductiblePercentage: 
+      type: number
+      value: = IF(TotalDays=0,0,ROUND(IncomeEarningDays / TotalDays * 100 ,2))
+    
+    GridList:
+      type: list
+      fields:
+        Description:
+          type: text
+        NetAmount:
+          type: number
+        GSTRate:
+          type: number
+        GSTAmount:
+          type: number
+          value: = ROUND(GridList#CURR#NetAmount * (GridList#CURR#GSTRate / (100 + GridList#CURR#GSTRate)),2)
+
+        DeductibleAmount:
+          type: number
+          value: = ROUND(GridList#CURR#NetAmount * DeductiblePercentage / 100,2)
+        DeductibleGST:
+          type: number 
+          value: = ROUND(GridList#CURR#GSTAmount * DeductiblePercentage / 100,2)
+        NonDeductibleAmount:
+          type: number
+          value: = ROUND(GridList#CURR#NetAmount * (100 - DeductiblePercentage) / 100,2)
+        NonDeductibleGST:
+          type: number
+          value: = ROUND(GridList#CURR#GSTAmount * (100 - DeductiblePercentage) / 100,2)
+
+    TotalNetAmount:
+      type: number
+      value: = SUM(GridList:NetAmount)
+    TotalGSTAmount:
+      type: number
+      value: = SUM(GridList:GSTAmount)
+    TotalDeductibleAmount:
+      type: number
+      value: = SUM(GridList:DeductibleAmount)
+    TotalDeductibleGST:
+      type: number
+      value: = SUM(GridList:DeductibleGST)
+    TotalNonDeductibleAmount:
+      type: number
+      value: = SUM(GridList:NonDeductibleAmount)
+    TotalNonDeductibleGST:
+      type: number
+      value: = SUM(GridList:NonDeductibleGST)
+
+    AdjustmentRequired:
+      type: boolean
+      defaultValue: true
+    GSTAdjustment:
+      type: number
+      value: = IF(
+                  AdjustmentRequired,
+                  TotalNonDeductibleGST,
+                  0)
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+          
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '= TotalDeductibleAmount - TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

@@ -1,0 +1,355 @@
+- block: section
+  children:
+    - id: irdNumber
+      label:  IRD number
+      format: '1234'
+    - id: nonResidentIndicator
+      label: Non-resident for tax purposes?
+      showAs: radio
+    - id: isNilReturn
+      label: Nil return?
+      showAs: radio
+    - id: isFinalReturn
+      label: Final return?
+      showAs: radio
+    - id: isAmended
+      label: Return amended?
+      showAs: radio
+    - id: amendReason
+      visible:  =isAmended
+      label: Amended reason
+      showAs: dropdown
+    - id: amendDetails
+      visible:  =isAmended
+      label: Amended details
+      tooltip:
+        description: Additional information explaining why you are amending the return
+    - id: submissionKey
+      visible:  =isAmended
+      label: Submission key
+      tooltip:
+        description: Unique ID provided by Inland Revenue
+  title: Return information
+- block: section
+  children:
+    - block: section
+      children:
+      - id: schedularPayments_withholdingTaxDeducted
+        format: '1,234.10'
+        label:  Tax withheld from schedular payments
+      - id:  schedularPayments_totalIncome
+        format: '(1,234.10)'     
+        label:  Gross schedular payments
+      title: Schedular payments
+    - block: section
+      children:
+      - id: interestIncome_totalTaxPaid
+        label: Total RWT and/or NRWT
+        format: '1,234.10'
+      - id: interestIncome_totalIncome
+        label:  Total gross interest
+        format: '(1,234.10)'     
+      title: New Zealand interest
+    - block: section
+      children:
+      - id: pieIncome_totalTaxCredits
+        format: '1,234.10'
+        label: General PIE tax credits
+      - id:  pieIncome_totalIncome
+        format: '(1,234.10)'      
+        label: Attributed PIE income/loss
+      title: Portfolio investment entity (PIE) income
+    - block: section
+      children:
+      - id: dividendIncome_totalImputationCredits
+        label: Total dividend imputation credits
+        format: '1,234.10'
+      - id:  dividendIncome_totalRWTCredits
+        label: Total dividend RWT credits
+        format: '1,234.10'
+      - id:  dividendIncome_totalGrossDividends
+        label: Total gross dividends
+        format: '1,234.10'      
+      title: New Zealand dividends
+    - block: section
+      children:
+      - id: maoriAuthorityDistributions_totalMACredits
+        label: Total Māori authority credits
+        format: '1,234.10'
+      - id: maoriAuthorityDistributions_totalMADistributions
+        label: Total Māori authority distributions 
+        format: '1,234.10'   
+      title: Māori authority distributions
+    - block: section
+      children:
+      - id: partnershipEstateTrustIncome_totalTaxCredits
+        label: Total partnership, estate or trust tax credits
+        format: '1,234.10'
+      - id: partnershipEstateTrustIncome_totalIncome
+        label: Total partnership, estate or trust income
+        format: '(1,234.10)'  
+      title: Partnership, estate or trust income
+    - block: section
+      children:
+      - id: overseasIncome_totalTaxPaid
+        label: Total overseas tax paid
+        format: '1,234.10'
+      - id: overseasIncome_totalIncome
+        label: Total overseas income 
+        format: '(1,234.10)'     
+      title: Overseas income
+    - block: section
+      children:
+      - id: businessOrRentalIncome
+        label:  Income from net profit or loss from business or rentals
+        format: '(1,234.10)'
+      title:  Business or rental income
+    - block:  section
+      children:
+      - id: totalGrossPremium
+        label:  Total gross premium paid
+        format: '1,234.10'
+      - id: totalGrossPremiumPaidToSwitzerland
+        label:  Total gross premium paid to Switzerland
+        format: '1,234.10'
+      - id: totalTaxablePremium
+        label:  Total taxable premium
+        format: '(1,234.10)'
+      title:  Insurance premiums paid to overseas insurer
+    - block:  section
+      children:
+      - id: otherIncome
+        label:  Total other income
+        format: '(1,234.10)'
+      title:  Other income
+    - block: section
+      children:
+        - id: rlwtCredit
+          format: '1,234.10'
+          label:  RLWT credit
+        - id: saleOfProperty
+          format: '(1,234.10)'
+          label:  Profit/loss from sale of property
+      title:  Resident land withholding tax (RLWT) credit
+    - block: section
+      children:
+        - id: totalTaxCredits
+          label: Total tax credits
+          style: subtotal
+          tooltip:
+            description: all the credits excluding overseas and imputation
+        - id: totalIncomeSubtotal
+          label: Income subtotal
+          style: subtotal
+  title: Income
+- block:  section
+  children:
+    - id: donationsMade
+      label:  Donations made
+      format: '1,234.10'
+  title:  Donations to donee organisations
+- block: section
+  children:
+    - id: lossesBroughtForward
+      label: Net losses brought foward
+      format: '1,234.10'
+    - id: lossesClaimedThisYear
+      label: Net losses claimed
+      format: '1,234.10'
+  title: Losses
+- block:  section
+  children:
+    - id: incomeAfterNetLosses
+      label: Income after net losses brought forward
+      style: subtotal
+  title:  Income after net losses
+- block: section
+  children:
+    - id: netLossesToFrom
+      label: Net losses
+      format: '(1,234.10)'
+    - id: subventionPaymentsToFrom
+      label: Subvention payments
+      format: '(1,234.10)'
+      tooltip:
+        description: 'Enter net losses received, and subvention payments made with a minus sign'
+  title: Net losses and/or subvention payments
+- block: section
+  children:
+    - id: totalTaxableIncome
+      label: Taxable income or loss to carry forward
+      style: total
+      format: '(1,234.10)'
+  title:  Taxable income/loss
+- block: section
+  children:
+    - id: taxOnTaxableIncome
+      label: Total tax payable
+      format: '(1,234.10)'
+    - id: overseasIncometotalTaxPaid
+      label: Overseas tax paid
+      format: '1,234.10'
+    - id: taxAfterOverseasTax
+      label:  Sub-total
+      style:  subtotal
+      format: '(1,234.10)'
+    - id: foreignInvestorTaxCredit
+      label:  Foreign investor tax credit
+      format: '1,234.10'
+    - id: taxAfterFInvestorTax
+      label:  Sub-total
+      style:  subtotal
+      format: '(1,234.10)'
+    - id:  imputationCredits
+      label:  Imputation credits
+      format: '1,234.10'
+    - id: taxAfterImpCredits
+      label:  Sub-total  
+      style:  subtotal
+      format: '(1,234.10)'
+    - id: totalremainingTaxCredits
+      label:  Total tax credits
+      format: '1,234.10'
+    - id: residualIncomeTax
+      label:  Residual income tax
+      style:  total
+      format: '(1,234.10)'
+    - id: provisionalTaxPaid
+      label:  Provisional tax paid
+      format: '(1,234.10)'
+    - id: penaltiesDue
+      label:  Penalties
+      format: '1,234.10'
+    - id: transfersFromOtherReturns
+      label:  Transfers from other returns
+      format: '1,234.10'
+    - id: terminalTax
+      label:  =IF(terminalTax >= 0,"Tax to pay","Refund")
+      style:  total
+      format: '(1,234.10)'
+  title: Tax calculation
+# Transfers
+- block:  section
+  visible:  =terminalTax < 0
+  title:  Refunds
+  children:
+    - block:  section
+      children:
+        - control: repeatingSection
+          addButtonText: Add another transfer
+          id: transferRefundTo
+          sectionTitle: 'Transfer refund to:'
+          fields:
+            - key: transferIrdNumber
+              label: IRD number receiving transfer
+              format: '1234'
+            - key: transferAccountType
+              label: Account type
+              showAs: searchableDropdown
+            - key:  transferFilingPeriod
+              label: Filing period
+            - key:  associatedCustomer
+              label: Associated?
+              showAs: radio
+            - key:  transferAmount
+              label: Amount
+              format: '1,234.10'
+    - block:  section
+      children:
+        - id:  transferTotal
+          label: Total amount to be transferred
+          format: '1,234.10'
+        - id:  transferRemaining
+          label: Balance to be refunded
+          format: '(1,234.10)'
+- block:  section
+  children:
+    - id: provTaxEvenSplit
+      label:  Provisional tax to be calculated with even split?
+      showAs: radio
+    - id: provisionalTax_provisionalTaxStartDate
+      label:  Start date of taxable activity
+    - id: provisionalTax_provisionalTaxOption
+      label: Provisional tax option 
+      showAs: dropdown
+    - id: provisionalTaxCalc
+      label:  Hidden
+      visible: = FALSE
+    - id: provFromTaxManager
+      label:  Hidden
+      visible:  = FALSE
+    - id: provisionalTax_provisionalTaxPayable
+      label:  Provisional tax payable
+      format: '1,234.10'
+      style:  total
+  title:  Provisional tax
+- block:  section
+  children:
+    - block:  section
+      children:
+        - id: paymentsMadeToNonResidents
+          label:  Payments made to non-residents
+          showAs: radio
+        - id: withholdingTaxDeducted
+          label: NRWT or non-resident contractors withholding tax deducted 
+          showAs: radio
+      title:  Payments to non-residents
+    - block:  section
+      children:
+        - id: foreignIncomeDisclosure
+          label:  CFC/FIF income calculated - disclosure required
+          showAs: radio
+      title:  Foreign income disclosure
+    - block:  section
+      children:
+        - id: repurchasedRedeemedCancelledShares
+          label: Value of shares redeemed, repurchased or cancelled
+          format: '1,234.10'
+      title:  Share repurchases
+    - block:  section
+      children:
+        - id: foreignSourcedDividends
+          label:  Foreign-sourced dividends received
+          showAs: radio
+      title:  Foreign sourced dividends
+    - block:  section
+      children:
+        - id: foreignControlIndicator
+          label:  Company controlled/owned by non-residents
+          showAs: radio
+      title:  Company controlled or owned by non-residents
+    - block:  section
+      children:
+        - id: lowestEconomicShareholderInterest
+          label:  Lowest economic interests of shareholders
+          format: '1,234.10%'
+      title:  Lowest economic interests of shareholders
+  title:  Disclosures
+- block:  section
+  title:  Shareholders details
+  children:
+    - control:  repeatingSection
+      sectionTitle: '=CONCATENATE("Shareholder ", ROWINDEX() + 1)'
+      addButtonText: Add another section
+      id: shareholderListType
+      fields:
+        - label:  Name
+          key: shareholder_name
+        - label:  IRD number
+          key:  shareholder_irdNumber
+          format: (1234)
+        - label:  Untaxed remuneration
+          key:  shareholder_remuneration
+          format: '1,234.10'
+        - label:  Value of loans
+          key:  shareholder_loansFromCompany
+          format: '1,234.10'
+        - label:  Current account balance
+          key:  shareholder_currentAccountBalance
+          format: '(1,234.10)'
+        - label:  Loss offsets
+          key:  shareholder_shareholderLossOffsets
+          format: '(1,234.10)'
+        - label:  Subvention payments
+          key:  shareholder_subventionPayments
+          format: '(1,234.10)'

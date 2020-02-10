@@ -1,0 +1,352 @@
+---
+- block: section
+  children:
+    - id: irdNumber
+      label:  IRD number
+      format: '1234'
+    - id: nonResidentIndicator
+      label: Non-resident for tax purposes?
+      showAs: radio
+    - id: isNilReturn
+      label: Nil return?
+      showAs: radio
+    - id: isFinalReturn
+      label: Final return?
+      showAs: radio
+    - id: isAmended
+      label: Return amended?
+      showAs: radio
+    - id: amendReason
+      label: Amended reason
+      showAs: searchableDropdown
+    - id: amendDetails
+      label: Amended details
+      tooltip:
+        description: Additional information explaining why you are amending the return
+    - id: submissionKey
+      label: Submission key
+      tooltip:
+        description: Unique ID provided by Inland Revenue
+    - block: section
+      children:
+        - id: entityType
+          label: Is the club or society incorporated?
+          showAs: searchableDropdown
+        - id: typeOfClubOrSociety
+          label: Type of club or society
+          showAs: searchableDropdown
+      title: Society/Club Incorporation
+  title: Return information
+- block: section
+  children:
+    - block: section
+      children:
+        - id: residentialRentalIncome_Indicator
+          label: Residential income indicator
+          showAs: searchableDropdown
+        - id: residentialRentalIncome_totalIncome
+          label: Total residential income
+          format: '1,234.10'
+        - id: residentialRentalIncome_excessDeductionsBroughtForward
+          label: Excess deductions brought forward
+          format: '1,234.10'
+        - id: residentialRentalIncome_residentialRentalDeductions
+          label: Residential rental deduction current year
+          format: 1,234.10
+        - id: residentialRentalIncome_deductionsClaimedThisYear
+          label: Residential rental deductions claimed this year
+          format: '1,234.10'
+        - id: residentialRentalIncome_excessDeductionsCarriedForward
+          label: Excess residential deductions carried forward
+          format: '1,234.10'
+        - id: residentialRentalIncome_netIncome
+          label: Net residential income
+          format: '(1,234.10)'
+      title: Ring fencing rental losses 
+    - block: section
+      children:
+      - id: saleOfProperty
+        label: Profit/loss from sale of property
+        format: '(1,234.10)'
+      title: Sale of property
+    - block: section
+      visible: =typeOfClubOrSociety = "F"
+      children:
+        - id: uifriendlyNetIncome
+          label: Net income or loss
+          format: '(1,234.10)'
+      title: Friendly society
+    - block: section
+      visible: =typeOfClubOrSociety = "A"
+      children:
+      - block: section
+        children:
+        - id: uiinterestIncome_totalTaxPaid
+          label: Total RWT and/or NRWT
+          format: '1,234.10'
+        - id: uiinterestIncome_totalIncome
+          label:  Total gross interest
+          format: '(1,234.10)'     
+        title: New Zealand interest
+      - block: section
+        children:
+        - id: uidividendIncome_totalImputationCredits
+          label: Total dividend imputation credits
+          format: '1,234.10'
+        - id:  uidividendIncome_totalRWTCredits
+          label: Total dividend RWT credits
+          format: '1,234.10'
+        - id:  uidividendIncome_totalGrossDividends
+          label: Total gross dividends
+          format: '1,234.10'      
+        title: New Zealand dividends
+      - block: section
+        children:
+        - id: uimaoriAuthorityDistributions_totalMACredits
+          label: Total Māori authority credits
+          format: '1,234.10'
+        - id: uimaoriAuthorityDistributions_totalMADistributions
+          label: Total Māori authority distributions 
+          format: '1,234.10'   
+        title: Māori authority distributions
+      - block: section
+        children:
+        - id: uioverseasIncome_totalTaxPaid
+          label: Total overseas tax paid
+          format: '1,234.10'
+        - id: uioverseasIncome_totalIncome
+          label: Total overseas income 
+          format: '(1,234.10)'     
+        title: Overseas income 
+      - block:  section
+        children:
+        - id: uiotherIncome
+          label:  Total other income
+          format: '(1,234.10)'
+        title:  Other income 
+      - block:  section
+        children:
+        - id: calcincomeBeforeDeduction
+          label:  Total income before deduction
+          format: '(1,234.10)'
+        title:  Total income before deduction 
+      - block: section
+        children:
+          - id: calcincomeTaxDeductionForNonProfit
+            label: Deduction
+            format: '(1,234.10)' 
+            tooltip:
+              description: A non-profit body can claim a deduction of up to $1,000.
+          - id: calctotalIncome
+            label:  Total income
+            format: '(1,234.10)'
+        title: Income tax deduction for non-profit bodies
+      title: All other clubs and societies
+    - block: section
+      visible: =typeOfClubOrSociety = "X"
+      children:
+      - block: section
+        children:
+        - id: uiXinterestIncome_totalTaxPaid
+          label: Total RWT and/or NRWT
+          format: '1,234.10'
+        - id: uiXinterestIncome_totalIncome
+          label:  Total gross interest
+          format: '(1,234.10)'     
+        title: New Zealand interest
+      - block: section
+        children:
+        - id: uiXdividendIncome_totalImputationCredits
+          label: Total dividend imputation credits
+          format: '1,234.10'
+        - id:  uiXdividendIncome_totalRWTCredits
+          label: Total dividend RWT credits
+          format: '1,234.10'
+        - id:  uiXdividendIncome_totalGrossDividends
+          label: Total gross dividends
+          format: '1,234.10'      
+        title: New Zealand dividends
+      - block: section
+        children:
+        - id: uiXmaoriAuthorityDistributions_totalMACredits
+          label: Total Māori authority credits
+          format: '1,234.10'
+        - id: uiXmaoriAuthorityDistributions_totalMADistributions
+          label: Total Māori authority distributions 
+          format: '1,234.10'   
+        title: Māori authority distributions
+      - block: section
+        children:
+        - id: uiXoverseasIncome_totalTaxPaid
+          label: Total overseas tax paid
+          format: '1,234.10'
+        - id: uiXoverseasIncome_totalIncome
+          label: Total overseas income 
+          format: '(1,234.10)'     
+        title: Overseas income 
+      - block:  section
+        children:
+        - id: uiXotherIncome
+          label:  Total other income
+          format: '(1,234.10)'
+        title:  Other income  
+      title: Amateur sports club, charitable society, etc
+    - block:  section
+      children:
+        - id: netIncomeBeforeDonations
+          label:  Net income
+          format: '1,234.10'
+      title: Net income before donations
+    - block:  section
+      children:
+        - id: donationsMade
+          label:  Donations made
+          format: '1,234.10'
+      title: Donations to donee organistations
+    - block:  section
+      children:
+        - id: netIncome
+          label:  Net income
+          format: '1,234.10'
+      title: Net income
+
+  title: Income
+- block: section
+  children:
+    - id: lossesBroughtForward
+      label: Net losses brought foward
+      format: '1,234.10'
+    - id: lossesClaimedThisYear
+      label: Net losses claimed
+      format: '1,234.10'
+  title: Losses
+- block: section
+  children:
+    - id: totalTaxableIncome
+      label: Taxable income or loss to carry forward
+      style: total
+      format: '(1,234.10)'
+  title:  Taxable income/loss
+- block: section
+  children:
+    - id: taxOnTaxableIncome
+      label: Total tax payable
+      format: '(1,234.10)'
+    - id: overseasIncometotalTaxPaid
+      label: Overseas tax paid
+      format: '1,234.10'
+    - id: taxAfterOverseasTax
+      label:  Subtotal
+      style:  subtotal
+      format: '(1,234.10)'
+    - id:  imputationCreditsReceived
+      label:  Imputation credits recieved
+      format: '1,234.10'
+    - id:  imputationBroughtForward
+      label:  Excess imputation credits brought forward
+      format: '1,234.10'
+    - id: taxAfterImpCredits
+      label:  Subtotal  
+      style:  subtotal
+      format: '(1,234.10)'
+    - id: researchAndDevelopment_nonrefundableCredit
+      label: Non-refundable research & development tax incentive credits
+      format: '1,234.10'
+    - id: taxAfterRDCredits
+      label: Subtotal
+      style: subtotal
+      format: '1,234.10'
+    - id: totalRWTDeducted
+      format: '(1,234.10)'
+      label: RWT withheld
+    - id: rlwtCredit
+      format: '1,234.10'
+      label:  RLWT credit
+    - id: otherTaxCredits
+      style:  subtotal
+      format: '(1,234.10)'
+      label: Other tax credits
+    - id: residualIncomeTax
+      label:  Residual income tax
+      style:  total
+      format: '(1,234.10)'
+    - id: provisionalTaxPaid
+      label:  Provisional tax paid
+      format: '(1,234.10)'
+    - id: penaltiesDue
+      label:  Penalties
+      format: '1,234.10'
+    - id: transfersFromOtherReturns
+      label:  Transfers from other returns
+      format: '1,234.10'
+    - id: terminalTax
+      label:  Tax to pay or refund
+      style:  total
+      format: '(1,234.10)'
+  title: Tax calculation
+# Transfers
+- block:  section
+  visible:  =terminalTax < 0
+  title:  Refunds
+  children:
+    - block:  section
+      children:
+      - id:  overpaymentProvisionalTax
+        label: Overpayment of provisional tax to be refunded
+        format:  '1,234.10'
+      - id:  totalRefundDue
+        label:  Total refund due
+        format: '(1,234.10)'
+    - block:  section
+      children:
+        - control: repeatingSection
+          addButtonText: Add another transfer
+          id: transferRefundTo
+          sectionTitle: 'Transfer refund to:'
+          fields:
+            - key: transferIrdNumber
+              label: IRD number receiving transfer
+              format: '1234'
+            - key: transferAccountType
+              label: Account type
+              showAs: searchableDropdown
+            - key:  transferFilingPeriod
+              label: Filing period
+            - key:  associatedCustomer
+              label: Associated?
+              showAs: radio
+            - key:  transferAmount
+              label: Amount
+              format: '1,234.10'
+    - block:  section
+      children:
+        - id:  transferTotal
+          label: Total amount to be transferred
+          format: '1,234.10'
+        - id:  transferRemaining
+          label: Balance to be refunded
+          format: '(1,234.10)'
+- block:  section
+  children:
+    - id: provTaxEvenSplit
+      label:  Provisional tax to be calculated with even split?
+      showAs: radio
+    - id: provisionalTax_provisionalTaxStartDate
+      label:  Start date of taxable activity
+    - id:  overpaymentProvisionalTax
+      label: Overpayment of provisional tax to be refunded
+      format:  '1,234.10'
+    - id: provisionalTax_provisionalTaxOption
+      label: Provisional tax option 
+      showAs: dropdown
+    - id: provisionalTaxCalc
+      label:  Hidden
+      visible: = FALSE
+    - id: provFromTaxManager
+      label:  Hidden
+      visible:  = FALSE
+    - id: provisionalTax_provisionalTaxPayable
+      label:  Provisional tax payable
+      format: '1,234.10'
+      style:  total
+  title:  Provisional tax  

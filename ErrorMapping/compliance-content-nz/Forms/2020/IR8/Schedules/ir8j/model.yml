@@ -1,0 +1,72 @@
+model:
+  fields:
+    adjustments:
+      decimals: 2
+      type: number
+    closingBalance:
+      decimals: 2
+      type: number
+      value: =openingBalance - totalCredits + totalDebits
+    furtherIncomeTaxPayable:
+      decimals: 2
+      type: number
+      value: '=IF(closingBalance <= 0, NULL, closingBalance - adjustments)'
+    imputationAndFDPCredits:
+      decimals: 2
+      type: number
+    imputationCreditsAttached:
+      decimals: 2
+      type: number
+    incomeTaxPaid:
+      decimals: 2
+      type: number
+    totalFDPpaid:
+      decimals: 2
+      type: number
+    incomeTaxRefunded:
+      decimals: 2
+      type: number
+    totalFDPRefunds:
+      decimals: 2
+      type: number
+    irdNumber:
+      mandatory: true
+      type: number
+      decimals: 0
+    openingBalance:
+      decimals: 2
+      type: number
+    otherCreditsRepeatingSection:
+      fields:
+        otherCredits:
+          decimals: 2
+          type: number
+        otherCreditsDescription:
+          type: text
+      type: list
+    otherDebitsRepeatingSection:
+      fields:
+        OtherDebitsDescription:
+          type: text
+        otherDebits:
+          decimals: 2
+          type: number
+      type: list
+    submissionKey:
+      type: number
+    totalCredits:
+      decimals: 2
+      type: number
+      value: >-
+        =incomeTaxPaid + totalRWTOnInterest + imputationAndFDPCredits +
+        SUM(otherCreditsRepeatingSection:otherCredits)
+    totalDebits:
+      decimals: 2
+      type: number
+      value: >-
+        =incomeTaxRefunded + imputationCreditsAttached +
+        SUM(otherDebitsRepeatingSection:otherDebits)
+    totalRWTOnInterest:
+      decimals: 2
+      type: number
+name: NZTax_IR8J

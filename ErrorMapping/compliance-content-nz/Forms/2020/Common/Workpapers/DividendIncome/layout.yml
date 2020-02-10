@@ -1,0 +1,96 @@
+---
+- block: section
+  children:
+    - control: grid
+      name: dividendIncomegrid
+      columns:
+        - title: 'Description'
+          allowGroup: true
+          defaultGroup: false
+          size: lg
+          grow: true
+        - title: 'Date'
+          allowGroup: true
+          size: md
+        - title: 'Gross amount'
+          subtotal: true
+          size: md
+        - title: 'Imputation credits'
+          subtotal: true
+          size: md
+        - title: 'Net amount'
+          subtotal: true
+          size: md
+        - title: 'Withholding tax'
+          subtotal: true
+          size: md
+        - title: 'Amount received'
+          subtotal: true
+          size: md
+        - title: 'Tax %'
+          size: sm
+      rows:
+        - id: dividendsList
+          columns:
+            - key: Description
+            - key: Date
+            - key: GrossDividend
+            - key: Imputation
+            - key: NetDividend
+            - key: WithholdingTax
+            - key: AmountReceived
+            - key: TaxPercentage
+              format: '1234.10%'
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalGrossDividend
+            - id: TotalImputation
+            - id: TotalNetDividend 
+            - id: TotalWithholdingTax
+            - id: TotalAmountReceived            
+            - id: TotalPercentage
+              format: '1234.10%'
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - id: GrossorNet
+#      label: Is dividend income in the ledger recorded gross or net of imputation credits?
+      label: Select whether dividend income is recorded in the ledger gross or net of imputation credits
+      showAs: radio
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account Name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

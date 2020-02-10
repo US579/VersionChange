@@ -1,0 +1,15 @@
+name: Donation to school or kindergarten
+model:
+  fields:
+    schoolDonationsSelfList:
+      type: list
+      fields:
+        schoolKindyName:
+          type: text
+        schoolKindyAmount:
+          type: number
+          decimals: 2
+    schoolKindergartenDonations:
+      type: number
+      decimals: 2
+      value:  =SUM(schoolDonationsSelfList:schoolKindyAmount)

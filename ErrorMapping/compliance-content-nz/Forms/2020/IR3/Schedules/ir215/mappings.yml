@@ -1,0 +1,77 @@
+---
+ato:
+  form: not used
+lodgement:
+  Documents:
+    Form: '215'
+    FormFields:
+      SubmissionKey: 
+      ChildIncomeDetails:
+      - ChildName: 
+        SharedCareIndicator:
+          source: fe/childIncome_sharedCareIndicator
+        ChildIrdNumber: 
+          source: fe/childIncome_childIrdNumber
+        PassiveIncome:
+          source: fe/childIncome_passiveIncome
+      PartnersName:
+        source: fe/partnersName
+      PartnersIrdNumber:
+        source: fe/partnersIrdNumber
+      PartnersCountry: 
+      PartnersPassiveIncome:
+        source: fe/partnersPassiveIncome
+      OtherPaymentDetails:
+      - PaymentType: 
+          source: fe/otherPayment_paymentType
+        PaymentAmount:
+          source: fe/otherPayment_paymentAmount
+      RetirementContributions:
+        source: fe/retirementContributions
+      DepreciationRecovered:
+        source: fe/depreciationRecovered
+      DistributionFromTrusts:
+        source: fe/distributionFromTrusts
+      EmployerProvidedVehicle:
+        source: fe/employerProvidedVehicle
+      VoucherAndOtherSTCF:
+        source: fe/voucherAndOtherSTCF
+      NonLockedInPIEIncome:
+        source: fe/nonLockedInPIEIncome
+      PensionsAndAnnuities:
+        source: fe/pensionsAndAnnuities
+      DistributionsFromRetirementSavings:
+        source: fe/distributionsFromRetirementSavings
+      TaxExemptOverseasPensions:
+        source: fe/taxExemptOverseasPensions
+      TaxExemptIncome:
+        source: fe/taxExemptIncome
+      IncomeFromPIE:
+        source: fe/incomeFromPIE
+      AttributableTrusteeIncome:
+        source: fe/attributableTrusteeIncome
+      AttributableFringeBenefits:
+        source: fe/attributableFringeBenefits
+      AmountOfLosses:
+        source: fe/amountOfLosses
+      IncomeEqualisationMainSchemeDeposits:
+        source: fe/incomeEqualisationMainSchemeDeposits
+      IncomeEqualisationMainSchemeRefunds:
+        source: fe/incomeEqualisationMainSchemeRefunds
+      SlIncomeEqualisationMainSchemeRefunds:
+        source: fe/slIncomeEqualisationMainSchemeRefunds
+      AttributedIncomeMajorShareholderCC:
+        NetIncomeForCompanyIncomeYear:
+          source: fe/attributedIncomeMajorShareholderCC_netIncomeForCompanyIncomeYear
+        PercentageOfSharesHeld:
+          source: fe/attributedIncomeMajorShareholderCC_percentageOfSharesHeld
+        TotalDividendsPaidByCompany:
+          source: fe/attributedIncomeMajorShareholderCC_totalDividendsPaidByCompany
+      AttributedDependentIncomeMajorShareholderCC:
+        NetIncomeForCompanyIncomeYear:
+          source: fe/attributedDependentIncomeMajorShareholderCC_netIncomeForCompanyIncomeYear
+        PercentageOfSharesHeld:
+          source: fe/attributedDependentIncomeMajorShareholderCC_percentageOfSharesHeld
+        TotalDividendsPaidByCompany:
+          source: fe/attributedDependentIncomeMajorShareholderCC_totalDividendsPaidByCompany
+          

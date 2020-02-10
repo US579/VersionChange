@@ -1,0 +1,94 @@
+---
+name: Schedular income
+model:
+  fields:
+    GSTRate:
+      type: number
+      defaultValue: '15'
+    GridList:
+      type: list
+      fields: 
+        Description:
+          type: text
+        NetAmount:
+          type: number
+        GSTAmount:
+          type: number
+          value: '= ROUND(GridList#CURR#NetAmount * GSTRate / 100,2)'
+        GrossAmount:
+          type: number
+          value: '= GridList#CURR#NetAmount + GridList#CURR#GSTAmount'
+        WithholdingTax:
+          type: number
+        WithholdingTaxRate:
+          type: number
+          value: '= IF(
+                      GridList#CURR#NetAmount=0,
+                      0,
+                      ROUND(GridList#CURR#WithholdingTax / GridList#CURR#NetAmount * 100,2)
+                      )'
+        AmountReceived:
+          type: number
+          value: '= GridList#CURR#GrossAmount - GridList#CURR#WithholdingTax'
+    TotalNetAmount:
+      type: number
+      value: '= SUM(GridList:NetAmount)'
+    TotalGSTAmount:
+      type: number
+      value: '= SUM(GridList:GSTAmount)'
+    TotalGrossAmount:
+      type: number
+      value: '= SUM(GridList:GrossAmount)'
+    TotalWithholdingTax:
+      type: number
+      value: '= SUM(GridList:WithholdingTax)'
+    TotalWithholdingTaxRate:
+      type: number
+      value: '= IF(
+                  TotalNetAmount=0,
+                  0,
+                  ROUND(TotalWithholdingTax / TotalNetAmount * 100,2)
+                  )'
+    TotalAmountReceived:
+      type: number
+      value: '= SUM(GridList:AmountReceived)'
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '=TotalNetAmount + TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

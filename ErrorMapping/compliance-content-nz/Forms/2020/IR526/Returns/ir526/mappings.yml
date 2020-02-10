@@ -1,0 +1,81 @@
+---
+ato:
+  form: not used
+# filingEndpoint: '/sbr/ird/ir526/v1'
+filingEndpoint: 
+  version: 'v1'
+  entityType: 'ir526'
+lodgement:
+  Documents:
+    Form: ird.ir526.v1
+    MessageType: https://services.ird.govt.nz/GWS/Returns/Return/File
+    Path: "/Gateway/GWS/Returns/"
+    Request:
+      Header:
+        PeriodEndDate: 
+          source: compliance/endDate
+        MajorFormType: INC
+        MinorFormType: '526'
+        SoftwareProviderData:
+          SoftwareProvider: MYOB
+          SoftwarePlatform: MYOB_AgencyAPI
+          SoftwareRelease: '1.0'
+        Identifier:
+          IdentifierValueType: IRD
+          Value: 
+            source: fe/irdNumber
+        AccountType: INC
+      Body:
+        StandardFields:
+          IsNilReturn:
+              source: fe/isNilReturn
+          IsFinalReturn:
+              source: fe/isFinalReturn
+          AmendmentRequest:
+            IsAmended:
+                source: fe/isAmended
+            AmendReason:
+                source: fe/amendReason
+            AmendDetails:
+                source: fe/amendDetails
+          CreditTransferRequest:
+            - TransferIRD:
+                  source: fe/transferRefundTo/transferIrdNumber 
+              TransferAccountType: 
+                  source: fe/transferRefundTo/transferAccountType
+              TransferFilingPeriod:
+                  source: fe/transferRefundTo/transferFilingPeriod
+              AssociatedCustomer:
+                  source: fe/transferRefundTo/associatedCustomer
+              TransferAmount:
+                  source: fe/transferRefundTo/transferAmount
+        FormFields:
+          SchoolKindergartenDonations:
+              source: fe/schoolKindergartenDonations
+          PartnerSchoolKindergartenDonations:
+              source: fe/partnerSchoolKindergartenDonations
+          ReligiousOrganisationDonations:
+              source: fe/religiousOrganisationDonations
+          PartnerReligiousOrganisationDonations:
+              source: fe/partnerReligiousOrganisationDonations
+          DoneeOrganisationDonations:
+              source: fe/doneeOrganisationDonations
+          PartnerDoneeOrganisationDonations:
+              source: fe/partnerDoneeOrganisationDonations
+          PartnerIRD:
+              source: fe/partnerIRD
+#    LogicalDocuments: 1
+#    CustomHeaders:
+#  Details:
+#    Messages: []
+#    ResponseCodes: []
+#    LodgementReceipt:
+#    LodgementReceiptTimestamp:
+#    SendCount:
+#    Enqueued:
+#    AgencyResponded:
+#    MaximumSeverity: Information
+#    IgnoreMaximumSeverity:
+#        source: fe/
+#  SendAfterUtc:
+

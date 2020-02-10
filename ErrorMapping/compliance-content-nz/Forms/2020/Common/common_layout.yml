@@ -1,0 +1,126 @@
+---
+irdNumber:
+  id: irdNumber
+  label: IRD number
+nonResidentIndicator:
+  id: nonResidentIndicator
+  label: Non-resident for tax purposes?
+  showAs: radio
+isNilReturn:
+  id: isNilReturn
+  label: Nil return?
+  showAs: radio
+isFinalReturn:
+  id: isFinalReturn
+  label: Final return?
+  showAs: radio
+isAmended:
+  id: isAmended
+  label: Return amended?
+  showAs: radio
+amendReason:
+  id: amendReason
+  label: Amended reason
+  showAs: searchableDropdown
+amendDetails:
+  id: amendDetails
+  label: Amended details
+  tooltip:
+    description: Additional information explaining why you are amending the return
+submissionKey:
+  id: submissionKey
+  label: Submission key
+  tooltip:
+    description: Unique ID provided by Inland Revenue
+# # Start SCHEDULAR PAYMENTS section
+# schedularPaymentsTax:
+#   id: schedularPayments_withholdingTaxDeducted
+#   label: Tax withheld from schedular payments
+# schedularPaymentsIncome:
+#   id: schedularPayments_totalIncome
+#   label:  Gross schedular payments
+# # End SCHEDULAR PAYMENTS section  
+# # Start INTEREST INCOME section
+# interestIncome:
+#   id: interestIncome_totalTaxPaid
+#   label: Total RWT and/or NRWT
+#   id: interestIncome_totalIncome
+#   label:  Total gross interest     
+# # End INTEREST INCOME section  
+# # Start DIVIDEND INCOME section
+# dividenIncome:
+#   id: dividendIncome_totalImputationCredits
+#   label: Total dividend imputation credits
+#   id:  dividendIncome_totalRWTCredits
+#   label: Total dividend RWT credits
+#   id:  dividendIncome_totalGrossDividends
+#   label: Total gross dividends
+# # End DIVIDEND INCOME section 
+# # Start MAORI AUTHORITY DISTRIBUTIONS section
+# maoriAuthorityDistributions:
+#   id: maoriAuthorityDistributions_totalMACredits
+#   label: Total Māori authority credits
+#   id: maoriAuthorityDistributions_totalMADistributions
+#   label: Total Māori authority distributions    
+#   title: Māori authority distributions
+# # End MAORI AUTHORITY DISTRIBUTIONS section
+# # Start PARTNERSHIP INCOME section
+# partnerShipIncome:
+#   id: partnershipIncome_totalTaxCredits
+#   label: Total partnership tax credits
+#   id: partnershipIncome_totalIncome
+#   label: Total partnership income     
+# # End PARTNERSHIP INCOME section
+# # Start LTC INCOME section
+# ltcIncome:
+#   id: ltcIncome_totalTaxCredits
+#   label: Total LTC tax credits
+#   id: ltcIncome_totalIncome
+#   label: Total LTC income
+#   id: ltcNonAllowableDeductions
+#   label: Non-allowable deductions this year
+#   id: ltcPriorYearNonAllowableDeductionsClaimed
+#   label:  Prior years’ non-allowable deductions claimed this year
+#   id: ltcAdjustedIncome
+#   label:  Adjusted LTC income
+# # End LTC INCOME section
+# # Start OVERSEAS INCOME section
+# overseasIncome:
+#   id: overseasIncome_totalTaxPaid
+#   label: Total overseas tax paid
+#   id: overseasIncome_totalIncome
+#   label: Total overseas income
+# # End OVERSEAS INCOME section
+# # Start PIE INCOME section
+#   id: pieIncome_totalTaxCredits
+#   label: General PIE tax credits
+#   id:  pieIncome_totalIncome
+#   label: Attributed PIE income/loss
+# # End PIE INCOME section
+# Start TRANSFER section
+transferIrdNumber:
+  key: transferIrdNumber
+  label: IRD number receiving transfer
+  format: '1234'
+transferAccountType:
+  key: transferAccountType
+  label: Account type
+  showAs: searchableDropdown
+  type: list
+transferFilingPeriod:
+  key: transferFilingPeriod
+  label: Filing period
+associatedCustomer:
+  key: associatedCustomer
+  label: Associated?
+  showAs: radio
+transferAmount:
+  key: transferAmount
+  label: Amount
+transferTotal:
+  key: transferTotal
+  label: Total amount to be transferred
+transferRemaining:
+  key: transferRemaining
+  label: Balance to be refunded
+# End TRANSFER section  

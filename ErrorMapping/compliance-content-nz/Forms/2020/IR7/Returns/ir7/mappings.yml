@@ -1,0 +1,188 @@
+---
+ato:
+  form: not used
+  # filingEndpoint: '/sbr/ird/ir7/v1'
+filingEndpoint: 
+  version: 'v1'
+  entityType: 'ir7'
+lodgement:
+  Documents:
+    Form: ird.ir7.v1
+    MessageType: https://services.ird.govt.nz/GWS/Returns/Return/File
+    Path: "/Gateway/GWS/Returns/"
+    Request:
+      Header:
+        PeriodEndDate: 
+          source: compliance/endDate
+        MajorFormType: INC
+        MinorFormType: '7'
+        SoftwareProviderData:
+          SoftwareProvider: MYOB
+          SoftwarePlatform: MYOB_AgencyAPI
+          SoftwareRelease: '1.0'
+        Identifier:
+          IdentifierValueType: IRD
+          Value: 
+            source: fe/irdNumber
+        AccountType: INC
+      Body:
+        StandardFields:
+          IsNilReturn:
+            source: fe/isNilReturn
+          IsFinalReturn:
+            source: fe/isFinalReturn
+          AmendmentRequest:
+            IsAmended:
+              source: fe/isAmended
+            AmendReason: 
+              source: fe/amendReason
+            AmendDetails: 
+              source: fe/amendDetails
+          CreditTransferRequest:
+          - TransferIRD: 
+              source: fe/transferIrdNumber
+            TransferAccountType: 
+              source: fe/transferAccountType
+            TransferFilingPeriod:
+              source: fe/transferFilingPeriod
+            AssociatedCustomer:
+              source: fe/associatedCustomer
+            TransferAmount:
+              source: fe/transferAmount
+        FormFields:
+          SubmissionKey:
+            source: fe/submissionKey
+          SchedularPayments:
+            WithholdingTaxDeducted:
+              source: fe/schedularPayments_withholdingTaxDeducted
+            TotalIncome:
+              source: fe/schedularPayments_totalIncome
+          InterestIncome:
+            TotalTaxPaid:
+              source: fe/interestIncome_totalTaxPaid
+            TotalIncome:
+              source: fe/interestIncome_totalIncome
+          DividendIncome:
+            TotalImputationCredits:
+              source: fe/dividendIncome_totalImputationCredits
+            TotalRWTCredits:
+              source: fe/dividendIncome_totalRWTCredits
+            TotalGrossDividends:
+              source: fe/dividendIncome_totalGrossDividends
+          MaoriAuthorityDistributions:
+            TotalMACredits:
+              source: fe/maoriAuthorityDistributions_totalMACredits
+            TotalMADistributions:
+              source: fe/maoriAuthorityDistributions_totalMADistributions
+          PartnershipIncome:
+            TotalTaxCredits:
+              source: fe/partnershipIncome_totalTaxCredits
+            TotalIncome:
+              source: fe/partnershipIncome_totalIncome
+          LtcIncome:
+            TotalTaxCredits:
+              source: fe/ltcIncome_totalTaxCredits
+            TotalIncome:
+              source: fe/ltcIncome_totalIncome
+          LtcNonAllowableDeductions:
+            source: fe/ltcNonAllowableDeductions
+          LtcPriorYearNonAllowableDeductionsClaimed:
+            source: fe/ltcPriorYearNonAllowableDeductionsClaimed
+          LtcAdjustedIncome:
+            source: fe/ltcAdjustedIncome
+          OverseasIncome:
+            TotalTaxPaid:
+              source: fe/overseasIncome_totalTaxPaid
+            TotalIncome:
+              source: fe/overseasIncome_totalIncome
+          ResidentialRentalIncome:
+            Indicator:
+              source: fe/residentialRentalIncome_Indicator
+            TotalIncome:
+              source: fe/residentialRentalIncome_totalIncome
+            ResidentialRentalDeductions:
+              source: fe/residentialRentalIncome_residentialRentalDeductions
+            # ExcessDeductionsBroughtForward:
+            #   source: fe/
+            # DeductionsClaimedThisYear:
+            #   source: fe/
+            # NetIncome:
+            #   source: fe/
+            # ExcessDeductionsCarriedForward:
+            #   source: fe/
+          PieIncome:
+            TotalTaxCredits:
+              source: fe/pieIncome_totalTaxCredits
+            TotalIncome:
+              source: fe/pieIncome_totalIncome
+          BusinessIncome:
+            source: fe/businessIncome
+          NetRentalIncome:
+            source: fe/netRentalIncome
+          OtherIncome:
+            source: fe/otherIncome
+          RlwtCredit:
+            source: fe/rlwtCredit
+          SaleOfProperty:
+            source: fe/saleOfProperty
+          TotalIncome:
+            source: fe/totalIncome
+          TotalExpenses:
+            source: fe/totalExpenses
+          TotalIncomeLossAfterExpenses:
+            source: fe/totalIncomeLossAfterExpenses
+          ExtinguishedLosses:
+            source: fe/extinguishedLosses
+          PriorYearsDeductions:
+            source: fe/priorYearsDeductions
+          DeductionsClaimedThisYear:
+            source: fe/deductionsClaimedThisYear
+          LookThrough:
+            source: fe/lookThrough
+          Partnership:
+            source: fe/partnership
+          CfcFIFdisclosure:
+            source: fe/cfcFIFdisclosure
+          IncomeAttributionDetails:
+          - Name: 
+            IrdNumber:
+              source: fe/partnerLTCRepeat/incomeAttribution_irdNumber
+            ShareOfInterestIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfInterestIncome
+            ShareOfDividendIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfDividendIncome
+            ShareOfMADistributions:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfMADistributions
+            ShareOfOverseasIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfOverseasIncome
+            ShareOfResidentialIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfResidentialRentalIncome
+            ShareOfRentalIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfRentalIncome
+            ShareOfPassiveIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfPassiveIncome
+            ShareOfOtherIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfOtherIncome
+            TotalIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_totalIncome
+            DeductionForExtinguishedLoss:
+              source: fe/partnerLTCRepeat/incomeAttribution_deductionForExtinguishedLoss
+            ShareOfResidentialDeductions:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfResidentialRentalDeductions
+            ShareOfOverseasTaxPaid:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfOverseasTaxPaid
+            ShareOfImputationCredits:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfImputationCredits
+            ShareOfOtherTaxCredits:
+              source: fe/partnerLTCRepeat/incomeAttribution_shareOfOtherTaxCredits
+            AttributionOfIncome:
+              source: fe/partnerLTCRepeat/incomeAttribution_attributionOfIncome
+            NonAllowableDeductionsThisYear:
+              source: fe/partnerLTCRepeat/incomeAttribution_nonAllowableDeductionsThisYear
+            NonAllowableDeductionsBroughtForward:
+              source: fe/partnerLTCRepeat/incomeAttribution_nonAllowableDeductionsBroughtForward
+            PriorYearNonAllowableDeductionsClaimed:
+              source: fe/partnerLTCRepeat/incomeAttribution_priorYearNonAllowableDeductionsClaimed
+            NonAllowableDeductionsCarriedForward:
+              source: fe/partnerLTCRepeat/incomeAttribution_nonAllowableDeductionsCarriedForward
+         

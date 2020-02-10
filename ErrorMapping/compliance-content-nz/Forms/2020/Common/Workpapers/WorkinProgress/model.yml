@@ -1,0 +1,59 @@
+---
+name: Work in progress
+model:
+  fields:
+    GridList:
+      type: list
+      fields: 
+        Description:
+          type: text
+        Reference:
+          type: text
+        ValuationMethod:
+          type: text
+        Amount:
+          type: number
+        
+    TotalAmount:
+      type: number
+      value: = SUM(GridList:Amount)
+      
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '=TotalAmount - TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

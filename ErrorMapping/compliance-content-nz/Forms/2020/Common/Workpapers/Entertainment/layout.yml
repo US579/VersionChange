@@ -1,0 +1,113 @@
+---
+- block: section
+  children:
+    - control: grid
+      name: Grid
+      columns:
+        - title: 'Date'
+          allowGroup: true
+          size: md
+        - title: 'Invoice No'
+          size: md
+        - title: 'Description'
+          allowGroup: true
+          defaultGroup: false
+          size: lg
+          grow: true
+        - title: 'Amount (incl GST)'
+          subtotal: true
+          size: md
+        - title: 'Deductible %'
+          allowGroup: true
+          defaultGroup: false
+          size: md
+        - title: 'Deductible amount'
+          subtotal: true
+          size: md
+        - title: 'Non-deductible amount'
+          subtotal: true
+          size: md
+      rows:
+        - id: GridList
+          columns:
+            - key: Date
+            - key: InvoiceNo
+            - key: Description
+            - key: GrossAmount
+            - key: PercentageDeductible
+              format: '1234.10%'
+            - key: DeductibleAmount
+            - key: NonDeductibleAmount
+        - rowType: total
+          columns:
+            - "Total"
+            -
+            -
+            - id: TotalGrossAmount
+            - 
+            - id: TotalDeductibleAmount
+            - id: TotalNonDeductibleAmount
+
+    - control: label
+      text: ' '
+      type: 'tertiary'
+    - id: GSTRate
+      label: GST rate
+      format: '1234.01%'
+    - id: TotalDeductibleAmount
+      label: Deductible amount (includes GST)
+    - id: GSTAmount
+      label: Less GST
+    - id: NetAmount
+      label: Net deductible entertainment
+        
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance                  
+            -
+            - id: Variance
+
+- block: section
+  title: GST Adjustment
+  children:
+    - id: AdjustmentRequired
+      label: Is a GST adjustment required for non-deductible entertainment?
+      showAs: radio
+    - id: TotalNonDeductibleAmount
+      label: Non deductible entertainment (as above)
+      visible: = AdjustmentRequired
+    - id: GSTAdjustment
+      label: GST adjustment required in Box 9 of next GST return
+      visible: = AdjustmentRequired
+      
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

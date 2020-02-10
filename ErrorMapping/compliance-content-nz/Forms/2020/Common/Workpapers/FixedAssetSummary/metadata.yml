@@ -1,0 +1,10 @@
+---
+name: Fixed assets reconciliation
+classificationGroups:
+  - asset
+  - income
+  - costOfSales
+  - expense
+  - otherIncome
+  - otherExpense
+disabled: false

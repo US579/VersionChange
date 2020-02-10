@@ -1,0 +1,45 @@
+---
+version: 0.0.29
+type: 'Compliance-IR7-Partnership-2020-NZ'
+
+params:
+  name: '2020 IR7 Partnership'
+  region: 'nz'
+  # filingEndpoint: '/sbr/ird/ir7p/v1'
+  year: 2020
+  complianceType: 'IR7'
+  print:
+    - type: TaxReturn
+
+rules:
+  tax-forms-nz.ir7:
+    version: '2020.0.26'
+    params:
+      type: 'TaxReturn'
+      lodgeable: true
+      min: 1
+      max: 1
+      rolloverFromOnline: true
+      rolloverWithDataOnline: true
+  tax-forms-nz.ir10:
+    version: '2020.0.24'
+    params:
+      name: 'IR10 Financial statements summary'
+      type: 'Schedule'
+      lodgeable: true
+      min: 0
+      max: 1
+  tax-forms-nz.ir833:
+    version: '2020.0.24'
+    params:
+      name: 'IR833 Property sale information'
+      type: 'Schedule'
+      lodgeable: true
+      min: 0
+      max: 20
+  #
+  # common workpapers
+  <<: !include
+   source: ../../Common/Common_Releases/common_workpapers.yml
+   path: workpapersRules
+

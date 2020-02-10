@@ -1,0 +1,115 @@
+name: Static Field Sets
+model:
+  fields:
+    amendDetails:
+      mandatory: = isAmended <> FALSE
+      type: text
+    amendReason:
+      mandatory: = isAmended <> FALSE
+      options:
+        - label: Calculation error
+          value: MATH
+        - label: Incorrect amount entered
+          value: KEY
+        - label: Transposition error
+          value: TRNSPO
+        - label: Other
+          value: OTHER
+      type: select
+    fielda:
+      decimals: 2
+      type: number
+    fieldb:
+      decimals: 2
+      type: number
+    finalReturn:
+      defaultValue: false
+      type: boolean
+    incomeAfterNetLosses:
+      decimals: 2
+      type: number
+    irdNumber:
+      mandatory: true
+      type: number
+    isAmended:
+      defaultValue: false
+      type: boolean
+    lossesBroughtForward:
+      decimals: 2
+      type: number
+    lossesClaimedThisYear:
+      decimals: 2
+      type: number
+    netLossesToFrom:
+      decimals: 2
+      type: number
+    nilReturn:
+      defaultValue: false
+      type: boolean
+    nonResidentIndicator:
+      defaultValue: false
+      type: boolean
+    taxCalc_overseasTaxPaid:
+      decimals: 2
+      type: number
+    schedularPaymentstotalIncome:
+      decimals: 2
+      type: number
+    schedularPaymentswithholdingTaxDeducted:
+      decimals: 2
+      type: number
+    interestIncometotalTaxPaid:
+      decimals: 2
+      type: number
+    interestIncometotalIncome:
+      decimals: 2
+      type: number
+    dividendIncome_totalImputationCredits:
+      decimals: 2
+      type: number
+    dividendIncometotalRWTCredits:
+      decimals: 2
+      type: number
+    dividendIncometotalGrossDividends:
+      decimals: 2
+      type: number
+    submissionKey:
+      maxLength: 32
+      type: text
+    subventionPaymentsToFrom:
+      decimals: 2
+      type: number
+    taxOnTaxableIncome:
+      decimals: 2
+      type: number
+    totIncomeNetLoss:
+      decimals: 2
+      type: number
+    totalTaxableIncome:
+      decimals: 2
+      type: number
+    maoriAuthority_totalMACredits:
+      decimals: 2
+      type: number
+    maoriAuthority_totalMADistributions:
+      decimals: 2
+      type: number
+    partnershipEstateTrustIncome_totalTaxCredits:
+      decimals: 2
+      type: number
+    partnershipEstateTrustIncome_totalIncome:
+      decimals: 2
+      type: number
+    overseasIncome_totalTaxPaid:
+      decimals: 2
+      type: number
+    overseasIncome_totalIncome:
+      decimals: 2
+      type: number
+    total_totalTaxPaid:
+      decimals: 2
+      type: number
+    total_totalIncome:
+      decimals: 2
+      type: number   
+

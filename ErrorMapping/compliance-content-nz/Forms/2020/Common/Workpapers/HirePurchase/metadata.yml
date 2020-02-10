@@ -1,0 +1,6 @@
+---
+name: Hire purchase
+classificationGroups:
+  - liability
+  - asset
+disabled: false

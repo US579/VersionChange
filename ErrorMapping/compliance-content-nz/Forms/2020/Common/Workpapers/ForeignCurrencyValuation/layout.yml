@@ -1,0 +1,71 @@
+---
+- block: section
+  children:
+    - id: AssetorLiability
+      label: Are you reconciling an asset or liability account?
+      showAs: radio
+    - id: Currency
+      label: Currency
+    - id: ExchangeRate
+      label: Exchange rate
+      format: '1234.43210'
+    - control: grid
+      name: FXGrid
+      columns:
+        - title: 'Description'
+          allowGroup: true
+          defaultGroup: false
+        - title: 'Foreign amount'
+          subtotal: true
+        - title: 'Local amount'
+          subtotal: true
+      rows:
+        - id: groupsorting
+          columns:
+            - key: Description
+            - key: ForeignAmount
+            - key: LocalAmount
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalForeignAmount
+            - id: TotalLocalAmount
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+  - control: grid
+    name: Totals
+    columns:
+      - title: Account code
+        size: md
+      - title: Account name
+        size: lg
+      - title: Balance
+    rows:
+      - id: LedgerAmounts
+        columns:
+          - key: AccountCode
+          - key: AccountName
+          - key: Balance
+      - rowType: total
+        columns:
+          - Total
+          -
+          - id: TotalBalance
+      - rowType: total
+        columns:
+          - Variance
+          -
+          - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note
+

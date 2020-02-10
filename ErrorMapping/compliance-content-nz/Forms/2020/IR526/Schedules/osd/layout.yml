@@ -1,0 +1,24 @@
+---
+- block:  section
+  children:
+    - block:  section
+      children:
+        - control:  grid
+          name: schoolDonationsSelfGrid
+          columns: 
+            - title:  'Name'
+              grow: true
+              size: xl
+            - title:  'Amount'
+              size: md
+          rows:
+            - id: schoolDonationsSelfList
+              columns:
+                - key:  schoolKindyName
+                - key:  schoolKindyAmount
+                  format: '1,234.10'
+            - rowType:  total
+              columns:
+                - Total
+                - id: schoolKindergartenDonations
+                  format: '1,234.10'

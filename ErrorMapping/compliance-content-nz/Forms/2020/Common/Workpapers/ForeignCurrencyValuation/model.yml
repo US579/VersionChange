@@ -1,0 +1,74 @@
+---
+name: Foreign currency asset or liability valuation at period end
+model:
+  fields:
+    AssetorLiability:
+      type: select
+      mandatory: TRUE
+      defaultValue: 'A'
+      options:
+        - value: 'A'
+          label: Asset
+        - value: 'L'
+          label: Liability
+    Currency: 
+      type: text
+    #change this to be array at some point
+    ExchangeRate:
+      type: number
+      valid: = IF(ExchangeRate<0,FALSE,TRUE)
+      mandatory: TRUE
+    groupsorting:
+      type: list
+      fields:
+        Description:
+          type: text
+        ForeignAmount:
+          type: number
+        LocalAmount:
+          type: number
+          value: = ROUND(groupsorting#CURR#ForeignAmount*ExchangeRate,2)
+    TotalForeignAmount:
+      type: number
+      value: =SUM(groupsorting:ForeignAmount)
+    TotalLocalAmount:
+      type: number
+      value: '=SUM(groupsorting:LocalAmount)'
+   
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '= IF(
+              AssetorLiability = "A",
+                TotalLocalAmount - TotalBalance,
+                TotalLocalAmount + TotalBalance
+            )'
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+
+
+    

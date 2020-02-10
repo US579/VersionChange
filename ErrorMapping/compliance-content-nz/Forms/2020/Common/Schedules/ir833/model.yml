@@ -1,0 +1,48 @@
+model:
+  fields:
+    brightLine:
+      defaultValue: false
+      type: boolean
+    dateofPurchase:
+      type: date
+    dateofSale:
+      type: date
+      valid:
+        - expression: = dateofSale >= dateofPurchase
+          errorMessage: 'Date of sale must be after date of purchase'
+    deductibleCosts:
+      type: number
+    netProfit:
+      type: number
+      value: = salePrice - totalCosts
+    propertyAddress1:
+      type: text
+    propertyAddress2:
+      type: text
+    propertyCity:
+      type: text
+    propertyPostcode:
+      type: text
+    propertySuburb:
+      type: text
+    propertyTitle:
+      maxLength: 20
+      type: text
+    purchasePrice:
+      type: number
+    salePrice:
+      type: number
+    shareofNetProfit:
+      type: number
+      value: = netProfit * shareofOwnership / 100
+    shareofOwnership:
+      decimals: 2
+      defaultValue: '100.00'
+      type: number
+      valid:
+        - expression: = shareofOwnership <= 100
+          errorMessage: 'Share of ownership cannot be greater than 100%'
+    totalCosts:
+      type: number
+      value: = purchasePrice + deductibleCosts
+name: Property sale information

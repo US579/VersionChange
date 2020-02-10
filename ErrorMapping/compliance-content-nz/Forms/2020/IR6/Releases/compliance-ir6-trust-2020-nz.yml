@@ -1,0 +1,44 @@
+---
+version: 0.0.32
+type: 'Compliance-IR6-Trust-2020-NZ'
+
+params:
+  name: '2020 IR6 Trust'
+  region: 'nz'
+  # filingEndpoint: '/sbr/ird/ir6/v1'
+  year: 2020
+  complianceType: 'IR6'
+  print:
+    - type: TaxReturn
+
+rules:
+  tax-forms-nz.ir6:
+    version: '2020.0.30'
+    params:
+      type: 'TaxReturn'
+      lodgeable: true
+      min: 1
+      max: 1
+      rolloverFromOnline: true
+      rolloverWithDataOnline: true
+  tax-forms-nz.ir10:
+    version: '2020.0.24'
+    params:
+      name: 'IR10 Financial statements summary'
+      type: 'Schedule'
+      lodgeable: true
+      min: 0
+      max: 1
+  tax-forms-nz.ir833:
+    version: '2020.0.24'
+    params:
+      name: 'IR833 Property sale information'
+      type: 'Schedule'
+      lodgeable: true
+      min: 0
+      max: 20
+  #
+  # common workpapers
+  <<: !include
+    source: ../../Common/Common_Releases/common_workpapers.yml
+    path: workpapersRules

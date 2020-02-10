@@ -1,0 +1,6 @@
+---
+name: Rent received
+classificationGroups:
+  - income
+  - otherIncome  
+disabled: false

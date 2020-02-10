@@ -1,0 +1,113 @@
+---
+- block: section
+  children:
+    - id: irdNumber
+      label:  IRD number
+      format: '1234'
+    - id: isNilReturn
+      label: Nil return?
+      showAs: radio
+      visible:  =FALSE
+    - id: isFinalReturn
+      label: Final return?
+      showAs: radio
+      visible:  =FALSE
+    - id: isAmended
+      label: Return amended?
+      showAs: radio
+      visible:  =FALSE
+    - id: amendReason
+      label: Amended reason
+      visible:  =isAmended
+      showAs: dropdown
+    - id: amendDetails
+      label: Amended details
+      visible:  =isAmended
+      tooltip:
+        description: Additional information explaining why you are amending the return
+    - id: submissionKey
+      label: Submission key
+      visible:  =isAmended
+      tooltip:
+        description: Unique ID provided by Inland Revenue
+  title: Return information
+- block:  section
+  children:
+    - id: schoolKindergartenDonations
+      format: '1,234.10'
+      label:  Donation to schools or kindergartens
+    - id: partnerSchoolKindergartenDonations
+      format: '1,234.10'
+      label:  Partner's donation to schools or kindergartens
+  title:  Donations to schools or kindergartens
+- block:  section
+  children:
+    - id: religiousOrganisationDonations
+      format: '1,234.10'
+      label:  Donation to religious organisations
+    - id: partnerReligiousOrganisationDonations
+      format: '1,234.10'
+      label:  Partner's donation to religious organisations
+  title:  Donations to religious organisations
+- block:  section
+  children:
+    - id: doneeOrganisationDonations
+      format: '1,234.10'
+      label:  Donation to donee organisations
+    - id: partnerDoneeOrganisationDonations
+      format: '1,234.10'
+      label:  Partner's donation to donee organisations
+  title:  Donations to donee organisations
+- block:  section
+  children:
+    - id: totalDonationPayments
+      format: '1,234.10'
+      label:  Total donations
+    - id: totalDonationEntitlement
+      format: '1,234.10'
+      label:  Tax credit claim amount
+      style:  subtotal
+  title:  Total donations and claim
+- block:  section
+  children:
+    - id: partnerIRD
+      format: '1234'
+      label:  Partner's IRD number
+    - id: partnerName
+      label:  Partner's name
+  title:  Partner's details
+# Transfers
+- block:  section
+  visible:  =totalDonationEntitlement > 0
+  title:  Refunds
+  children:
+    - block:  section
+      children:
+        - control: repeatingSection
+          addButtonText: Add another transfer
+          id: transferRefundTo
+          sectionTitle: 'Transfer refund to:'
+          fields:
+            - key: transferIrdNumber
+              label: IRD number receiving transfer
+              format: '1234'
+            - key: transferAccountType
+              label: Account type
+              showAs: searchableDropdown
+            - key:  transferFilingPeriod
+              label: Filing period
+            - key:  associatedCustomer
+              label: Associated?
+              showAs: radio
+            - key:  transferAmount
+              label: Amount
+              format: '1,234.10'
+    - block:  section
+      children:
+        - id:  transferTotal
+          label: Total amount to be transferred
+          format: '1,234.10'
+        - id:  transferRemaining
+          label: Balance to be refunded
+          format: '(1,234.10)'
+

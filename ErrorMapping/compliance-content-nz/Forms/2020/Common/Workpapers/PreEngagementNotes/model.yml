@@ -1,0 +1,29 @@
+---
+name: Pre-engagement notes
+model:
+  fields:
+    EngagementLetter:
+      defaultValue: false
+      type: boolean
+    ContactDetailsChecked:
+      defaultValue: false
+      type: boolean      
+    ClientQuestionnaire:
+      defaultValue: false
+      type: boolean
+    DocumentsReceived:
+      defaultValue: false
+      type: boolean      
+    CheckedPointsCarriedForward:
+      defaultValue: false
+      type: boolean      
+    GSTAdjustmentsActioned:
+      defaultValue: false
+      type: boolean
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+

@@ -1,0 +1,181 @@
+---
+- block: section
+  title: Compare payroll to IRD
+  children:
+    - id: ComparetoIRD
+      label: Do you wish to compare totals from payroll against a report from myIR?
+      tooltip:
+        description: "The 'PAYE summary report' can be exported to excel and the columns totalled"
+        type: info
+      showAs: radio
+
+    - control: grid
+      name: CompareIRD
+      visible: = ComparetoIRD
+      columns:
+        - title: Description
+          size: xl
+        - title: Totals from payroll
+        - title: Totals from myIR report
+        - title: Difference
+      rows:
+        - columns:
+            - Gross earnings (include Schedular payments)
+            - id: PayrollGross
+            - id: IRDGross
+            - id: VarianceGross
+        - columns:
+            - Earnings not liable for ACC earner premium
+            - id: PayrollNotLiableforACC
+            - id: IRNotLiableforACC
+            - id: VarianceNotLiableforACC
+        - columns:
+            - PAYE and tax on Schedular payments
+            - id: PayrollPaye
+            - id: IRDPaye
+            - id: VariancePaye
+        - columns:
+            - Employee kiwisaver deductions
+            - id: PayrollKiwisaverEmployee
+            - id: IRDKiwisaverEmployee
+            - id: VarianceKiwisaverEmployee
+        - columns:
+            - Employer kiwisaver contributions
+            - id: PayrollKiwisaverEmployer
+            - id: IRDKiwisaverEmployer
+            - id: VarianceKiwisaverEmployer
+        - columns: 
+            - Employer superannuation contribution tax (ESCT)
+            - id: PayrollEsct
+            - id: IRDEsct
+            - id: VarianceEsct
+        - columns:
+            - Student loan deductions
+            - id: PayrollStudentLoan
+            - id: IRDStudentLoan
+            - id: VarianceStudentLoan
+        - columns:
+            - Child support deductions
+            - id: PayrollChildSupport
+            - id: IRDChildSupport
+            - id: VarianceChildSupport
+
+    - control: grid
+      name: DoNotCompareIRD
+      visible: = IF(ComparetoIRD,FALSE,TRUE)
+      columns:
+        - title: Description
+          size: xl
+        - title: Totals from payroll
+      rows:
+        - columns:
+            - Gross earnings
+            - id: PayrollGross
+        - columns:
+            - PAYE
+            - id: PayrollPaye
+        - columns:
+            - Employer kiwisaver deductions
+            - id: PayrollKiwisaverEmployee
+        - columns:
+            - Employer kiwisaver contributions
+            - id: PayrollKiwisaverEmployer
+        - columns: 
+            - Employer superannuation contribution tax (ESCT)
+            - id: PayrollEsct
+        - columns:
+            - Student loan deductions
+            - id: PayrollStudentLoan
+        - columns:
+            - Child support deductions
+            - id: PayrollChildSupport
+        # - rowType: total
+        #   columns:
+        #     - Total salaries and wages
+        #     - id: TotaltoReconcile
+
+- block: section
+  title: Reconciliation
+  children:
+    - control: grid
+      name: Reconciliation
+      columns:
+        - Description
+        - Amount
+      rows:
+        - columns:
+            - Gross earnings
+            - id: TotalGross
+        - columns:
+            - Less schedular payments (if not included in ledger account)
+            - id: TotalSchedularPayments
+        - rowType: total
+          columns:
+            - Net salaries and wages
+            - id: NetSalariesandWages
+        - columns:
+            - Employers kiwisaver contributions
+            - id: TotalKiwisaverEmployer
+        - columns:
+            - Employer superannuation contribution tax (ESCT)
+            - id: TotalEsct
+        - rowType: total
+          columns:
+            - Total gross wages according to payroll
+            - id: TotalGrossWages
+        - columns:
+            - Non-taxable amount paid and recorded as wages in ledger
+            - id: NonTaxable
+        - columns: 
+            - Holiday pay accrual at end of year
+            - id: HolidayPayEOY
+        - columns: 
+            - Holiday pay accrual at begining of year (enter as negative)
+            - id: HolidayPayBOY
+        - id: OtherAdjustments
+          columns:
+            - key: Description
+              placeholder: Enter details of any other adjustments
+            - key: Amount
+        - rowType: total
+          columns:
+            - Total salaries and wages
+            - id: TotaltoReconcile
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

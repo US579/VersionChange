@@ -1,0 +1,425 @@
+---
+- block: section
+  children:
+    - id: irdNumber
+      label:  IRD number
+      format: '1234'
+    - id: nonResidentIndicator
+      label: Non-resident for tax purposes?
+      showAs: radio
+    - id: isNilReturn
+      label: Nil return?
+      showAs: radio
+    - id: isFinalReturn
+      label: Final return?
+      showAs: radio
+    - id: isAmended
+      label: Return amended?
+      showAs: radio
+    - id: amendReason
+      label: Amended reason
+      showAs: searchableDropdown
+    - id: amendDetails
+      label: Amended details
+      tooltip:
+        description: Additional information explaining why you are amending the return
+    - id: submissionKey
+      label: Submission key
+      tooltip:
+        description: Unique ID provided by Inland Revenue
+    - id: firstReturnEstateTrustStartDate
+      label: Date of death (estate) or start date (trust)
+    - id: estateTrustType
+      label: Type of estate or trust
+      showAs: searchableDropdown
+  title: Return information
+- block: section
+  children:
+    - block: section
+      children:
+      - id: interestIncome_totalTaxPaid
+        label: Total resident withholding tax (RWT) and/or non-resident withholding tax (NRWT) 
+        format: '1,234.10'
+      - id: interestIncome_totalIncome
+        label:  Total gross interest
+        format: '(1,234.10)'     
+      title: New Zealand interest
+    - block: section
+      children:
+      - id: dividendIncome_totalImputationCredits
+        label: Total dividend imputation credits
+        format: '1,234.10'
+      - id:  dividendIncome_totalRWTCredits
+        label: Total dividend RWT credits
+        format: '1,234.10'
+      - id:  dividendIncome_totalGrossDividends
+        label: Total gross dividends
+        format: '1,234.10'      
+      title: New Zealand dividends
+    - block: section
+      children:
+      - id: maoriAuthorityDistributions_totalMACredits
+        label: Total Māori authority credits
+        format: '1,234.10'
+      - id: maoriAuthorityDistributions_totalMADistributions
+        label: Total Māori authority distributions 
+        format: '1,234.10'   
+      title: Māori authority distributions
+    - block: section
+      children:
+      - id: partnershipEstateTrustIncome_totalTaxCredits
+        label: Total partnership, estate or trust tax credits
+        format: '1,234.10'
+      - id: partnershipEstateTrustIncome_totalIncome
+        label: Total partnership, estate or trust income
+        format: '(1,234.10)'  
+      title: Partnership, estate or trust income
+    - block: section
+      children:
+      - id: overseasIncome_totalTaxPaid
+        label: Total overseas tax paid
+        format: '1,234.10'
+      - id: overseasIncome_totalIncome
+        label: Total overseas income 
+        format: '(1,234.10)'     
+      title: Overseas income
+    - block: section
+      children:
+      - id: pieIncome_totalTaxCredits
+        format: '1,234.10'
+        label: General PIE tax credits
+      - id:  pieIncome_totalIncome
+        format: '(1,234.10)'      
+        label: Attributed PIE income/loss
+      title: Portfolio investment entity (PIE) income
+    - block:  section
+      children:
+      - id: ltcIncome_totalTaxCredits
+        label: Total LTC tax credits
+        format:  '1,234.10'
+      - id: ltcIncome_totalIncome
+        label:  Total active LTC income
+        format: '(1,234.10)'
+      - id: ltcNonAllowableDeductions
+        label:  Non-allowable deductions this year
+        format: '1,234.10'
+      - id: ltcPriorYearNonAllowableDeductionsClaimed
+        label:  Prior years' non-allowable deductions claimed
+        format: '1,234.10'
+      - id: ltcAdjustedIncome
+        label:  Adjusted LTC income
+        format: '(1,234.10)'
+      title:  Look-through company income
+    - block: section
+      children:
+        - id: residentialRentalIncome_Indicator
+          label: Residential income indicator
+          showAs: searchableDropdown
+        - id: residentialRentalIncome_totalIncome
+          label: Total residential income
+          format: '1,234.10'
+        - id: residentialRentalIncome_excessDeductionsBroughtForward
+          label: Excess deductions brought forward
+          format: '1,234.10'
+        - id: residentialRentalIncome_residentialRentalDeductions
+          label: Residential rental deduction current year
+          format: 1,234.10
+        - id: residentialRentalIncome_deductionsClaimedThisYear
+          label: Residential rental deductions claimed this year
+          format: '1,234.10'
+        - id: residentialRentalIncome_excessDeductionsCarriedForward
+          label: Excess residential deductions carried forward
+          format: '1,234.10'
+        - id: residentialRentalIncome_netIncome
+          label: Net residential income
+          format: '(1,234.10)'
+      title: Ring fencing rental losses 
+    - block: section
+      children:
+      - id: businessOrRentalIncome
+        label:  Income from net profit or loss from business or rentals
+        format: '(1,234.10)'
+      title:  Business or rental income
+    - block: section
+      children:
+      - id: otherIncome_totalTaxCredits
+        label: Total tax credits from other income
+      - id: otherIncome_totalIncome
+        label:  Total other income
+        format: '(1,234.10)'
+      title:  Other income
+    - block: section
+      children:
+      - id: saleOfProperty
+        label: Profit/loss from sale of property
+        format: '(1,234.10)'
+      title: Sale of property
+    - block: section
+      children:
+        - id: rlwtCredit
+          format: '1,234.10'
+          label:  RLWT credit
+      title:  Resident land withholding tax (RLWT) credit
+    - block: section
+      children:
+        - id: totalTaxCredits
+          label: Total tax credits
+          style: subtotal
+          tooltip:
+            description: all the credits excluding imputation
+        - id: totalIncomeSubtotal
+          label: Income subtotal
+          style: subtotal
+    - block: section
+      children:
+        - id: beneficiaryIncome
+          label: Allocate to beneficiary income (excluding minor beneficiaries)
+          format: '1,234.10'
+        - id: trusteeIncome
+          label: Allocate to trustee income (including minor beneficiaries)
+          format: '1,234.10'
+      title: Income allocation
+  title: Income
+- block: section
+  children:
+    - id: totalExpensesClaimed
+      label: Total expenses claimed
+  title: Expenses claimed
+- block: section
+  children:
+    - id: lossesBroughtForward
+      label: Net losses brought foward
+      format: '1,234.10'
+    - id: lossesClaimedThisYear
+      label: Net losses claimed
+      format: '1,234.10'
+  title: Losses
+- block: section
+  children:
+    - id: totalDistributions
+      label: Total distributions to beneficiaries
+      format: '1,234.10'
+    - id: totalTaxableDistributions
+      label: Total taxable distributions to beneficiaries
+      format: '1,234.10'
+  title: Foreign and non-complying trusts - distribution to beneficiaries
+- block: section
+  children:
+    - id: disclosureRequiredCFCorFIF
+      label: CFC or FIF income calculated — disclosure required
+      showAs: dropdown
+  title: Disclosure
+- block: section
+  children:
+    - id: totalBeneficiaryTax
+      label: Total tax payable on beneficiary income
+      format: '1,234.10'
+  title: Beneficiary income
+- block: section
+  children:
+    - id: totalTrusteeIncome
+      label: Trustee income
+      format: '1,234.10'
+#      style: total
+  title: Trustee income
+- block: section
+  children:
+    - id: taxOnTaxableIncome
+      label: Total tax payable
+      format: '(1,234.10)'
+    - id: trusteeShareOfOverseasTaxPaid
+      label: Trustee’s share of overseas tax paid
+      format: '1,234.10'
+    - id: taxAfterOverseasTax
+      label:  Sub-total
+      style:  subtotal
+      format: '(1,234.10)'
+    - id:  trusteeShareOfDivImpCredits
+      label:  Trustee’s share of dividend imputation credits
+      format: '1,234.10'
+    - id: taxAfterImpCredits
+      label:  Sub-total  
+      style:  subtotal
+      format: '(1,234.10)'
+    - id: researchAndDevelopment_nonrefundableCredit
+      label: Non-refundable research and development credit
+      format: '1,234.10'
+    - id: taxAfterNonRefRD
+      label: Subtotal
+      style: subtotal
+      format: '1,234.10'
+#    - id: researchAndDevelopment_refundableCredit
+#      label: Refundable research and development credit
+#      format: '1,234.10'
+    - id: totalremainingTaxCredits
+      label:  Total tax credits
+      format: '1,234.10'
+    - id: taxOnTrusteeIncomeLessCredits
+      label: Trustee tax payable
+      format: '(1,234.10)'
+      style: total
+      tooltip:
+        description: A negative value for tax payable indicates a refund
+  title: Tax calculation
+- block: section
+  children:
+  - id: beneficiaryTaxPayable
+    label: Tax payable on beneficiary’s income
+    format: '1,234.10'
+  - id: trusteeTaxPayable
+    label: Tax payable on trustee’s income
+    format: '(1,234.10)'
+  - id: residualIncomeTax
+    label:  Residual income tax
+    style:  total
+    format: '(1,234.10)'
+  - id: provisionalTaxPaid
+    label:  Provisional tax paid
+    format: '(1,234.10)'
+  - id: penaltiesDue
+    label:  Penalties
+    format: '1,234.10'
+  - id: transfersFromOtherReturns
+    label:  Transfers from other returns
+    format: '1,234.10'
+  - id: terminalTax
+    label:  =IF(terminalTax >= 0,"Tax to pay","Refund")
+    style:  total
+    format: '(1,234.10)'
+  title: Summary of tax payable
+# Transfers
+- block:  section
+  visible:  =terminalTax < 0
+  title:  Refunds
+  children:
+    - block:  section
+      children:
+      - id:  overpaymentProvisionalTax
+        label: Overpayment of provisional tax to be refunded
+        format:  '1,234.10'
+      - id:  totalRefundDue
+        label:  Total refund due
+        format: '(1,234.10)'
+    - block:  section
+      children:
+        - control: repeatingSection
+          addButtonText: Add another transfer
+          id: transferRefundTo
+          sectionTitle: 'Transfer refund to:'
+          fields:
+            - key: transferIrdNumber
+              label: IRD number receiving transfer
+              format: '1234'
+            - key: transferAccountType
+              label: Account type
+              showAs: searchableDropdown
+            - key:  transferFilingPeriod
+              label: Filing period
+            - key:  associatedCustomer
+              label: Associated?
+              showAs: radio
+            - key:  transferAmount
+              label: Amount
+              format: '1,234.10'
+    - block:  section
+      children:
+        - id:  transferTotal
+          label: Total amount to be transferred
+          format: '1,234.10'
+        - id:  transferRemaining
+          label: Balance to be refunded
+          format: '(1,234.10)'
+- block: section
+  children:
+    - id: provTaxEvenSplit
+      label:  Provisional tax to be calculated with even split?
+      showAs: radio
+    - id: provisionalTax_provisionalTaxStartDate
+      label:  Start date of taxable activity
+    - id: provisionalTax_provisionalTaxOption
+      label: Provisional tax option 
+      showAs: dropdown
+    - id: provisionalTaxCalc
+      label:  Hidden
+      visible: = FALSE
+    - id: provFromTaxManager
+      label:  Hidden
+      visible:  = FALSE
+    - id: provisionalTax_provisionalTaxPayable
+      label:  Provisional tax payable
+      format: '1,234.10'
+      style:  total
+  title:  Provisional tax
+- block:  section
+  title:  Beneficiary distribution
+  children:
+    - control:  repeatingSection
+      sectionTitle: 'Beneficiary details'
+      addButtonText: Add another section
+      id: beneficiaryRepeat
+      fields:
+        - label:  Name
+          key: beneficiary_beneficiaryName
+        - label:  IRD number
+          key:  beneficiary_beneficiaryIrdNumber
+          format: '1234'
+        - key: beneficiary_beneficiaryDOB
+          label: Date of birth
+        - key: beneficiary_beneficiaryAddress
+          label: Full address
+        - key: beneficiary_beneficiaryIsNonResident
+          label: Non-resident
+          showAs: radio
+        - label:  Interest
+          key:  beneficiary_shareOfInterestIncome
+          format: '1,234.10'
+        - label:  Dividends
+          key:  beneficiary_shareOfDividendsIncome
+          format: '1,234.10'
+        - label:  Māori authority distributions
+          key:  beneficiary_shareOfMADistributionsIncome
+          format: '1,234.10'
+        - label:  Overseas income
+          key:  beneficiary_shareOfOverseasIncome
+          format: '1,234.10'
+        - label:  Other income
+          key:  beneficiary_shareOfOtherIncome
+          format: '1,234.10'
+        - label:  Taxable income
+          key:  beneficiary_taxableIncome
+          format: '1,234.10'
+          style:  total
+        - label:  Estate or trust paying tax on beneficiary’s income
+          key:  beneficiary_taxPaidByTrust
+          showAs: radio
+        - key: beneficiary_distributionByNonComplyingtrust
+          label: Taxable distribution by non-complying trust
+          format: '1,234.10'
+        - key: beneficiary_taxOnTaxableIncome
+          label: Tax on taxable income
+          format: '1,234.10'
+        - label: Overseas tax paid
+          key:  beneficiary_overseasTaxPaid
+          format: '1,234.10'
+        - key: beneficiary_taxLessOverseasTaxPaid
+          label: Tax on taxable income less overseas tax paid
+          format: '1,234.10'
+        - label:  Imputation credits
+          key: beneficiary_dividendImputationCredit
+          format: '1,234.10'
+        - key: beneficiary_taxLessDividendImputationCredit
+          label: Tax less imputation credits
+          format: '1,234.10'
+        - label:  RWT and other tax credits
+          key:  beneficiary_otherPaidTaxCredits
+          format: '1,234.10'
+        - key: beneficiary_taxLessOtherPaidTaxCredits
+          label: Tax less other paid tax credits
+          format: '(1,234.10)'
+        - key: beneficiary_taxOnDistributionByNonComplyingTrust
+          label: Tax on non-complying trust distribution
+          format: '1,234.10'
+        - key: beneficiary_beneficiaryTaxPayable
+          label: Total tax payable on beneficiary’s income
+          format: '(1,234.10)'
+        

@@ -1,0 +1,24 @@
+---
+fields:
+  #Asset purchased
+  AssetPurchase: =AssetPur
+  #Date purchased
+  DatePurchased:  =DatePur
+  #Finance company
+  FinancialCompany: =FinCoy
+  #Finance rate
+  FinanceRate:  =FinRate
+  #Cost of the asset
+  CostOfAsset: =CstAsset
+  #Trade in
+  TradeIn: =TrdeIn
+  #Deposits
+  Deposits:  =Deposit
+  #Others
+  LessOthers:  =LessOth
+  #Others
+  AddOthers: =AddOth
+  #First payment date
+  FirstPaymentDate: =FrtPayDate
+  #Balloon payment
+  Balloonpayment:  =Ballpay

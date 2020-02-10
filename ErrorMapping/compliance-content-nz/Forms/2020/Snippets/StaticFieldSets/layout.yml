@@ -1,0 +1,154 @@
+- block: section
+  children:
+    - id: irdNumber
+      label: IRD number
+    - id: nonResidentIndicator
+      label: Non-resident for tax purposes?
+      showAs: radio
+    - id: nilReturn
+      label: Nil return?
+      showAs: radio
+    - id: finalReturn
+      label: Final return?
+      showAs: radio
+    - id: isAmended
+      label: Return amended?
+      showAs: radio
+    - id: amendReason
+      label: Amended reason
+      showAs: searchableDropdown
+    - id: amendDetails
+      label: Amended details
+      tooltip:
+        description: Additional information explaining why you are amending the return
+    - id: submissionKey
+      label: Submission key
+      tooltip:
+        description: Unique ID provided by Inland Revenue
+  title: Company information
+- block: section
+  children:
+    - control: label
+      text: Schedular income
+      type: tertiary
+    - control: fieldSets
+      name: schedularFieldSets
+      columns:
+        - Tax withheld from schedular payments
+        - Gross schedular payments
+      rows:
+        - columns:  
+          - id: schedularPaymentswithholdingTaxDeducted
+          - id: schedularPaymentstotalIncome
+    - control: label
+      text: New Zealand interest
+      type: tertiary
+    - control: fieldSets
+      name: interestFieldSets
+      columns:
+        - Total RWT and/or NRWT
+        - Total gross interest
+      rows:
+        - columns:
+          - id: interestIncometotalTaxPaid
+          - id: interestIncometotalIncome
+    - control: label
+      text: New Zealand dividends
+      type: tertiary
+    - control: fieldSets
+      name: 2divFieldSets
+      columns:
+        - Total dividend imputation credits
+      rows:
+      - columns:
+          - id: dividendIncome_totalImputationCredits     
+    - control: label
+      text: .
+      type: tertiary
+    - control: fieldSets
+      name: dividendsFieldSets
+      columns:
+        - Total dividend RWT credits
+        - Total gross dividends
+      rows:
+        - columns:
+          - id: dividendIncometotalRWTCredits  
+          - id: dividendIncometotalGrossDividends
+    - control: label
+      text: Maori authority distributions
+      type: tertiary
+    - control: fieldSets
+      name: maoriAuthorityFieldSets
+      columns: 
+        - Total Maori authority credits
+        - Total Maori authority distributions
+      rows:
+        - columns: 
+          - id: maoriAuthority_totalMACredits
+          - id: maoriAuthority_totalMADistributions
+    - control: label
+      text: Partnership Estate or Trust income
+      type: tertiary
+    - control: fieldSets
+      name: partnershipEstateTrustFieldSets
+      columns: 
+        - Total partnership, estate or trust tax credits
+        - Total partnership, estate or trust income
+      rows:
+        - columns:
+          - id: partnershipEstateTrustIncome_totalTaxCredits
+          - id: partnershipEstateTrustIncome_totalIncome
+    - control: label
+      text: Overseas income
+      type: tertiary
+    - control: fieldSets
+      name: overseasIncomeFieldSets
+      columns:
+        - Total overseas tax paid
+        - Total overseas income
+      rows:
+        - columns:
+          - id: overseasIncome_totalTaxPaid
+          - id: overseasIncome_totalIncome
+    - control: label
+      text: totals
+      type: tertiary
+    - control: fieldSets
+      name: totalIncomeFieldSets
+      columns:
+        - Total tax credits
+        - Total income
+      rows:
+        - columns:
+          - id: total_totalTaxPaid
+          - id: total_totalIncome               
+  title: Income
+- block: section
+  children:
+    - id: lossesBroughtForward
+      label: Net losses brought foward
+    - id: lossesClaimedThisYear
+      label: Net losses claimed
+  title: Losses
+- id: incomeAfterNetLosses
+  label: Income after net losses brought forward
+  style: subtotal
+- block: section
+  children:
+    - id: netLossesToFrom
+      label: Net losses
+    - id: subventionPaymentsToFrom
+      label: Subvention payments
+  title: Net losses and/or subvention payments
+  tooltip:
+    description: 'Enter net losses received, and subvention payments made with a minus sign'
+- id: totalTaxableIncome
+  label: Taxable income or net losses to carry forward
+  style: total
+- block: section
+  children:
+    - id: taxOnTaxableIncome
+      label: Tax payable
+    - id: taxCalc_overseasTaxPaid
+      label: Overseas tax paid
+  title: Tax calculation

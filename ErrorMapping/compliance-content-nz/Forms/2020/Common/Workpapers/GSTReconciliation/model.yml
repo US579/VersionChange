@@ -1,0 +1,878 @@
+---
+name: GST reconciliation
+model:
+  fields:
+    PeriodEnd:
+      type: date
+    GSTPeriod:
+      type: select
+      defaultValue: '2'
+      options:
+        - value: '1'
+          label: 1 monthly
+        - value: '2'
+          label: 2 monthly
+        - value: '6' 
+          label: 6 monthly
+    GSTBasis:
+      type: select
+      defaultValue: 'P'
+      options:
+        - value: P
+          label: Payments basis
+        - value: I
+          label: Invoice basis
+    GSTRate:
+      type: number
+      defaultValue: '15'
+    AnalyseReturns:
+      type: boolean
+      defaultValue: false
+    CompareReturnstoGL:
+      type: boolean
+      defaultValue: false
+
+## GST return analysis in static grid
+    PeriodEnd1:
+      type: date
+    Outputs1:
+      type: number
+    ZeroRated1:
+      type: number
+    GSTonOutputs1:
+      type: number
+      value: = ROUND((Outputs1 - ZeroRated1)*GSTRate/(100+GSTRate),2)
+    Inputs1:
+      type: number
+    GSTonInputs1:
+      type: number
+      value: = ROUND(Inputs1 * GSTRate/(100+GSTRate),2)
+    Adjustments1:
+      type: number
+    NetGSTDue1:
+      type: number
+      value: = GSTonOutputs1 - GSTonInputs1 + Adjustments1
+    GSTPaid1:
+      type: number
+    GSTOutstanding1:
+      type: number
+      value: = NetGSTDue1 - GSTPaid1
+
+    PeriodEnd2:
+      type: date
+    Outputs2:
+      type: number
+    ZeroRated2:
+      type: number
+    GSTonOutputs2:
+      type: number
+      value: = ROUND((Outputs2 - ZeroRated2)*GSTRate/(100+GSTRate),2)
+    Inputs2:
+      type: number
+    GSTonInputs2:
+      type: number
+      value: = ROUND(Inputs2 * GSTRate/(100+GSTRate),2)
+    Adjustments2:
+      type: number
+    NetGSTDue2:
+      type: number
+      value: = GSTonOutputs2 - GSTonInputs2 + Adjustments2
+    GSTPaid2:
+      type: number
+    GSTOutstanding2:
+      type: number
+      value: = NetGSTDue2 - GSTPaid2
+
+    PeriodEnd3:
+      type: date
+    Outputs3:
+      type: number
+    ZeroRated3:
+      type: number
+    GSTonOutputs3:
+      type: number
+      value: = ROUND((Outputs3 - ZeroRated3)*GSTRate/(100+GSTRate),2)
+    Inputs3:
+      type: number
+    GSTonInputs3:
+      type: number
+      value: = ROUND(Inputs3 * GSTRate/(100+GSTRate),2)
+    Adjustments3:
+      type: number
+    NetGSTDue3:
+      type: number
+      value: = GSTonOutputs3 - GSTonInputs3 + Adjustments3
+    GSTPaid3:
+      type: number
+    GSTOutstanding3:
+      type: number
+      value: = NetGSTDue3 - GSTPaid3
+
+    PeriodEnd4:
+      type: date
+    Outputs4:
+      type: number
+    ZeroRated4:
+      type: number
+    GSTonOutputs4:
+      type: number
+      value: = ROUND((Outputs4 - ZeroRated4)*GSTRate/(100+GSTRate),2)
+    Inputs4:
+      type: number
+    GSTonInputs4:
+      type: number
+      value: = ROUND(Inputs4 * GSTRate/(100+GSTRate),2)
+    Adjustments4:
+      type: number
+    NetGSTDue4:
+      type: number
+      value: = GSTonOutputs4 - GSTonInputs4 + Adjustments4
+    GSTPaid4:
+      type: number
+    GSTOutstanding4:
+      type: number
+      value: = NetGSTDue4 - GSTPaid4
+
+    PeriodEnd5:
+      type: date
+    Outputs5:
+      type: number
+    ZeroRated5:
+      type: number
+    GSTonOutputs5:
+      type: number
+      value: = ROUND((Outputs5 - ZeroRated5)*GSTRate/(100+GSTRate),2)
+    Inputs5:
+      type: number
+    GSTonInputs5:
+      type: number
+      value: = ROUND(Inputs5 * GSTRate/(100+GSTRate),2)
+    Adjustments5:
+      type: number
+    NetGSTDue5:
+      type: number
+      value: = GSTonOutputs5 - GSTonInputs5 + Adjustments5
+    GSTPaid5:
+      type: number
+    GSTOutstanding5:
+      type: number
+      value: = NetGSTDue5 - GSTPaid5
+
+    PeriodEnd6:
+      type: date
+    Outputs6:
+      type: number
+    ZeroRated6:
+      type: number
+    GSTonOutputs6:
+      type: number
+      value: = ROUND((Outputs6 - ZeroRated6)*GSTRate/(100+GSTRate),2)
+    Inputs6:
+      type: number
+    GSTonInputs6:
+      type: number
+      value: = ROUND(Inputs6 * GSTRate/(100+GSTRate),2)
+    Adjustments6:
+      type: number
+    NetGSTDue6:
+      type: number
+      value: = GSTonOutputs6 - GSTonInputs6 + Adjustments6
+    GSTPaid6:
+      type: number
+    GSTOutstanding6:
+      type: number
+      value: = NetGSTDue6 - GSTPaid6
+
+    PeriodEnd7:
+      type: date
+    Outputs7:
+      type: number
+    ZeroRated7:
+      type: number
+    GSTonOutputs7:
+      type: number
+      value: = ROUND((Outputs7 - ZeroRated7)*GSTRate/(100+GSTRate),2)
+    Inputs7:
+      type: number
+    GSTonInputs7:
+      type: number
+      value: = ROUND(Inputs7 * GSTRate/(100+GSTRate),2)
+    Adjustments7:
+      type: number
+    NetGSTDue7:
+      type: number
+      value: = GSTonOutputs7 - GSTonInputs7 + Adjustments7
+    GSTPaid7:
+      type: number
+    GSTOutstanding7:
+      type: number
+      value: = NetGSTDue7 - GSTPaid7
+
+    PeriodEnd8:
+      type: date
+    Outputs8:
+      type: number
+    ZeroRated8:
+      type: number
+    GSTonOutputs8:
+      type: number
+      value: = ROUND((Outputs8 - ZeroRated8)*GSTRate/(100+GSTRate),2)
+    Inputs8:
+      type: number
+    GSTonInputs8:
+      type: number
+      value: = ROUND(Inputs8 * GSTRate/(100+GSTRate),2)
+    Adjustments8:
+      type: number
+    NetGSTDue8:
+      type: number
+      value: = GSTonOutputs8 - GSTonInputs8 + Adjustments8
+    GSTPaid8:
+      type: number
+    GSTOutstanding8:
+      type: number
+      value: = NetGSTDue8 - GSTPaid6
+
+    PeriodEnd9:
+      type: date
+    Outputs9:
+      type: number
+    ZeroRated9:
+      type: number
+    GSTonOutputs9:
+      type: number
+      value: = ROUND((Outputs9 - ZeroRated9)*GSTRate/(100+GSTRate),2)
+    Inputs9:
+      type: number
+    GSTonInputs9:
+      type: number
+      value: = ROUND(Inputs9 * GSTRate/(100+GSTRate),2)
+    Adjustments9:
+      type: number
+    NetGSTDue9:
+      type: number
+      value: = GSTonOutputs9 - GSTonInputs9 + Adjustments9
+    GSTPaid9:
+      type: number
+    GSTOutstanding9:
+      type: number
+      value: = NetGSTDue9 - GSTPaid9
+
+    PeriodEnd10:
+      type: date
+    Outputs10:
+      type: number
+    ZeroRated10:
+      type: number
+    GSTonOutputs10:
+      type: number
+      value: = ROUND((Outputs10 - ZeroRated10)*GSTRate/(100+GSTRate),2)
+    Inputs10:
+      type: number
+    GSTonInputs10:
+      type: number
+      value: = ROUND(Inputs10 * GSTRate/(100+GSTRate),2)
+    Adjustments10:
+      type: number
+    NetGSTDue10:
+      type: number
+      value: = GSTonOutputs10 - GSTonInputs10 + Adjustments10
+    GSTPaid10:
+      type: number
+    GSTOutstanding10:
+      type: number
+      value: = NetGSTDue10 - GSTPaid10
+
+    PeriodEnd11:
+      type: date
+    Outputs11:
+      type: number
+    ZeroRated11:
+      type: number
+    GSTonOutputs11:
+      type: number
+      value: = ROUND((Outputs11 - ZeroRated11)*GSTRate/(100+GSTRate),2)
+    Inputs11:
+      type: number
+    GSTonInputs11:
+      type: number
+      value: = ROUND(Inputs11 * GSTRate/(100+GSTRate),2)
+    Adjustments11:
+      type: number
+    NetGSTDue11:
+      type: number
+      value: = GSTonOutputs11 - GSTonInputs11 + Adjustments11
+    GSTPaid11:
+      type: number
+    GSTOutstanding11:
+      type: number
+      value: = NetGSTDue11 - GSTPaid11
+
+    PeriodEnd12:
+      type: date
+    Outputs12:
+      type: number
+    ZeroRated12:
+      type: number
+    GSTonOutputs12:
+      type: number
+      value: = ROUND((Outputs12 - ZeroRated12)*GSTRate/(100+GSTRate),2)
+    Inputs12:
+      type: number
+    GSTonInputs12:
+      type: number
+      value: = ROUND(Inputs12 * GSTRate/(100+GSTRate),2)
+    Adjustments12:
+      type: number
+    NetGSTDue12:
+      type: number
+      value: = GSTonOutputs12 - GSTonInputs12 + Adjustments12
+    GSTPaid12:
+      type: number
+    GSTOutstanding12:
+      type: number
+      value: = NetGSTDue12 - GSTPaid12
+
+    TotalOutputs:
+      type: number
+      value: =
+            IF(GSTPeriod="1",
+                Outputs1+Outputs2+Outputs3+Outputs4+Outputs5+Outputs6+Outputs7+Outputs8+Outputs9+Outputs10+Outputs11+Outputs12,
+                IF(GSTPeriod="6",
+                  Outputs1+Outputs2,
+                  Outputs1+Outputs2+Outputs3+Outputs4+Outputs5+Outputs6
+                  )
+                )
+    TotalZeroRated:
+      type: number
+      value: =
+            IF(GSTPeriod="1",
+                ZeroRated1+ZeroRated2+ZeroRated3+ZeroRated4+ZeroRated5+ZeroRated6+ZeroRated7+ZeroRated8+ZeroRated9+ZeroRated10+ZeroRated11+ZeroRated12,
+                IF(GSTPeriod="6",
+                  ZeroRated1+ZeroRated2,
+                  ZeroRated1+ZeroRated2+ZeroRated3+ZeroRated4+ZeroRated5+ZeroRated6
+                  )
+                )
+    TotalGSTonOutputs:
+      type: number
+      value: =
+            IF(GSTPeriod="1",
+                GSTonOutputs1+GSTonOutputs2+GSTonOutputs3+GSTonOutputs4+GSTonOutputs5+GSTonOutputs6+GSTonOutputs7+GSTonOutputs8+GSTonOutputs9+GSTonOutputs10+GSTonOutputs11+GSTonOutputs12,
+                IF(GSTPeriod="6",
+                  GSTonOutputs1+GSTonOutputs2,
+                  GSTonOutputs1+GSTonOutputs2+GSTonOutputs3+GSTonOutputs4+GSTonOutputs5+GSTonOutputs6
+                  )
+                )
+    TotalInputs:
+      type: number
+      value: =
+            IF(GSTPeriod="1",
+                Inputs1+Inputs2+Inputs3+Inputs4+Inputs5+Inputs6+Inputs7+Inputs8+Inputs9+Inputs10+Inputs11+Inputs12,
+                IF(GSTPeriod="6",
+                  Inputs1+Inputs2,
+                  Inputs1+Inputs2+Inputs3+Inputs4+Inputs5+Inputs6
+                  )
+                )
+    TotalGSTonInputs:
+      type: number
+      value: = 
+            IF(GSTPeriod="1",
+                GSTonInputs1+GSTonInputs2+GSTonInputs3+GSTonInputs4+GSTonInputs5+GSTonInputs6+GSTonInputs7+GSTonInputs8+GSTonInputs9+GSTonInputs10+GSTonInputs11+GSTonInputs12,
+                IF(GSTPeriod="6",
+                  GSTonInputs1+GSTonInputs2,
+                  GSTonInputs1+GSTonInputs2+GSTonInputs3+GSTonInputs4+GSTonInputs5+GSTonInputs6
+                  )
+                )
+    TotalAdjustments:
+      type: number
+      value: =
+            IF(GSTPeriod="1",
+                Adjustments1+Adjustments2+Adjustments3+Adjustments4+Adjustments5+Adjustments6+Adjustments7+Adjustments8+Adjustments9+Adjustments10+Adjustments11+Adjustments12,
+                IF(GSTPeriod="6",
+                  Adjustments1+Adjustments2,
+                  Adjustments1+Adjustments2+Adjustments3+Adjustments4+Adjustments5+Adjustments6
+                  )
+                )
+    TotalNetGSTDue:
+      type: number
+      value: = TotalGSTonOutputs - TotalGSTonInputs + TotalAdjustments
+    TotalGSTPaid:
+      type: number
+      value: =
+            IF(GSTPeriod="1",
+                GSTPaid1+GSTPaid2+GSTPaid3+GSTPaid4+GSTPaid5+GSTPaid6+GSTPaid7+GSTPaid8+GSTPaid9+GSTPaid10+GSTPaid11+GSTPaid12,
+                IF(GSTPeriod="6",
+                  GSTPaid1+GSTPaid2,
+                  GSTPaid1+GSTPaid2+GSTPaid3+GSTPaid4+GSTPaid5+GSTPaid6
+                  )
+                )
+    TotalGSTOutstanding:
+      type: number
+      value: = TotalNetGSTDue - TotalGSTPaid
+
+## Compare GST returns to calculated values (from GL)
+    ClcPeriodEnd1:
+      type: date
+      value: = PeriodEnd1
+    ClcGSTonOutputs1:
+      type: number
+      value: = GSTonOutputs1
+    CalculatedGSTonOutputs1:
+      type: number
+    DifferenceonOutputs1:
+      type: number
+      value: = ClcGSTonOutputs1 - CalculatedGSTonOutputs1
+    ClcGSTonInputs1:
+      type: number
+      value: = GSTonInputs1
+    CalculatedGSTonInputs1:
+      type: number
+    DifferenceonInputs1:
+      type: number
+      value: = ClcGSTonInputs1 - CalculatedGSTonInputs1
+
+    ClcPeriodEnd2:
+      type: date
+      value: = PeriodEnd2
+    ClcGSTonOutputs2:
+      type: number
+      value: = GSTonOutputs2
+    CalculatedGSTonOutputs2:
+      type: number
+    DifferenceonOutputs2:
+      type: number
+      value: = ClcGSTonOutputs2 - CalculatedGSTonOutputs2
+    ClcGSTonInputs2:
+      type: number
+      value: = GSTonInputs2
+    CalculatedGSTonInputs2:
+      type: number
+    DifferenceonInputs2:
+      type: number
+      value: = ClcGSTonInputs2 - CalculatedGSTonInputs2
+
+    ClcPeriodEnd3:
+      type: date
+      value: = PeriodEnd3
+    ClcGSTonOutputs3:
+      type: number
+      value: = GSTonOutputs3
+    CalculatedGSTonOutputs3:
+      type: number
+    DifferenceonOutputs3:
+      type: number
+      value: = ClcGSTonOutputs3 - CalculatedGSTonOutputs3
+    ClcGSTonInputs3:
+      type: number
+      value: = GSTonInputs3
+    CalculatedGSTonInputs3:
+      type: number
+    DifferenceonInputs3:
+      type: number
+      value: = ClcGSTonInputs3 - CalculatedGSTonInputs3
+
+    ClcPeriodEnd4:
+      type: date
+      value: = PeriodEnd4
+    ClcGSTonOutputs4:
+      type: number
+      value: = GSTonOutputs4
+    CalculatedGSTonOutputs4:
+      type: number
+    DifferenceonOutputs4:
+      type: number
+      value: = ClcGSTonOutputs4 - CalculatedGSTonOutputs4
+    ClcGSTonInputs4:
+      type: number
+      value: = GSTonInputs4
+    CalculatedGSTonInputs4:
+      type: number
+    DifferenceonInputs4:
+      type: number
+      value: = ClcGSTonInputs4 - CalculatedGSTonInputs4
+
+    ClcPeriodEnd5:
+      type: date
+      value: = PeriodEnd5
+    ClcGSTonOutputs5:
+      type: number
+      value: = GSTonOutputs5
+    CalculatedGSTonOutputs5:
+      type: number
+    DifferenceonOutputs5:
+      type: number
+      value: = ClcGSTonOutputs5 - CalculatedGSTonOutputs5
+    ClcGSTonInputs5:
+      type: number
+      value: = GSTonInputs5
+    CalculatedGSTonInputs5:
+      type: number
+    DifferenceonInputs5:
+      type: number
+      value: = ClcGSTonInputs5 - CalculatedGSTonInputs5
+
+    ClcPeriodEnd6:
+      type: date
+      value: = PeriodEnd6
+    ClcGSTonOutputs6:
+      type: number
+      value: = GSTonOutputs6
+    CalculatedGSTonOutputs6:
+      type: number
+    DifferenceonOutputs6:
+      type: number
+      value: = ClcGSTonOutputs6 - CalculatedGSTonOutputs6
+    ClcGSTonInputs6:
+      type: number
+      value: = GSTonInputs6
+    CalculatedGSTonInputs6:
+      type: number
+    DifferenceonInputs6:
+      type: number
+      value: = ClcGSTonInputs6 - CalculatedGSTonInputs6
+
+    ClcPeriodEnd7:
+      type: date
+      value: = PeriodEnd7
+    ClcGSTonOutputs7:
+      type: number
+      value: = GSTonOutputs7
+    CalculatedGSTonOutputs7:
+      type: number
+    DifferenceonOutputs7:
+      type: number
+      value: = ClcGSTonOutputs7 - CalculatedGSTonOutputs7
+    ClcGSTonInputs7:
+      type: number
+      value: = GSTonInputs7
+    CalculatedGSTonInputs7:
+      type: number
+    DifferenceonInputs7:
+      type: number
+      value: = ClcGSTonInputs7 - CalculatedGSTonInputs7
+
+    ClcPeriodEnd8:
+      type: date
+      value: = PeriodEnd8
+    ClcGSTonOutputs8:
+      type: number
+      value: = GSTonOutputs8
+    CalculatedGSTonOutputs8:
+      type: number
+    DifferenceonOutputs8:
+      type: number
+      value: = ClcGSTonOutputs8 - CalculatedGSTonOutputs8
+    ClcGSTonInputs8:
+      type: number
+      value: = GSTonInputs8
+    CalculatedGSTonInputs8:
+      type: number
+    DifferenceonInputs8:
+      type: number
+      value: = ClcGSTonInputs8 - CalculatedGSTonInputs8
+
+    ClcPeriodEnd9:
+      type: date
+      value: = PeriodEnd9
+    ClcGSTonOutputs9:
+      type: number
+      value: = GSTonOutputs9
+    CalculatedGSTonOutputs9:
+      type: number
+    DifferenceonOutputs9:
+      type: number
+      value: = ClcGSTonOutputs9 - CalculatedGSTonOutputs9
+    ClcGSTonInputs9:
+      type: number
+      value: = GSTonInputs9
+    CalculatedGSTonInputs9:
+      type: number
+    DifferenceonInputs9:
+      type: number
+      value: = ClcGSTonInputs9 - CalculatedGSTonInputs9
+
+    ClcPeriodEnd10:
+      type: date
+      value: = PeriodEnd10
+    ClcGSTonOutputs10:
+      type: number
+      value: = GSTonOutputs10
+    CalculatedGSTonOutputs10:
+      type: number
+    DifferenceonOutputs10:
+      type: number
+      value: = ClcGSTonOutputs10 - CalculatedGSTonOutputs10
+    ClcGSTonInputs10:
+      type: number
+      value: = GSTonInputs10
+    CalculatedGSTonInputs10:
+      type: number
+    DifferenceonInputs10:
+      type: number
+      value: = ClcGSTonInputs10 - CalculatedGSTonInputs10
+
+    ClcPeriodEnd11:
+      type: date
+      value: = PeriodEnd11
+    ClcGSTonOutputs11:
+      type: number
+      value: = GSTonOutputs11
+    CalculatedGSTonOutputs11:
+      type: number
+    DifferenceonOutputs11:
+      type: number
+      value: = ClcGSTonOutputs11 - CalculatedGSTonOutputs11
+    ClcGSTonInputs11:
+      type: number
+      value: = GSTonInputs11
+    CalculatedGSTonInputs11:
+      type: number
+    DifferenceonInputs11:
+      type: number
+      value: = ClcGSTonInputs11 - CalculatedGSTonInputs11
+
+    ClcPeriodEnd12:
+      type: date
+      value: = PeriodEnd12
+    ClcGSTonOutputs12:
+      type: number
+      value: = GSTonOutputs12
+    CalculatedGSTonOutputs12:
+      type: number
+    DifferenceonOutputs12:
+      type: number
+      value: = ClcGSTonOutputs12 - CalculatedGSTonOutputs12
+    ClcGSTonInputs12:
+      type: number
+      value: = GSTonInputs12
+    CalculatedGSTonInputs12:
+      type: number
+    DifferenceonInputs12:
+      type: number
+      value: = ClcGSTonInputs12 - CalculatedGSTonInputs12
+
+    TotalCalculatedGSTonOutputs:
+      type: number
+      value: =
+             IF(GSTPeriod="1",
+                CalculatedGSTonOutputs1+CalculatedGSTonOutputs2+CalculatedGSTonOutputs3+CalculatedGSTonOutputs4+CalculatedGSTonOutputs5+CalculatedGSTonOutputs6+CalculatedGSTonOutputs7+CalculatedGSTonOutputs8+CalculatedGSTonOutputs9+CalculatedGSTonOutputs10+CalculatedGSTonOutputs11+CalculatedGSTonOutputs12,
+                IF(GSTPeriod="6",
+                      CalculatedGSTonOutputs1+CalculatedGSTonOutputs2,
+                      CalculatedGSTonOutputs1+CalculatedGSTonOutputs2+CalculatedGSTonOutputs3+CalculatedGSTonOutputs4+CalculatedGSTonOutputs5+CalculatedGSTonOutputs6
+                      )
+                    )
+    TotalDifferenceonOutputs:
+      type: number
+      value: = TotalGSTonOutputs - TotalCalculatedGSTonOutputs
+    TotalCalculatedGSTonInputs:
+      type: number
+      value: = 
+             IF(GSTPeriod="1",
+                CalculatedGSTonInputs1+CalculatedGSTonInputs2+CalculatedGSTonInputs3+CalculatedGSTonInputs4+CalculatedGSTonInputs5+CalculatedGSTonInputs6+CalculatedGSTonInputs7+CalculatedGSTonInputs8+CalculatedGSTonInputs9+CalculatedGSTonInputs10+CalculatedGSTonInputs11+CalculatedGSTonInputs12,
+                IF(GSTPeriod="6",
+                      CalculatedGSTonInputs1+CalculatedGSTonInputs2,
+                      CalculatedGSTonInputs1+CalculatedGSTonInputs2+CalculatedGSTonInputs3+CalculatedGSTonInputs4+CalculatedGSTonInputs5+CalculatedGSTonInputs6
+                      )
+                    )
+    TotalDifferenceonInputs:
+      type: number
+      value: = TotalGSTonInputs - TotalCalculatedGSTonInputs
+
+## If not analysing by return, then user enters outstanding amount
+    CollectedfromLastReturn:
+      type: number
+    PaidfromLastReturn:
+      type: number
+    NetGSTfromLastReturn:
+      type: number
+      value: = CollectedfromLastReturn - PaidfromLastReturn
+
+    OtherGSTOutstanding:
+      type: list
+      fields:
+        Description:
+          type: text
+        GSTCollected:
+          type: number
+        GSTPaid:
+          type: number
+        NetGST:
+          type: number
+          value: = OtherGSTOutstanding#CURR#GSTCollected - OtherGSTOutstanding#CURR#GSTPaid
+
+    TotalOtherGSTCollected:
+      type: number
+      value: = SUM(OtherGSTOutstanding:GSTCollected)
+    TotalOtherGSTPaid:
+      type: number
+      value: = SUM(OtherGSTOutstanding:GSTPaid)
+    TotalOtherNetGST:
+      type: number
+      value: = SUM(OtherGSTOutstanding:NetGST)
+    TotalGSTCollectedplusOther:
+      type: number
+      value: = IF(AnalyseReturns,0,CollectedfromLastReturn) + TotalOtherGSTCollected
+    TotalGSTPaidplusOther:
+      type: number
+      value: = IF(AnalyseReturns,0,PaidfromLastReturn) + TotalOtherGSTPaid
+    TotalGSTOutstandingplusOther:
+      type: number  
+      value: = IF(AnalyseReturns,TotalGSTOutstanding,NetGSTfromLastReturn) + TotalOtherNetGST
+
+## Timing adjustments
+    ARGSTCollected:
+      type: number
+    ARGSTDue:
+      type: number
+      value: = ARGSTCollected
+    APGSTPaid:
+      type: number
+    APGSTDue:
+      type: number
+      value: = 0 - APGSTPaid
+    OtherTimingAdjustments:
+      type: list
+      fields:
+        Description:
+          type: text
+        GSTCollected:
+          type: number
+        GSTPaid:
+          type: number
+        GSTDue:
+          type: number
+          value: = OtherTimingAdjustments#CURR#GSTCollected - OtherTimingAdjustments#CURR#GSTPaid
+    TotalOtherTimingCollected:
+      type: number
+      value: = SUM(OtherTimingAdjustments:GSTCollected)
+    TotalOtherTimingPaid:
+      type: number
+      value: = SUM(OtherTimingAdjustments:GSTPaid)
+    TotalOtherTimingDue:
+      type: number
+      value: = TotalOtherTimingCollected - TotalOtherTimingPaid
+    TotalTimingGSTCollected:
+      type: number
+      value: = ARGSTCollected + TotalOtherTimingCollected
+    TotalTimingGSTPaid:
+      type: number
+      value: = APGSTPaid + TotalOtherTimingPaid
+    TotalTimingGSTDue:
+      type: number  
+      value: = TotalTimingGSTCollected - TotalTimingGSTPaid
+
+    TotalGSTDueBeforeAdjustments:
+      type: number  
+      value: = TotalGSTOutstandingplusOther + TotalTimingGSTDue
+      
+## Home office adjustment
+    HomeOfficeGSTCollected:
+      type: number
+    HomeOfficeGSTPaid:
+      type: number
+    HomeOfficeGSTDue:
+      type: number
+      value: = HomeOfficeGSTCollected - HomeOfficeGSTPaid
+    EntertainmentGSTCollected:
+      type: number
+    EntertainmentGSTPaid:
+      type: number
+    EntertainmentGSTDue:
+      type: number
+      value: = EntertainmentGSTCollected - EntertainmentGSTPaid
+    FBTGSTCollected:
+      type: number
+    FBTGSTPaid:
+      type: number
+    FBTGSTDue:
+      type: number
+      value: = FBTGSTCollected - FBTGSTPaid
+    PeriodicGSTCollected:
+      type: number
+      value: = IF(AND(AnalyseReturns,CompareReturnstoGL),
+                  TotalDifferenceonOutputs,
+                  0
+                  )
+    PeriodicGSTPaid:
+      type: number
+      value: = IF(AND(AnalyseReturns,CompareReturnstoGL),
+                  TotalDifferenceonInputs,
+                  0
+                  )
+    PeriodicGSTDue:
+      type: number  
+      value: = PeriodicGSTCollected - PeriodicGSTPaid
+    OtherAdjustments:
+      type: list
+      fields:
+        Description:
+          type: text
+        GSTCollected:
+          type: number
+        GSTPaid:
+          type: number
+        GSTDue:
+          type: number
+          value: = OtherAdjustments#CURR#GSTCollected 
+                  - OtherAdjustments#CURR#GSTPaid
+    TotalOtherAdjustmentsGSTCollected:
+      type: number
+      value: = SUM(OtherAdjustments:GSTCollected)
+              + HomeOfficeGSTCollected
+              + EntertainmentGSTCollected
+              + FBTGSTCollected
+              + PeriodicGSTCollected
+    TotalOtherAdjustmentsGSTPaid:
+      type: number
+      value: = SUM(OtherAdjustments:GSTPaid)
+              + HomeOfficeGSTPaid
+              + EntertainmentGSTPaid
+              + FBTGSTPaid
+              + PeriodicGSTPaid
+    TotalOtherAdjustmentsGSTDue:
+      type: number
+      value: = TotalOtherAdjustmentsGSTCollected - TotalOtherAdjustmentsGSTPaid
+
+    TotalFinalNetGSTDue:
+      type: number
+      value: = TotalGSTDueBeforeAdjustments + TotalOtherAdjustmentsGSTDue
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+
+    # LedgerAmounts:
+    #   type: list
+    #   fields:
+    #     AccountCode:
+    #       type: text
+    #     Balance:
+    #       type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '= TotalFinalNetGSTDue + TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

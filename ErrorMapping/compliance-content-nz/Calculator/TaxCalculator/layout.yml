@@ -1,0 +1,16 @@
+---
+- block: section
+  children:
+    - id: TaxYear
+      label: Tax year
+    - id: EntityType
+      label: Entity Type
+    - id: TaxableIncome
+      label: Taxable Income
+      format: '1,234.12'
+    - id: TaxAmount
+      label: Tax thereon
+      style: total
+    - id: AverageTaxRate
+      label: Average Tax Rate
+      format: '1234.12%'

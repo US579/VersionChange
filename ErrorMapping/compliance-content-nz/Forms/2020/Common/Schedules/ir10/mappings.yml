@@ -1,0 +1,131 @@
+---
+ato:
+  form: not used
+filingEndpoint: '/sbr/ird/ir10/v1'
+# filingEndpoint: 
+#   version: 'v1'
+#   entityType: 'ir10'
+lodgement:
+  Documents:
+    Form: '10'
+    FormFields:
+    SubmissionKey:
+      source: fe/submissionKey
+    MultipleActivity:
+      source: fe/multipleActivity
+    GrossSalesAndServiceIncome:
+      source: fe/grossSalesAndServiceIncome
+    OpeningStock:
+      source: fe/openingStock
+    Purchases:
+      source: fe/purchases
+    ClosingStock:
+      source: fe/closingStock
+    GrossProfit:
+      source: fe/grossProfit
+    InterestReceived:
+      source: fe/interestReceived
+    DividendsReceived:
+      source: fe/dividendsReceived
+    RentLeaseLicenceIncome:
+      source: fe/rentLeaseLicenceIncome
+    OtherIncome:
+      source: fe/otherIncome
+    TotalIncome:
+      source: fe/totalIncome
+    BadDebts:
+      source: fe/badDebts
+    DepreciationAndAmortisation:
+      source: fe/depreciationAndAmortisation
+    Insurance:
+      source: fe/insurance
+    InterestExpense:
+      source: fe/interestExpense
+    Fees:
+      source: fe/fees
+    Rates:
+      source: fe/rates
+    RentsLeasesLicences:
+      source: fe/rentsLeasesLicences
+    RepairsAndMaintenance:
+      source: fe/repairsAndMaintenance
+    ResearchAndDevelopment:
+      source: fe/researchAndDevelopment
+    RelatedPartyRemuneration:
+      source: fe/relatedPartyRemuneration
+    SalariesAndWages:
+      source: fe/salariesAndWages
+    ContractorPayments:
+      source: fe/contractorPayments
+    OtherExpenses:
+      source: fe/otherExpenses
+    TotalExpenses:
+      source: fe/totalExpenses
+    ExceptionalItems:
+      source: fe/exceptionalItems
+    NetProfitLossBeforeTax:
+      source: fe/netProfitLossBeforeTax
+    TaxAdjustments:
+      source: fe/taxAdjustments
+    CurrentYearTaxableProfitLoss:
+      source: fe/currentYearTaxableProfitLoss
+    AccountsReceivable:
+      source: fe/accountsReceivable
+    CashAndDeposits:
+      source: fe/cashAndDeposits
+    OtherCurrentAssets:
+      source: fe/otherCurrentAssets
+    Vehicles:
+      source: fe/vehicles
+    PlantAndMachinery:
+      source: fe/plantAndMachinery
+    FurnitureAndFittings:
+      source: fe/furnitureAndFittings
+    Land:
+      source: fe/land
+    Buildings:
+      source: fe/buildings
+    OtherFixedAssets:
+      source: fe/otherFixedAssets
+    Intangibles:
+      source: fe/intangibles
+    SharesAndOwnershipInterests:
+      source: fe/sharesAndOwnershipInterests
+    TermDeposits:
+      source: fe/termDeposits
+    OtherNonCurrentAssets:
+      source: fe/otherNonCurrentAssets
+    TotalAssets:
+      source: fe/totalAssets
+    Provisions:
+      sourcea: fe/provisions
+    AccountsPayable:
+      source: fe/accountsPayable
+    CurrentLoans:
+      source: fe/currentLoans
+    OtherCurrentLiabilities:
+      source: fe/otherCurrentLiabilities
+    TotalCurrentLiabilities:
+      source: fe/totalCurrentLiabilities
+    NonCurrentLiabilities:
+      source: fe/nonCurrentLiabilities
+    TotalLiabilities:
+      source: fe/totalLiabilities
+    OwnersEquity:
+      source: fe/ownersEquity
+    TaxDepreciation:
+      source: fe/taxDepreciation
+    UnTaxedRealisedGainsAndReceipts:
+      source: fe/unTaxedRealisedGainsAndReceipts
+    AdditionsToFixedAssets:
+      source: fe/additionsToFixedAssets
+    DisposalOfFixedAssets:
+      source: fe/disposalOfFixedAssets
+    DividendsPaid:
+      source: fe/dividendsPaid
+    Drawings:
+      source: fe/drawings
+    CurrentAccountYearEndBalances:
+      source: fe/currentAccountYearEndBalances
+    TaxDeductibleLossOnDisposalOfFixedAssets:
+      source: fe/taxDeductibleLossOnDisposalOfFixedAssets

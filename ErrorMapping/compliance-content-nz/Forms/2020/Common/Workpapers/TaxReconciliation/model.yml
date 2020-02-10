@@ -1,0 +1,102 @@
+---
+name: Tax reconciliation
+model:
+  fields:
+## Include Tax Calculator
+    <<: !include
+      source: ../../taxcalculatormodel.yml
+      path: taxCalculatorFields
+
+    entityType:
+      type: text
+      defaultValue: "C"
+    taxYear:
+      type: number
+      defaultValue: "2020"
+
+    ImputationIncluded:
+      type: boolean
+      defaultValue: FALSE
+    AllowDeferredTax:
+      type: boolean
+      defaultValue: FALSE 
+
+    ProfitBeforeTax:
+      type: number
+    ImputationCredits:
+      type: number
+    ProfitIncludingICs:
+      type: number
+      value: = ProfitBeforeTax + ImputationCredits
+    DeferredBroughtForward:
+      type: number
+    DeferredCarriedForward:
+      type: list
+      fields:
+        Description:
+          type: text
+        Amount:
+          type: number
+    Subtotal1:
+      type: number
+      value: = ProfitIncludingICs - DeferredBroughtForward - SUM(DeferredCarriedForward:Amount)
+    NonAccountingIncome:
+      type: list
+      fields:
+        Description:
+          type: text
+        Amount:
+          type: number
+    TotalNonAccountingIncome:
+      type: number
+      value: = SUM(NonAccountingIncome:Amount)
+    NonAssessableIncome:
+      type: list
+      fields:
+        Description:
+          type: text
+        Amount:
+          type: number
+    TotalNonAssessableIncome:
+      type: number
+      value: = SUM(NonAssessableIncome:Amount)
+    NonDeductibleExpenses:
+      type: list
+      fields:
+        Description:
+          type: text
+        Amount:
+          type: number
+    TotalNonDeductibleExpenses:
+      type: number
+      value: = SUM(NonDeductibleExpenses:Amount)
+    AssessableIncome:
+      type: number
+      value: = Subtotal1 
+                + TotalNonAccountingIncome 
+                - TotalNonAssessableIncome
+                + TotalNonDeductibleExpenses
+    LossesBroughtForward:
+      type: number
+
+    ## used in Tax Calculator
+    totalTaxableIncome:
+      type: number
+      value: = AssessableIncome - LossesBroughtForward
+    ## Defined in Tax Calculator   
+    #taxOnTaxableIncome:
+    TaxExpense:
+      type: number
+      value: = MAX(taxOnTaxableIncome,0)
+
+
+
+
+
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+

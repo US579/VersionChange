@@ -1,0 +1,76 @@
+---
+- block: section
+  children:
+    - control: grid
+      name: interestIncomegrid
+      columns:
+        - title: 'Payer'
+          allowGroup: true
+          defaultGroup: false
+          size: lg
+          grow: true
+        - title: 'Withholding tax'
+          subtotal: true
+          size: md
+        - title: 'Gross interest'
+          subtotal: true
+          size: md
+        - title: 'Net interest'
+          subtotal: true
+          size: md
+        - title: 'Tax percentage'
+          size: md
+      rows:
+        - id: interestList
+          columns:
+            - key: Description
+            - key: WithholdingTax
+            - key: Grossinterest
+            - key: Netinterest
+            - key: TaxPercentage
+              format: '1234.10%'
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalWithholdingTax
+            - id: TotalGrossinterest
+            - id: TotalNetinterest
+            - id: TotalPercentage
+              format: '1234.10%'
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

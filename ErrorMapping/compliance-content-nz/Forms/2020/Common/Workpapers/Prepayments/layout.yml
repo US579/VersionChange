@@ -1,0 +1,96 @@
+---
+
+- block: section
+  children:
+    - id: PeriodStartDate
+      label: Period start date
+    - id: PeriodEndDate
+      label: Period end date
+
+    - control: grid
+      name: Prepayments
+      columns:
+        - title: Description
+          size: lg
+        - group:
+            title: Details of payment
+            columns:
+              - title: Payment amount
+                size: md
+              - title: Start date
+              - title: End date
+        - group:
+            title: Current period
+            columns: 
+              - title: Days
+                size: sm
+              - title: Amount
+      rows:
+        - id: GridList
+          columns:
+            - key: Description
+            - key: PaymentAmount
+            - key: PaymentStartDate
+            - key: PaymentEndDate
+            - key: AmortiseDays
+              format: '1234'
+            - key: AmortiseAmount
+        - rowType: total
+          columns:
+            -
+            - id: TotalPaymentAmount
+            -
+            -
+            -
+            - id: TotalAmortiseAmount
+
+    - block: section
+      title: Reconciliation
+      children:
+        - id: OpeningBalance
+          label: Opening balance
+        - id: TotalPaidinPeriod
+          label: 'Plus: total payments in this period'
+        - id: TotalAmortiseAmount
+          label: 'Less: total amortised this period'
+        - id: ClosingBalance
+          label: Closing Balance
+          style: subtotal
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

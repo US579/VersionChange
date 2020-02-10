@@ -1,0 +1,67 @@
+- block: section
+  children:
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: irdNumber
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: nonResidentInd
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: nilReturnInd
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: finalReturnInd
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: amendedReturn
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: amendedReason
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: amendedDetails
+    - <<: !include
+        source: ../../2019/Common/common_layout.yml
+        path: submissionKey
+  title: Return information
+- block: section
+  children:
+    - block: section
+      children:
+      - id: totIncomeNetLoss
+        label: Total income or net loss
+        style: subtotal
+      title: Schedular payments
+  title: Income
+- block: section
+  children:
+    - id: lossesBroughtForward
+      label: Net losses brought foward
+    - id: lossesClaimedThisYear
+      label: Net losses claimed
+  title: Losses
+- block:  section
+  children:
+    - id: incomeAfterNetLosses
+      label: Income after net losses brought forward
+      style: subtotal
+- block: section
+  children:
+    - id: netLossesToFrom
+      label: Net losses
+    - id: subventionPaymentsToFrom
+      label: Subvention payments
+  title: Net losses and/or subvention payments
+  tooltip:
+    description: 'Enter net losses received, and subvention payments made with a minus sign'
+- id: totalTaxableIncome
+  label: Taxable income or net losses to carry forward
+  style: total
+- block: section
+  children:
+    - id: taxOnTaxableIncome
+      label: Tax payable
+    - id: oseasIncometotalTaxPaid
+      label: Overseas tax paid
+  title: Tax calculation

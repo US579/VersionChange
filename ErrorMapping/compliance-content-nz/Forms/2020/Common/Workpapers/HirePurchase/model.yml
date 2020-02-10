@@ -1,0 +1,153 @@
+---
+name: 'Hire purchase'
+model:
+  fields:
+    AssetPurchase:
+      type: text
+    FinancialCompany:
+      type: text
+    DatePurchased:
+      type: date
+    FinanceRate:
+      type: number
+      decimals: 2
+    CostOfAsset:
+      type: number
+    TermInYears:
+      type: number
+      decimals: 0
+    FirstPaymentDate:
+      type: date
+    TradeIn:
+      type: number
+    UpfrontPayment:
+      type: number
+    Deposits:
+      type: number
+    Balloonpayment:
+      type: number
+    LessOthers:
+      type: number
+    PaymentFrequency:
+      type: select
+      options:
+        - value: Annual
+          label: Annual
+        - value: Monthly
+          label: Monthly
+        - value: Weekly
+          label: Weekly
+    NumberOfPayments:
+      type: number
+      decimals: 0
+      value: '= TermInYears *
+            (IF(PaymentFrequency="Annual",1,
+              (IF(PaymentFrequency="Monthly",12,
+                (IF(PaymentFrequency="Weekly",52,0)
+                )
+              ))
+            ))'
+    AddOthers:
+      type: number
+    PaymentType:
+      type: select
+      options:
+        - value: Beginningofperiod
+          label: Beginning of period
+        - value: Endofperiod
+          label: End of period
+    Amountfinanced:
+      type: number
+      value: '=CostOfAsset - TradeIn - Deposits - LessOthers + AddOthers'
+    PeriodRepay:
+      type: text
+      value: = IF(PaymentFrequency="Annual","Annual repayment",
+                (IF(PaymentFrequency="Monthly","Monthly repayment",
+                  (IF(PaymentFrequency="Weekly","Weekly repayment", FALSE)
+                  )
+                )
+                )
+              )
+    PeriodRepayAmt:
+      type: number
+      value: = IF(PaymentType="Endofperiod",
+                (PeriodRate*((-1*Balloonpayment)+((Amountfinanced - UpfrontPayment)*(1+PeriodRate)^NumberOfPayments))) /
+                (-1*(1-(1+PeriodRate)^NumberOfPayments)),
+                  (IF(PaymentType="Beginningofperiod",
+                  (PeriodRate*((-1*Balloonpayment)+((Amountfinanced - UpfrontPayment)*(1+PeriodRate)^NumberOfPayments))) /
+                  (-1*((1+PeriodRate)*(1-(1+PeriodRate)^NumberOfPayments))),
+                  FALSE)
+                  )
+                )
+
+    TotalPayment:
+      type: number
+      value: '=SUM(RepaymentSchedule:RepaymentPaymentDue) + SUM(RepaymentSchedule:RepaymentAdditionalRepayment)'
+    TotalInterest:
+      type: number
+      value: '=SUM(RepaymentSchedule:RepaymentInterest)'
+
+    RateperPeriod:
+      type: number
+      value: '=((1 + ((FinanceRate/100)/Periods))) - 1'
+    PeriodRate:
+      type: number
+      value: =FinanceRate/(Periods*100)
+    Periods:
+      type: number
+      value: '=IF(PaymentFrequency="Annual",1,(IF(PaymentFrequency="Monthly",12,(IF(PaymentFrequency="Weekly",52,0)
+                )
+              ))
+            )'
+    ComPeriod:
+      type: number
+      value: '=365'
+
+
+    RepaymentSchedule:
+      type: list
+      fields:
+        RepaymentNumber:
+          type: number
+          decimals: 0
+          value: = IF(PaymentType="Beginningofperiod",
+                    IF(ISFIRSTROW(),1, RepaymentSchedule#CURR-1#RepaymentNumber + 1), (IF(PaymentType="Endofperiod", IF(ISFIRSTROW(),0, RepaymentSchedule#CURR-1#RepaymentNumber + 1), FALSE)))
+
+        RepaymentFinancialYear:
+          type: text
+        RepaymentDueDate:
+          type: date
+        RepaymentPaymentDue:
+          type: number
+          value: '=IF(ISFIRSTROW(),
+                    UpfrontPayment + IF(PaymentType="Beginningofperiod",PeriodRepayAmt, 0)
+                    ,
+                   IF(RepaymentSchedule#CURR-1#RepaymentBalance <= (PeriodRepayAmt + Balloonpayment + RepaymentSchedule#CURR#RepaymentInterest), 
+                   RepaymentSchedule#CURR-1#RepaymentBalance + RepaymentSchedule#CURR#RepaymentInterest,PeriodRepayAmt))'
+        RepaymentAdditionalRepayment:
+          type: number
+        RepaymentInterest:
+          type: number
+          value: '=IF(ISFIRSTROW(),0,RepaymentSchedule#CURR-1#RepaymentBalance)*RateperPeriod'
+        RepaymentPrincipal:
+          type: number
+          value: '=RepaymentSchedule#CURR#RepaymentPaymentDue + RepaymentSchedule#CURR#RepaymentAdditionalRepayment - RepaymentSchedule#CURR#RepaymentInterest'
+        RepaymentBalance:
+          type: number
+          value: '=IF(ISFIRSTROW(),Amountfinanced,RepaymentSchedule#CURR-1#RepaymentBalance) - RepaymentSchedule#CURR#RepaymentPrincipal'
+
+    RepaymentScheduleTotalPayments:
+      type: number
+      value: '=SUM(RepaymentSchedule:RepaymentPaymentDue) + SUM(RepaymentSchedule:RepaymentAdditionalRepayment)'
+
+    RepaymentScheduleTotalInterest:
+      type: number
+      value: '=SUM(RepaymentSchedule:RepaymentInterest)'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+
+

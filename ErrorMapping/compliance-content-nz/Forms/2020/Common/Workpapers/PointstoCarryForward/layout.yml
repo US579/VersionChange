@@ -1,0 +1,12 @@
+---
+- block: section
+  title: Points
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another point
+      fields:
+        - label: =CONCATENATE("Point"," - ",ROWINDEX()+1)
+          key: Note
+      
+             

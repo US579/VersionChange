@@ -1,0 +1,124 @@
+---
+- block: section
+  title: Loan details
+  children:
+    - block: section
+      children:
+        - id: AssetPurchase
+          label: Asset purchased
+        - id: DatePurchased
+          label: Date purchased
+        - id: FinancialCompany
+          label: Finance company
+        - id: FinanceRate
+          label: Finance rate
+          tooltip:
+            description: Example 10.76% is entered as 10.76
+            type: info
+        - id: TermInYears
+          label: Terms of the loan in years
+        - id: PaymentFrequency
+          label: Payment frequency
+          tooltip:
+            description: Interest is calculated based on payment frequency and not based on number of days. There may be a slight discrepancy in the final repayment amount.
+            type: info
+        - id: NumberOfPayments
+          label: Number of payments
+        - id: PaymentType
+          label: Payment type
+
+- block: section
+  children:
+    - block: section
+      children:
+        - id: CostOfAsset
+          label: Cost of the asset
+
+    - block: section
+      title: 'Less'
+      children:
+        - id: TradeIn
+          label: Trade in
+        - id: Deposits
+          label: Deposits
+        - id: LessOthers
+          label: Other
+
+    - block: section
+      title: 'Add'
+      children:
+        - id: AddOthers
+          label: Other
+        - id: Amountfinanced
+          label: Total amount financed
+        - id: FirstPaymentDate
+          label: First payment date
+        - id: UpfrontPayment
+          label: Upfront payment
+        - id: Balloonpayment
+          label: Balloon payment
+
+- block: section
+  title: 'Summary'
+  children:
+    - control: grid
+      name: 'grid2'
+      columns:
+        - ' '
+        - title: Amount
+      rows:
+      - columns:
+        - id: PeriodRepay
+        - id: PeriodRepayAmt
+      - columns:
+        - 'Total payments'
+        - id: TotalPayment
+      - columns:
+        - 'Total interest'
+        - id: TotalInterest
+
+- block: section
+  title: 'Repayment schedule'
+  children:
+    - control: grid
+      name: Repayments
+      columns:
+        - title: Number
+          # defaultSort: asc (Reminder to turn on)
+        - title: Financial year
+          size: sm
+          # allowGroup: true (Reminder to turn on)
+        - title: Due date
+        - title: Payment due
+          # subtotal: true (Reminder to turn on)
+        - title: Additional payment
+          # subtotal: true (Reminder to turn on)
+        - title: Interest
+          # subtotal: true (Reminder to turn on)
+        - title: Principal
+          # subtotal: true (Reminder to turn on)
+        - title: Balance
+          # subtotal: true (Reminder to turn on)
+      rows:
+        - id: RepaymentSchedule
+          columns:
+          - key: RepaymentNumber
+            # title: =RNumber#CURR#CategoryAorBNumber
+          - key: RepaymentFinancialYear
+          - key: RepaymentDueDate
+          - key: RepaymentPaymentDue
+          - key: RepaymentAdditionalRepayment
+          - key: RepaymentInterest
+          - key: RepaymentPrincipal
+          - key: RepaymentBalance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note
+

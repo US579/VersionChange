@@ -1,0 +1,70 @@
+---
+name: Interest income
+model:
+  fields:
+    interestList:
+      type: list
+      fields: 
+        Description:
+          type: text
+        WithholdingTax:
+          type: number
+        Grossinterest:
+          type: number
+        Netinterest:
+          type: number
+          value: = interestList#CURR#Grossinterest - interestList#CURR#WithholdingTax
+        TaxPercentage:
+          type: number
+          value: = interestList#CURR#WithholdingTax / interestList#CURR#Grossinterest * 100
+    TotalWithholdingTax:
+      type: number
+      value: = SUM(interestList:WithholdingTax)
+    TotalGrossinterest:
+      type: number
+      value: = SUM(interestList:Grossinterest)
+    TotalNetinterest:
+      type: number
+      value: = SUM(interestList:Netinterest)
+    TotalPercentage:
+      type: number
+      value: = IF(TotalGrossinterest=0,0,TotalWithholdingTax / TotalGrossinterest * 100)
+
+    LedgerDetails:
+      type: list
+      fields:
+        AccountName:
+          type: text
+    AccountNameFromList:
+      type: text
+      value: = LedgerDetails:AccountName
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountName:
+          type: text
+          value: = AccountNameFromList
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+    # LedgerAmounts:
+      # type: list
+      # fields:
+      #   AccountCode:
+      #     type: text
+      #   Balance:
+      #     type: number
+
+    TotalBalance:
+      type: number
+      value: '=SUM(LedgerAmounts:Balance)'
+    Variance:
+      type: number
+      value: '=TotalGrossinterest + TotalBalance'
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

@@ -1,0 +1,187 @@
+---
+name: Fixed assets reconciliation
+model:
+  fields:
+    # YearEnd:
+    #   type: date
+    AssetsFixedAssetSummaryData:
+      type: list
+      fields:
+        Sequence:
+          type: number
+        AssetClassDescription:
+          type: text
+        AssetAccountCode:
+          type: text
+        GeneralLedgerBalanceCost:
+          type: number
+          value: '=SUMIF(LedgerAmounts, EACH#AccountCode = AssetsFixedAssetSummaryData#CURR#AssetAccountCode , "Balance")'
+        AssetCostValue:
+          type: number
+        VarianceCost:
+          type: number
+          value: '=AssetsFixedAssetSummaryData#CURR#AssetCostValue -
+          AssetsFixedAssetSummaryData#CURR#GeneralLedgerBalanceCost'
+        AccumulatedDepreciationAccountCode:
+          type: text
+        AccumulatedDepreciationValue:
+          type: number
+        GeneralLedgerAccumulatedDeprecation:
+          type: number
+          value: '=SUMIF(LedgerAmounts, EACH#AccountCode = AssetsFixedAssetSummaryData#CURR#AccumulatedDepreciationAccountCode , "Balance")'
+        VarianceAccumulatedDepreciation:
+          type: number
+          value: '=AssetsFixedAssetSummaryData#CURR#AccumulatedDepreciationValue -
+                  AssetsFixedAssetSummaryData#CURR#GeneralLedgerAccumulatedDeprecation'
+        GeneralLedgerWrittenDownValue:
+          type: number
+          value: '=AssetsFixedAssetSummaryData#CURR#GeneralLedgerBalanceCost - AssetsFixedAssetSummaryData#CURR#GeneralLedgerAccumulatedDeprecation'
+        WrittenDownValue:
+          type: number
+        VarianceWrittenDownValue:
+          type: number
+          value: '=AssetsFixedAssetSummaryData#CURR#WrittenDownValue -
+                  AssetsFixedAssetSummaryData#CURR#GeneralLedgerWrittenDownValue'
+
+    TotalGeneralLedgerBalanceCost:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:GeneralLedgerBalanceCost)'
+    TotalAssetCostValue:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:AssetCostValue)'
+    TotalVarianceCost:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:VarianceCost)'
+    TotalGeneralLedgerAccumulatedDeprecation:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:GeneralLedgerAccumulatedDeprecation)'
+    TotalAccumulatedDepreciationValue:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:AccumulatedDepreciationValue)'
+    TotalVarianceAccumulatedDepreciation:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:VarianceAccumulatedDepreciation)'
+    TotalGeneralLedgerWrittenDownValue:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:GeneralLedgerWrittenDownValue)'
+    TotalWrittenDownValue:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:WrittenDownValue)'
+    TotalVarianceWrittenDownValue:
+      type: number
+      value: '=SUM(AssetsFixedAssetSummaryData:VarianceWrittenDownValue)'
+
+    DepreciationExpense:
+      #should this pull from the account groups in assets register
+      type: list
+      fields:
+        AssetClassDescription2:
+          type: text
+        DepreciationExpenseAccountCode:
+          type: text
+        DepreciationExpenseValue:
+          type: number
+        Sequence2:
+          type: number
+
+    DepreciationLedgerBalance:
+      type: list
+      fields:
+        DepreciationLedgerDescription:
+          type: text
+          # value: '=SUMIF(LedgerAmounts, EACH#AccountCode = DepreciationLedgerBalance#CURR#DepreciationLedgerCode , "AccountName")' #Need to check with Giri if SUMIF works on text fields
+        DepreciationLedgerCode:
+          type: text
+        DepreciationLedgerValue:
+          type: number
+          value: '=SUMIF(LedgerAmounts, EACH#AccountCode = DepreciationLedgerBalance#CURR#DepreciationLedgerCode , "Balance")'
+
+    TotalDepreciationExpenseValue:
+      type: number
+      value: '=SUM(DepreciationExpense:DepreciationExpenseValue)'
+    TotalDepreciationLedgerValue:
+      type: number
+      value: '=SUM(DepreciationLedgerBalance:DepreciationLedgerValue)'
+    DepreciationVariance:
+      type: number
+      value: '=TotalDepreciationExpenseValue - TotalDepreciationLedgerValue'
+
+    ProfitAndLossOnSale:
+      type: list
+      fields:
+        AssetClassId:
+          type: text
+        AssetClassCode:
+          type: text
+        AssetClassDescription3:
+          type: text
+        Type:
+          type: text # Values are either 'P' or 'L'
+        ProfitOrLossAccountId:
+          type: text
+        ProfitOrLossBalance:
+          type: number
+
+    SaleLedgerBalance:
+      type: list
+      fields:
+        SaleLedgerDescription:
+          type: text
+          # value: '=SUMIF(LedgerAmounts, EACH#AccountCode = SaleLedgerBalance#CURR#SaleLedgerCode , "AccountName")' #Need to check with Giri if SUMIF works on text fields
+        SaleLedgerCode:
+          type: text
+        SaleLedgerValue:
+          type: number
+          value: '=SUMIF(LedgerAmounts, EACH#AccountCode = SaleLedgerBalance#CURR#SaleLedgerCode , "Balance")'
+
+    TotalSaleValue:
+      type: number
+      value: '=SUM(ProfitAndLossOnSale:ProfitOrLossBalance)'
+    TotalSaleLedgerValue:
+      type: number
+      value: '=SUM(SaleLedgerBalance:SaleLedgerValue)'
+    SaleVariance:
+      type: number
+      value: '=TotalSaleValue - TotalSaleLedgerValue'
+
+    AccountingDepreciationValue: #Hidden Field
+      type: number
+    TaxDepreciationValue: #Hidden Field
+      type: number
+    AccountingProfitOnSaleValue: #Hidden Field
+      type: number
+    AccountingLossOnSale: #Hidden Field
+      type: number
+    TaxProfitOnSaleValue: #Hidden Field
+      type: number
+    TaxLossOnSaleValue: #Hidden Field
+      type: number
+
+    FixedAssetSummaryDepreciationMethod:
+      type: text
+      value: '=IF(DepreciationMethod = "Accounting", "Accounting", "Tax")'
+
+    DepreciationMethod:
+      type: select
+      options:
+          - value: 'Accounting'
+            label: 'Accounting'
+          - value: 'Tax'
+            label: 'Tax'
+
+    LedgerAmounts:
+      type: list
+      fields:
+        AccountCode:
+          type: text
+        Balance:
+          type: number
+        AccountName:
+          type: text
+          pii: true  
+
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea

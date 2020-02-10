@@ -1,0 +1,89 @@
+---
+- block: section
+  children:
+    - control: grid
+      name: Interestgrid
+      columns:
+        - title: 'Description'
+          allowGroup: true
+          defaultGroup: false
+          size: lg
+          grow: true
+        - title: 'Interest paid'
+          subtotal: true
+          size: md
+        - title: 'Deductible %'
+          allowGroup: true
+          defaultGroup: false
+          size: md
+        - title: 'Deductible interest'
+          subtotal: true
+          size: md
+        - title: 'Non-deductible interest'
+      rows:
+        - id: GridList
+          columns:
+            - key: Description
+            - key: GrossAmount
+            - key: DeductiblePercentage
+              format: '1234.10%'
+            - key: DeductibleAmount
+            - key: NonDeductibleAmount
+        - rowType: total
+          columns:
+            - Total
+            - id: TotalGrossAmount
+            -
+            - id: TotalDeductibleAmount
+            - id: TotalNonDeductibleAmount
+
+#- block: section
+#  title: Accrued Interest
+#  children:
+#    - id: TotalDeductibleAmount
+#      label: Interest expense (as above)
+#    - id: Accrual
+#      label: Plus accrual at end of period
+#    - id: Reversal
+#      label: Less reversal of previous accrual
+#    - id: TotaltoReconcile
+#      label: Net Interest expense
+#      style: subtotal
+
+- block: section
+  title: 'Ledger amounts'
+  children:
+    - control: grid
+      name: LedgerAmountsGrid
+      columns:
+        - title: Account code
+          size: md
+        - title: Account name
+          size: lg
+        - title: Balance
+      rows:
+        - id: LedgerAmounts
+          columns:
+            - key: AccountCode
+            - key: AccountName
+            - key: Balance
+        - rowType: total
+          columns:
+            - Total
+            -
+            - id: TotalBalance
+        - rowType: total
+          columns:
+            - Variance
+            -
+            - id: Variance
+
+- block: section
+  title: Notes
+  children:
+    - control: repeatingSection
+      id: NotesList
+      addButtonText: Add another note
+      fields:
+        - label: =CONCATENATE("Note"," - ",ROWINDEX()+1)
+          key: Note

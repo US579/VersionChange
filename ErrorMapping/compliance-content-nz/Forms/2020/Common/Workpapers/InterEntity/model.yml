@@ -1,0 +1,29 @@
+---
+name: Inter-entity loan balances
+model:
+  fields:
+    assets:
+      type: list
+      fields:
+        ThisLedgerAcct:
+          type: text
+        TBAmt:
+          type: number
+        OtherLedgerAcct:
+          type: text
+        CorrEntityAmt:
+          type: number
+        Variance:
+          type: number
+          value: '=assets#CURR#TBAmt + assets#CURR#CorrEntityAmt'
+    # TotalVariance:
+    #   type: number
+    #   value: '=SUM(assets:Variance)'
+   
+    NotesList:
+      type: list
+      fields:
+        Note:
+          type: textArea
+
+

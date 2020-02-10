@@ -1,0 +1,6 @@
+---
+ provCalculatorFields:
+  provisionalTax_provisionalTaxPayable:
+    decimals: 2
+    type: number
+    value:  = ROUNDDOWN(IF(provisionalTax_provisionalTaxOption = "STD" , provisionalTaxCalc , provFromTaxManager),0)

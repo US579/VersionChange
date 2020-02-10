@@ -1,0 +1,71 @@
+- block:  section
+  children:
+    - id: slLoanBalance
+      label:  Loan balance
+      format: '1,234.10'
+  title: ' '
+- block:  section
+  children:
+    - id: slRepaymentThreshold
+      label:  Repayment threshold
+      format: '1,234.10'
+    - id: slAdjSalariesWages
+      label:  Adjusted salaries and wages
+      format: '1,234.10'
+    - id: slSubTotal1
+      label:  Subtotal
+      format: '1,234.10'
+      style:  subtotal
+    - id: othAssessInc
+      label:  Other assessable income
+      format: '1,234.10'
+    - id: adjustments
+      label:  Adjustments
+      format: '1,234.10'
+    - id: slAdjNetIncome
+      label:  Adjusted net income
+      format: '1,234.10'
+    - id: slSubtotal2
+      label:  Subtotal
+      format: '1,234'
+    - id: slEoyRepayObligation
+      label:  End of year repayment obligation
+      format: '1,234.10'
+  title:  ' '
+- block:  section
+  children:
+    - id: interimPayments
+      label:  Interim payments made
+      format: '1,234.10'
+    - id: voluntaryPayments
+      label:  Voluntary payments made
+    - id: totalRepayments
+      label:  Total repayments to IRD
+      format: '1,234.10'
+      style:  subtotal
+    - id: slSubtotal3
+      label:  =IF(slEoyRepayObligation - totalRepayments >= 0,"Repayment","Underpayment")
+    - id: finalLoanOverpaymentOverride
+      label:  Final loan repayment override
+      format:  '1,234.10'
+  title:  ' '
+- block:  section
+  children:
+    - id: overpaymentReduceSL
+      label:  Overpayment to reduce student loan?
+      showAs: radio
+    - id: interimPmtOption
+      label:  Interim payment option
+      showAs: dropdown
+    - id: estSalaryWages
+      visible:  =IF(interimPmtOption = "E",TRUE, FALSE)
+      label:  Estimated salary and wages
+      format: '1,234.10'
+    - id: estOtherIncome
+      visible:  =IF(interimPmtOption = "E",TRUE,FALSE)
+      label:  Estimated income from other sources
+      format: '1,234.10'
+    - id:  interimRepayment
+      label:  Interim repayment
+      format: '1,234.10'
+  title:  ' '

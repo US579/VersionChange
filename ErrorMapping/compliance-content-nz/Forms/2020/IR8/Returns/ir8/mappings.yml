@@ -1,0 +1,122 @@
+---
+ato:
+  form: not used
+  # filingEndpoint: '/sbr/ird/ir8/v1'
+filingEndpoint: 
+  version: 'v1'
+  entityType: 'ir8'
+lodgement:
+  Documents:
+    Form: ird.ir8.v1
+    MessageType: https://services.ird.govt.nz/GWS/Returns/Return/File
+    Path: "/Gateway/GWS/Returns/"
+    Request:
+      Header:
+        PeriodEndDate:
+          source: compliance/endDate
+        MajorFormType: INC
+        MinorFormType: '8'
+        SoftwareProviderData:
+          SoftwareProvider: MYOB
+          SoftwarePlatform: MYOB_AgencyAPI
+          SoftwareRelease: '1.0'
+        Identifier:
+          IdentifierValueType: IRD
+          Value: 
+            source: fe/irdNumber
+        AccountType: INC
+      Body:
+        StandardFields:
+          IsNilReturn:
+            source: fe/isNilReturn
+          IsFinalReturn:
+            source: fe/isFinalReturn
+          AmendmentRequest:
+            IsAmended:
+              source: fe/isAmended
+            AmendReason:
+              source: fe/amendReason
+            AmendDetails:
+              source:  fe/amendDetails
+          CreditTransferRequest:
+          - TransferIRD:
+            source: fe/transferRefundTo/transferIrdNumber
+            TransferAccountType: 
+              source: fe/transferRefundTo/transferAccountType
+            TransferFilingPeriod:
+              source: fe/transferRefundTo/transferFilingPeriod
+            AssociatedCustomer:
+              source: fe/transferRefundTo/associatedCustomer
+            TransferAmount:
+              source: fe/transferRefundTo/transferAmount
+        FormFields:
+          SubmissionKey:
+            source: fe/submissionKey
+          ResidentialRentalIncome:
+            Indicator:
+              source: fe/residentialRentalIncome_Indicator 
+            TotalIncome:
+              source: fe/residentialRentalIncome_totalIncome
+            ResidentialRentalDeductions:
+              source: fe/residentialRentalIncome_residentialRentalDeductions
+            ExcessDeductionsBroughtForward:
+              source: fe/residentialRentalIncome_excessDeductionsCarriedForward
+            DeductionsClaimedThisYear:
+              source: fe/residentialRentalIncome_deductionsClaimedThisYear
+            NetIncome:
+              source: fe/residentialRentalIncome_netIncome
+            ExcessDeductionsCarriedForward:
+              source: fe/residentialRentalIncome_excessDeductionsCarriedForward
+          SaleOfProperty:
+            source: fe/saleOfProperty
+          GrossInterest:
+            source: fe/interestIncome_totalIncome
+          GrossDividends:
+            source: fe/dividendIncome_totalGrossDividends
+          MaoriAuthorityDistributions:
+            source: fe/maoriAuthorityDistributions_totalMACredits
+          NetRentalIncome:
+            source: fe/netRentalIncome
+          NetTradingIncome:
+            source: fe/netTradingIncome
+          OtherIncome:
+            source: fe/otherIncome
+          AdjustmentsOutsideFinancialAccounts:
+            source: fe/adjustmentsOutsideFinancialAccounts
+          DonationDeductions:
+            source: fe/donationsMade
+          LossesBroughtForward:
+            source: fe/lossesBroughtForward
+          TotalTaxableIncome:
+            source: fe/totalTaxableIncome
+          TaxOnTaxableIncome:
+            source: fe/taxOnTaxableIncome
+          OverseasTaxPaid:
+            source: fe/overseasIncome_totalTaxPaid
+          DividendImputationCredits:
+            source: fe/dividendImputationCredits
+          ResearchAndDevelopment:
+            NonrefundableCredit:
+              source: fe/researchAndDevelopment_nonrefundableCredit
+            RefundableCredit:
+              source: fe/researchAndDevelopment_refundableCredit
+          TotalRWTDeducted:
+            source: fe/totalRWTDeducted
+          RlwtCredit:
+            source: fe/rlwtCredit
+          OtherTaxCredits:
+            source: fe/otherTaxCredits
+          ResidualIncomeTax:
+            source: fe/residualIncomeTax
+          OverpaymentProvisionalTax:
+            source: fe/overpaymentProvisionalTax
+          ProvisionalTax:
+            ProvisionalTaxOption: 
+              source: fe/provisionalTax_provisionalTaxOption
+            ProvisionalTaxPayable:
+              source: fe/provisionalTax_provisionalTaxPayable
+            ProvisionalTaxStartDate:
+              source: fe/provisionalTax_provisionalTaxStartDate
+          DisclosureOfForeignInterestRequired: 
+            source: fe/disclosureOfForeignInterestRequired
+
