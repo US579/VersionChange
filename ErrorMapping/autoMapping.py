@@ -32,18 +32,18 @@ def append(dic):
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
             # print(form)
  
-            # form2mappings(dic,form,row)
-            pass
+            form2mappings(dic,form,row)
+            # pass
        
 def form2mappings(dic,form,row):
     # print('minorFormType:',str(row['minorFormType']).split(','))
     # print('Standard codes:',row['Standard codes'])
     # print('Description:',row['Description'])
     # print('Standard message:',row['Standard message'])
-    if form in ['ALL','CALC','44','44E','3N+D44','3NR','REB']:return
+    if form in ['CALC','44','44E','3N+D44','3NR','REB']:return
     if form =='ALL':
         for item in dic[form]:
-            with open(dic[form], "a", encoding="utf-8") as f1:
+            with open(item "a", encoding="utf-8") as f1:
                 f1.write('    '+str(row['Standard codes'])+':\n')
                 f1.write('      Standard message: '+row['Standard message']+'\n')
                 f1.write('      description: '+row['Description']+'\n')
