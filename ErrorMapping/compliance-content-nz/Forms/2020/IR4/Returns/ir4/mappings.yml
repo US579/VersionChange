@@ -159,11 +159,3 @@ lodgement:
               source: fe/shareholderListType/shareholder_shareholderLossOffsets
             SubventionPayments:
               source: fe/shareholderListType/shareholder_subventionPayments
-  FieldErrorMappings:
-    135:
-      standardMessage: "Invalid IRD number"
-      description: "An invalid IRD number was used on a field. Additional information will indicate which field does not meed the criteria."
-    2227:
-      standardMessage: "Residential rental income indicator is required if residential rental income total income or residential rental income residential rental deductions are non-zero values"
-      description: "Residential rental income indicator is required if residential rental income total income or residential rental income residential rental deductions are non-zero values"
-      formsengineField: "residentialRentalIncome_Indicator"
