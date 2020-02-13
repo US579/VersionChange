@@ -66,7 +66,7 @@ if __name__ == "__main__":
     dic = {}
     for i in tags:dic[i.split('/')[-2][2:]] = i
     dic['ALL'] = tags
-    wirteTitle(tags)
+    # wirteTitle(tags)
     print(dic)
-    append(dic)
+    # append(dic)
     
