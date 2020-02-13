@@ -37,8 +37,3 @@ lodgement:
       source: fe/shareofOwnership
     ShareOfNetProfit:
       source: fe/shareofNetProfit
-  FieldErrorMappings:
-    2072:
-      standardMessage: "Date of sale can't be before date of purchase"
-      description: "Date of sale can't be before date of purchase"
-      formsengineField: "dateofSale"  
