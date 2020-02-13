@@ -24,14 +24,16 @@ def append(dic):
     my_sheet = 'errors'
     file_name = '2020IRerrors.xlsx' 
     df = read_excel(file_name, sheet_name = my_sheet,header=1)
-    print(df['minorFormType'])
+    # print(df['minorFormType'])
+
     for index, row in df.iterrows():
         if 'CFC' in str(row['minorFormType']).split(','): continue
         print([i.strip() for i in str(row['minorFormType']).split(',')])
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
             # print(form)
-            pass
+ 
             # form2mappings(dic,form,row)
+            pass
        
 def form2mappings(dic,form,row):
     # print('minorFormType:',str(row['minorFormType']).split(','))
@@ -39,10 +41,17 @@ def form2mappings(dic,form,row):
     # print('Description:',row['Description'])
     # print('Standard message:',row['Standard message'])
     if form in ['ALL','CALC','44','44E','3N+D44','3NR','REB']:return
+    if form =='ALL':
+        for item in dic[form]:
+            with open(dic[form], "a", encoding="utf-8") as f1:
+                f1.write('    '+str(row['Standard codes'])+':\n')
+                f1.write('      Standard message: '+row['Standard message']+'\n')
+                f1.write('      description: '+row['Description']+'\n')
     with open(dic[form], "a", encoding="utf-8") as f1:
         f1.write('    '+str(row['Standard codes'])+':\n')
         f1.write('      Standard message: '+row['Standard message']+'\n')
         f1.write('      description: '+row['Description']+'\n')
+
 def wirteTitle(file):
     for i in file:
         with open(i, "a", encoding="utf-8") as f1:
@@ -55,7 +64,8 @@ if __name__ == "__main__":
     tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
     for i in tags:dic[i.split('/')[-2][2:]] = i
+    dic['ALL'] = tags
     wirteTitle(tags)
     print(dic)
-    append(dic)
+    # append(dic)
     
