@@ -27,29 +27,35 @@ def append(dic):
     print(df['minorFormType'])
     for index, row in df.iterrows():
         if 'CFC' in str(row['minorFormType']).split(','): continue
+        print([i.strip() for i in str(row['minorFormType']).split(',')])
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
-            print(form)
-            form2mappings(dic,form,row)
+            # print(form)
+            pass
+            # form2mappings(dic,form,row)
        
 def form2mappings(dic,form,row):
     # print('minorFormType:',str(row['minorFormType']).split(','))
-    print('Standard codes:',row['Standard codes'])
-    print('Description:',row['Description'])
-    print('Standard message:',row['Standard message'])
+    # print('Standard codes:',row['Standard codes'])
+    # print('Description:',row['Description'])
+    # print('Standard message:',row['Standard message'])
     if form in ['ALL','CALC','44','44E','3N+D44','3NR','REB']:return
     with open(dic[form], "a", encoding="utf-8") as f1:
-        f1.write('  FieldErrorMappings:\n')
         f1.write('    '+str(row['Standard codes'])+':\n')
         f1.write('      Standard message: '+row['Standard message']+'\n')
         f1.write('      description: '+row['Description']+'\n')
+def wirteTitle(file):
+    for i in file:
+        with open(i, "a", encoding="utf-8") as f1:
+            f1.write('\n  FieldErrorMappings:\n')
 
 
 if __name__ == "__main__":
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
     tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
-    tags = ['/'.join(item.split('\\')) for item in tags]
+    tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
     for i in tags:dic[i.split('/')[-2][2:]] = i
+    wirteTitle(tags)
     print(dic)
     append(dic)
     

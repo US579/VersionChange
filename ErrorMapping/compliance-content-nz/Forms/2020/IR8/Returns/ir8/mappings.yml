@@ -120,3 +120,19 @@ lodgement:
           DisclosureOfForeignInterestRequired: 
             source: fe/disclosureOfForeignInterestRequired
 
+  FieldErrorMappings:
+    2040:
+      Standard message: Total resident withholding tax deducted can't be greater than the sum of gross interest and gross dividends
+      description: Total resident withholding tax deducted can't be greater than the sum of gross interest and gross dividends
+  FieldErrorMappings:
+    2058:
+      Standard message: Invalid provisional tax option
+      description: Invalid provisional tax option
+  FieldErrorMappings:
+    2068:
+      Standard message: Provisional tax payable must be a whole dollar amount for standard or estimate provisional tax option
+      description: Provisional tax payable must be a whole dollar amount for standard or estimate provisional tax option
+  FieldErrorMappings:
+    2227:
+      Standard message: Residential rental income indicator is required if residential rental income total income or residential rental income residential rental deductions are non-zero values
+      description: Residential rental income indicator is required if residential rental income total income or residential rental income residential rental deductions are non-zero values
