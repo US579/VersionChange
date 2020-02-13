@@ -32,7 +32,7 @@ def append(dic):
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
             # print(form)
  
-            form2mappings(dic,form,row)
+            form2mappings(dic,form.lower(),row)
             # pass
        
 def form2mappings(dic,form,row):
@@ -40,18 +40,23 @@ def form2mappings(dic,form,row):
     # print('Standard codes:',row['Standard codes'])
     # print('Description:',row['Description'])
     # print('Standard message:',row['Standard message'])
-    if form in ['CALC','44','44E','3N+D44','3NR','REB']:return
-    if form =='ALL':
+    print(row['Ir3'])
+    if form in ['calc','44','44e','3N+D44',]:return
+    if form =='all':
         for item in dic[form]:
             with open(item ,"a", encoding="utf-8") as f1:
-                f1.write('    '+str(row['Standard codes'])+':\n')
-                f1.write('      Standard message: '+row['Standard message']+'\n')
-                f1.write('      description: '+row['Description']+'\n')
+                # f1.write('    '+str(row['Standard codes'])+':\n')
+                # f1.write('      Standard message: '+row['Standard message']+'\n')
+                # f1.write('      description: '+row['Description']+'\n')
+                pass
     else:
+        print(form)
+        print(dic[form])
         with open(dic[form], "a", encoding="utf-8") as f1:
-            f1.write('    '+str(row['Standard codes'])+':\n')
-            f1.write('      Standard message: '+row['Standard message']+'\n')
-            f1.write('      description: '+row['Description']+'\n')
+            # f1.write('    '+str(row['Standard codes'])+':\n')
+            # f1.write('      Standard message: '+row['Standard message']+'\n')
+            # f1.write('      description: '+row['Description']+'\n')
+            pass
 
 def wirteTitle(file):
     for i in file:
@@ -64,9 +69,14 @@ if __name__ == "__main__":
     tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
     tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
-    for i in tags:dic[i.split('/')[-2][2:]] = i
-    dic['ALL'] = tags
+    for i in tags:
+        if i.split('/')[-2][2:] == '526':
+            dic['reb'] = i
+        dic[i.split('/')[-2][2:]] = i
+    dic['all'] = tags
     # wirteTitle(tags)
     print(dic)
-    # append(dic)
+    # for i in dic:
+    #     print(dic[i])
+    append(dic)
     
