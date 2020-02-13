@@ -16,8 +16,7 @@ model:
       decimals: 0
       defaultValue:  "2020"
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     nonResidentIndicator:
       defaultValue: false
@@ -81,7 +80,7 @@ model:
       type: number
     pieIncome_totalIncome:
       decimals: 2
-      type: number      
+      type: number
     dividendIncome_totalImputationCredits:
       decimals: 2
       type: number
@@ -158,13 +157,13 @@ model:
     totalTaxCredits:
       decimals: 2
       type: number
-      value: = schedularPayments_withholdingTaxDeducted + interestIncome_totalTaxPaid + pieIncome_totalTaxCredits + dividendIncome_totalRWTCredits + 
+      value: = schedularPayments_withholdingTaxDeducted + interestIncome_totalTaxPaid + pieIncome_totalTaxCredits + dividendIncome_totalRWTCredits +
                maoriAuthorityDistributions_totalMACredits + partnershipEstateTrustIncome_totalTaxCredits + rlwtCredit
     totalIncomeSubtotal:
       decimals: 2
       type: number
-      value: = schedularPayments_totalIncome + interestIncome_totalIncome + pieIncome_totalIncome + dividendIncome_totalGrossDividends + 
-               maoriAuthorityDistributions_totalMADistributions + partnershipEstateTrustIncome_totalIncome + overseasIncome_totalIncome + 
+      value: = schedularPayments_totalIncome + interestIncome_totalIncome + pieIncome_totalIncome + dividendIncome_totalGrossDividends +
+               maoriAuthorityDistributions_totalMADistributions + partnershipEstateTrustIncome_totalIncome + overseasIncome_totalIncome +
                businessOrRentalIncome + otherIncome + saleOfProperty + residentialRentalIncome_netIncome
     donationsMade:
       decimals: 2
@@ -179,12 +178,12 @@ model:
     totalTaxableIncome:
       decimals: 2
       type: number
-      #  ASK MARGIE 
+      #  ASK MARGIE
       value:  = ROUNDDOWN(incomeAfterNetLosses + netLossesToFrom + subventionPaymentsToFrom,0)
-    taxOnTaxableIncome:
-      decimals: 2
-      type: number
-      value:  '= IF(totalTaxableIncome > 0 , totalTaxableIncome * 0.28 , 0)'
+    # taxOnTaxableIncome:
+    #   decimals: 2
+    #   type: number
+    #   value:  '= IF(totalTaxableIncome > 0 , totalTaxableIncome * 0.28 , 0)'
     overseasIncometotalTaxPaid:
       decimals: 2
       type: number
@@ -219,7 +218,7 @@ model:
     taxAfterRDCredits:
       type: number
       decimals: 2
-      value:  =IF(taxAfterImpCredits >= (researchAndDevelopment_nonrefundableCredit + researchAndDevelopment_refundableCredit) , 
+      value:  =IF(taxAfterImpCredits >= (researchAndDevelopment_nonrefundableCredit + researchAndDevelopment_refundableCredit) ,
                 taxAfterImpCredits - (researchAndDevelopment_nonrefundableCredit + researchAndDevelopment_refundableCredit) ,0)
     totalremainingTaxCredits:
       decimals: 2
@@ -263,7 +262,7 @@ model:
       fields:
         transferIrdNumber:
           type: number
-          decimals: 0     
+          decimals: 0
         transferAccountType:
           options:
             - label: Income tax
@@ -317,7 +316,7 @@ model:
     transferTotal:
       decimals: 2
       type: number
-      value:  =SUM(transferRefundTo:transferAmount)    
+      value:  =SUM(transferRefundTo:transferAmount)
     transferRemaining:
       decimals: 2
       type: number
@@ -356,7 +355,7 @@ model:
       defaultValue: false
     foreignIncomeDisclosure:
       type: boolean
-      defaultValue: false    
+      defaultValue: false
     repurchasedRedeemedCancelledShares:
       type: number
       decimals: 2
@@ -395,5 +394,4 @@ model:
         shareholder_subventionPayments:
           type: number
           decimals: 2
-        
-    
+

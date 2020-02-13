@@ -5,11 +5,11 @@ model:
     <<: !include
       source: ../../../Common/taxcalculatormodel.yml
       path: taxCalculatorFields
-    
+
     <<: !include
       source: ../../../Common/provCalculatorModel.yml
       path: provCalculatorFields
- 
+
     entityType:
       type: text
       defaultValue:  I
@@ -18,8 +18,7 @@ model:
       decimals: 0
       defaultValue:  "2020"
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     isNilReturn:
       defaultValue: false
@@ -81,7 +80,7 @@ model:
     totalTaxCredits:
       decimals: 2
       type: number
-      value: =totalInterestRWT + totalDividendCredits + totalWithholdingTaxOnRoyalties 
+      value: =totalInterestRWT + totalDividendCredits + totalWithholdingTaxOnRoyalties
     totalNRWTTax:
       type: number
       decimals: 2
@@ -125,7 +124,7 @@ model:
       type: number
     pieIncome_totalIncome:
       decimals: 2
-      type: number      
+      type: number
     partnershipIncome_totalTaxCredits:
       type: number
       decimals: 2
@@ -154,17 +153,17 @@ model:
       decimals: 2
       type: number
       value:  =IF(ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed > 0,
-               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed, 
+               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed,
                NULL)
     otherCredits:
       decimals: 2
       type: number
-      value: =totalPAYEDeducted + maoriAuthorityDistributions_totalMACredits + pieIncome_totalTaxCredits + partnershipIncome_totalTaxCredits + estateTrustIncome_totalTaxCredits + 
+      value: =totalPAYEDeducted + maoriAuthorityDistributions_totalMACredits + pieIncome_totalTaxCredits + partnershipIncome_totalTaxCredits + estateTrustIncome_totalTaxCredits +
               ltcIncome_totalTaxCredits +  rlwtCredit
     totalIncomeSubtotal:
       decimals: 2
       type: number
-      value: =totalGrossIncome + maoriAuthorityDistributions_totalMADistributions + pieIncome_totalIncome + partnershipIncome_totalIncome + 
+      value: =totalGrossIncome + maoriAuthorityDistributions_totalMADistributions + pieIncome_totalIncome + partnershipIncome_totalIncome +
              estateTrustIncome_totalIncome + ltcAdjustedIncome
     residentialRentalIncome_Indicator:
       type: select
@@ -192,7 +191,7 @@ model:
       decimals: 2
       # value: =residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear
       value: =IF(residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear = 0,
-               NULL,residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear)
+              NULL,residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear)
     residentialRentalIncome_excessDeductionsCarriedForward:
       type: number
       decimals: 2
@@ -282,15 +281,15 @@ model:
     nonResidentWT:
       type: number
       decimals: 2
-      value: = totalTaxCredits
+      value: = totalNRWTTax
     taxAfterNRWT:
       type: number
       decimals: 2
-      value: = taxAfterRandD - nonResidentWT
+      value: = taxAfterRandD + nonResidentWT
     totalremainingTaxCredits:
       decimals: 2
       type: number
-      value: = otherCredits
+      value: = otherCredits + totalTaxCredits
     taxCreditsForTM:
       type: number
       decimals: 2
@@ -340,7 +339,7 @@ model:
       fields:
         transferIrdNumber:
           type: number
-          decimals: 0     
+          decimals: 0
         transferAccountType:
           options:
             - label: Income tax
@@ -394,7 +393,7 @@ model:
     transferTotal:
       decimals: 2
       type: number
-      value:  =SUM(transferRefundTo:transferAmount)    
+      value:  =SUM(transferRefundTo:transferAmount)
     transferRemaining:
       decimals: 2
       type: number
@@ -427,7 +426,7 @@ model:
     #   value:  = IF(provisionalTax_provisionalTaxOption = "STD" , provisionalTaxCalc , provFromTaxManager )
     partYearReturnIndicator:
       type: boolean
-      defaultValue: false         
+      defaultValue: false
     partYearReason:
       type: select
       mandatory:  =partYearReturnIndicator = TRUE

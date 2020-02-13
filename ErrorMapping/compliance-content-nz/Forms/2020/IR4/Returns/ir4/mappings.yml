@@ -21,8 +21,9 @@ lodgement:
           SoftwarePlatform: MYOB_AgencyAPI
           SoftwareRelease: '1.0'
         Identifier:
-          IdentifierValueType: 
+          IdentifierValueType: IRD
           Value: 
+            source: fe/irdNumber
         AccountType: INC
       Body:
         StandardFields:

@@ -1,5 +1,5 @@
 ---
-version: 0.0.21
+version: 0.0.22
 type: 'Compliance-IR526-TaxCreditClaim-2020-NZ'
 
 params:
@@ -13,7 +13,7 @@ params:
 
 rules:
   tax-forms-nz.ir526:
-    version: '2020.0.20'
+    version: '2020.0.21'
     params:
       type: 'TaxReturn'
       lodgeable: true

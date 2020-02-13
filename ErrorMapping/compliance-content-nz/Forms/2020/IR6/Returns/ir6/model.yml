@@ -5,11 +5,11 @@ model:
     <<: !include
       source: ../../../Common/taxcalculatormodel.yml
       path: taxCalculatorFields
-    
+
     <<: !include
       source: ../../../Common/provCalculatorModel.yml
       path: provCalculatorFields
- 
+
     entityType:
       type: text
       defaultValue:  T
@@ -18,8 +18,7 @@ model:
       decimals: 0
       defaultValue:  "2020"
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     nonResidentIndicator:
       defaultValue: false
@@ -100,7 +99,7 @@ model:
       type: number
     pieIncome_totalIncome:
       decimals: 2
-      type: number      
+      type: number
     ltcIncome_totalTaxCredits:
       decimals: 2
       type: number
@@ -117,7 +116,7 @@ model:
       decimals: 2
       type: number
       value:  =IF(ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed > 0,
-               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed, 
+               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed,
                NULL)
     residentialRentalIncome_Indicator:
       type: select
@@ -170,13 +169,13 @@ model:
     totalTaxCredits:
       decimals: 2
       type: number
-      value: = interestIncome_totalTaxPaid + pieIncome_totalTaxCredits + dividendIncome_totalRWTCredits  + ltcIncome_totalTaxCredits + maoriAuthorityDistributions_totalMACredits + 
+      value: = interestIncome_totalTaxPaid + pieIncome_totalTaxCredits + dividendIncome_totalRWTCredits  + ltcIncome_totalTaxCredits + maoriAuthorityDistributions_totalMACredits +
               partnershipEstateTrustIncome_totalTaxCredits + overseasIncome_totalTaxPaid + otherIncome_totalTaxCredits
     totalIncomeSubtotal:
       decimals: 2
       type: number
-      value: = interestIncome_totalIncome + pieIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + 
-              partnershipEstateTrustIncome_totalIncome + overseasIncome_totalIncome + businessOrRentalIncome + otherIncome_totalIncome + saleOfProperty + 
+      value: = interestIncome_totalIncome + pieIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions +
+              partnershipEstateTrustIncome_totalIncome + overseasIncome_totalIncome + businessOrRentalIncome + otherIncome_totalIncome + saleOfProperty +
               residentialRentalIncome_netIncome + ltcAdjustedIncome
     beneficiaryIncome:
       type: number
@@ -184,7 +183,7 @@ model:
     trusteeIncome:
       type: number
       decimals: 2
-      value: = IF(totalIncomeSubtotal - beneficiaryIncome > 0.00,totalIncomeSubtotal - beneficiaryIncome,0.00)    
+      value: = IF(totalIncomeSubtotal - beneficiaryIncome > 0.00,totalIncomeSubtotal - beneficiaryIncome,0.00)
     totalExpensesClaimed:
       type: number
       decimals: 2
@@ -302,7 +301,7 @@ model:
       fields:
         transferIrdNumber:
           type: number
-          decimals: 0     
+          decimals: 0
         transferAccountType:
           options:
             - label: Income tax
@@ -356,7 +355,7 @@ model:
     transferTotal:
       decimals: 2
       type: number
-      value:  =SUM(transferRefundTo:transferAmount)    
+      value:  =SUM(transferRefundTo:transferAmount)
     transferRemaining:
       decimals: 2
       type: number
@@ -421,9 +420,9 @@ model:
         beneficiary_taxableIncome:
           type: number
           decimals: 2
-          value:  =beneficiaryRepeat#CURR#beneficiary_shareOfInterestIncome + beneficiaryRepeat#CURR#beneficiary_shareOfDividendsIncome + 
-                  beneficiaryRepeat#CURR#beneficiary_shareOfMADistributionsIncome + beneficiaryRepeat#CURR#beneficiary_shareOfOverseasIncome + 
-                  beneficiaryRepeat#CURR#beneficiary_shareOfOtherIncome 
+          value:  =beneficiaryRepeat#CURR#beneficiary_shareOfInterestIncome + beneficiaryRepeat#CURR#beneficiary_shareOfDividendsIncome +
+                  beneficiaryRepeat#CURR#beneficiary_shareOfMADistributionsIncome + beneficiaryRepeat#CURR#beneficiary_shareOfOverseasIncome +
+                  beneficiaryRepeat#CURR#beneficiary_shareOfOtherIncome
         beneficiary_taxPaidByTrust:
           type: boolean
         beneficiary_distributionByNonComplyingtrust:
@@ -459,5 +458,4 @@ model:
         beneficiary_beneficiaryTaxPayable:
           type: number
           decimals: 2
-          value: =beneficiaryRepeat#CURR#beneficiary_taxLessOtherPaidTaxCredits + beneficiaryRepeat#CURR#beneficiary_taxOnDistributionByNonComplyingTrust 
-               
+          value: =beneficiaryRepeat#CURR#beneficiary_taxLessOtherPaidTaxCredits + beneficiaryRepeat#CURR#beneficiary_taxOnDistributionByNonComplyingTrust

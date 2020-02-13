@@ -8,6 +8,10 @@ taxCalculatorFields:
   taxRate_T_2019:
     type: number
     value: = 0.33
+## Maori authority tax rate 2019
+  taxRate_M_2019:
+    type: number
+    value: = 0.175
 ## Individuals tax rates and Thresholds 2019
   taxRate_I_2019_1:
     type: number
@@ -39,49 +43,57 @@ taxCalculatorFields:
     value:
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxRate_I_2019_1, 0) ) )
+          IF(entityType="M",0,
+            IF(entityType="I",taxRate_I_2019_1, 0) ) ) )
   taxThreshold_1:
     type: number
     value: 
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxThreshold_I_2019_1,0) ) )
+            IF(entityType="M",0,
+              IF(entityType="I",taxThreshold_I_2019_1,0) ) ) )
   taxRate_2:
     type: number
     value:
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxRate_I_2019_2, 0) ) )
+            IF(entityType="M",0,
+              IF(entityType="I",taxRate_I_2019_2, 0) ) ) )
   taxThreshold_2:
     type: number
     value: 
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxThreshold_I_2019_2,0) ) )
+            IF(entityType="M",0,
+              IF(entityType="I",taxThreshold_I_2019_2,0) ) ) )
   taxRate_3:
     type: number
     value:
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxRate_I_2019_3, 0) ) )
+            IF(entityType="M",0,
+              IF(entityType="I",taxRate_I_2019_3, 0) ) ) )
   taxThreshold_3:
     type: number
     value: 
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxThreshold_I_2019_3,0) ) )
+            IF(entityType="M",0,
+              IF(entityType="I",taxThreshold_I_2019_3,0) ) ) )
   taxRate_4:
     type: number
     value:
       = IF(entityType="C",taxRate_C_2019,
           IF(entityType="T",taxRate_T_2019,
-            IF(entityType="I",taxRate_I_2019_4, 0) ) )
+            IF(entityType="M",taxRate_M_2019,
+             IF(entityType="I",taxRate_I_2019_4, 0) ) ) )
   taxThreshold_4:
     type: number
     value: 
       = IF(entityType="C",0,
           IF(entityType="T",0,
-            IF(entityType="I",taxThreshold_I_2019_4,0) ) )
+            IF(entityType="M",0,
+              IF(entityType="I",taxThreshold_I_2019_4,0) ) ) )
 ## Income tax is always calculated on whole dollars and the amount is rounded down
   totalTaxableIncomeInteger:
     type: number
@@ -96,7 +108,7 @@ taxCalculatorFields:
           + ROUND((taxThreshold_3 - taxThreshold_2) * taxRate_2,2)
           + ROUND((taxThreshold_2 - taxThreshold_1) * taxRate_1,2),
           IF(totalTaxableIncomeInteger > taxThreshold_3,
-              ROUND((totalTaxableIncomeInteger - taxThreshold_3) * taxRate_4,2)
+              ROUND((totalTaxableIncomeInteger - taxThreshold_3) * taxRate_3,2)
             + ROUND((taxThreshold_3 - taxThreshold_2) * taxRate_2,2)
             + ROUND((taxThreshold_2 - taxThreshold_1) * taxRate_1,2),
             IF(totalTaxableIncomeInteger > taxThreshold_2,

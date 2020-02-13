@@ -1,4 +1,5 @@
 # Compliance Content NZ
+[![Build status](https://badge.buildkite.com/a06a36dc44719327d310a14fd7fdc831a4d940d15a8bf52d0b.svg)](https://buildkite.com/myob/compliance-content-nz)
 
 ## Adding Forms
 

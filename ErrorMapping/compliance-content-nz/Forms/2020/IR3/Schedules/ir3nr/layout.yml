@@ -2,7 +2,6 @@
   children:
     - id: irdNumber
       label:  IRD number
-      format: '1234'
     - id: isNilReturn
       label: Nil return?
       showAs: radio
@@ -48,7 +47,7 @@
         format: '1,234.10'
       - id:  totalDividends
         label: Total gross dividends
-        format: '1,234.10' 
+        format: '1,234.10'
       - id: nrwtOnTotalDividends
         label:  NRWT on total dividends
         format: '1,234.10'
@@ -60,7 +59,7 @@
         format: '1,234.10'
       - id:  totalRoyalties
         label: Total gross royalties
-        format: '1,234.10' 
+        format: '1,234.10'
       - id: nrwtOnTotalRoyalties
         label:  NRWT on total royalties
         format: '1,234.10'
@@ -93,8 +92,8 @@
         label: Total Māori authority credits
         format: '1,234.10'
       - id: maoriAuthorityDistributions_totalMADistributions
-        label: Total Māori authority distributions 
-        format: '1,234.10'   
+        label: Total Māori authority distributions
+        format: '1,234.10'
       title: Māori authority distributions
     - block: section
       children:
@@ -102,7 +101,7 @@
         format: '1,234.10'
         label: General PIE tax credits
       - id:  pieIncome_totalIncome
-        format: '(1,234.10)'      
+        format: '(1,234.10)'
         label: Attributed PIE income/loss
       title: PIE income
     - block: section
@@ -255,7 +254,7 @@
     format: '1234'
   - id: daysWorked
     label: Number of days worked
-    format: '1234' 
+    format: '1234'
   - id:  arrivalDate
     label:  Arrival date
   - id: departureDate
@@ -360,7 +359,7 @@
     - id: provisionalTax_provisionalTaxStartDate
       label:  Start date of taxable activity
     - id: provisionalTax_provisionalTaxOption
-      label: Provisional tax option 
+      label: Provisional tax option
       showAs: dropdown
     - id: provisionalTaxCalc
       label:  Hidden
@@ -383,7 +382,7 @@
   - id: partYearStartDate
     label:  Start date of the return
   - id: partYearEndDate
-    label: End date of the return 
+    label: End date of the return
   title:  Change of situation
 - block: section
   children:

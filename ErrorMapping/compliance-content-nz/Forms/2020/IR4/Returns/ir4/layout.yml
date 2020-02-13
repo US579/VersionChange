@@ -2,7 +2,6 @@
   children:
     - id: irdNumber
       label:  IRD number
-      format: '1234'
     - id: nonResidentIndicator
       label: Non-resident for tax purposes?
       showAs: radio
@@ -38,7 +37,7 @@
         format: '1,234.10'
         label:  Tax withheld from schedular payments
       - id:  schedularPayments_totalIncome
-        format: '(1,234.10)'     
+        format: '(1,234.10)'
         label:  Gross schedular payments
       title: Schedular payments
     - block: section
@@ -48,7 +47,7 @@
         format: '1,234.10'
       - id: interestIncome_totalIncome
         label:  Total gross interest
-        format: '(1,234.10)'     
+        format: '(1,234.10)'
       title: New Zealand interest
     - block: section
       children:
@@ -56,7 +55,7 @@
         format: '1,234.10'
         label: General PIE tax credits
       - id:  pieIncome_totalIncome
-        format: '(1,234.10)'      
+        format: '(1,234.10)'
         label: Attributed PIE income/loss
       title: Portfolio investment entity (PIE) income
     - block: section
@@ -69,7 +68,7 @@
         format: '1,234.10'
       - id:  dividendIncome_totalGrossDividends
         label: Total gross dividends
-        format: '1,234.10'      
+        format: '1,234.10'
       title: New Zealand dividends
     - block: section
       children:
@@ -77,8 +76,8 @@
         label: Total Māori authority credits
         format: '1,234.10'
       - id: maoriAuthorityDistributions_totalMADistributions
-        label: Total Māori authority distributions 
-        format: '1,234.10'   
+        label: Total Māori authority distributions
+        format: '1,234.10'
       title: Māori authority distributions
     - block: section
       children:
@@ -87,7 +86,7 @@
         format: '1,234.10'
       - id: partnershipEstateTrustIncome_totalIncome
         label: Total partnership, estate or trust income
-        format: '(1,234.10)'  
+        format: '(1,234.10)'
       title: Partnership, estate or trust income
     - block: section
       children:
@@ -95,8 +94,8 @@
         label: Total overseas tax paid
         format: '1,234.10'
       - id: overseasIncome_totalIncome
-        label: Total overseas income 
-        format: '(1,234.10)'     
+        label: Total overseas income
+        format: '(1,234.10)'
       title: Overseas income
     - block: section
       children:
@@ -121,7 +120,7 @@
         - id: residentialRentalIncome_netIncome
           label: Net residential income
           format: '(1,234.10)'
-      title: Ring fencing rental losses 
+      title: Ring fencing rental losses
     - block: section
       children:
       - id: businessOrRentalIncome
@@ -236,7 +235,7 @@
       label:  Imputation credits
       format: '1,234.10'
     - id: taxAfterImpCredits
-      label:  Sub-total  
+      label:  Sub-total
       style:  subtotal
       format: '(1,234.10)'
     - id: researchAndDevelopment_nonrefundableCredit
@@ -311,7 +310,7 @@
     - id: provisionalTax_provisionalTaxStartDate
       label:  Start date of taxable activity
     - id: provisionalTax_provisionalTaxOption
-      label: Provisional tax option 
+      label: Provisional tax option
       showAs: dropdown
     - id: provisionalTaxCalc
       label:  Hidden
@@ -332,7 +331,7 @@
           label:  Payments made to non-residents
           showAs: radio
         - id: withholdingTaxDeducted
-          label: NRWT or non-resident contractors withholding tax deducted 
+          label: NRWT or non-resident contractors withholding tax deducted
           showAs: radio
       title:  Payments to non-residents
     - block:  section

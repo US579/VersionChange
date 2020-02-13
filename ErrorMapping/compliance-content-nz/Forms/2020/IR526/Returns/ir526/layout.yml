@@ -3,7 +3,6 @@
   children:
     - id: irdNumber
       label:  IRD number
-      format: '1234'
     - id: isNilReturn
       label: Nil return?
       showAs: radio

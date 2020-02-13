@@ -3,7 +3,6 @@
     - id: irdNumber
       label: IRD number
       visible:  =FALSE
-      format: '1234'
     - id: submissionKey
       label: Submission key
       visible: =FALSE

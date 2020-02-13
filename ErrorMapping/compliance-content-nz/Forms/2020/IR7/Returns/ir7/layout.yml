@@ -3,7 +3,6 @@
   children:
     - id: irdNumber
       label:  IRD number
-      format: '1234'
     - id: nonResidentIndicator
       label: Non-resident for tax purposes?
       showAs: radio
@@ -37,7 +36,7 @@
           label: Tax withheld from schedular payments
         - id:  schedularPayments_totalIncome
           format: '1,234.10'
-          label:  Gross schedular payments     
+          label:  Gross schedular payments
       title: Schedular payments
     - block: section
       children:
@@ -46,7 +45,7 @@
           label: Total RWT and/or NRWT
         - id: interestIncome_totalIncome
           format: '1,234.10'
-          label:  Total gross interest     
+          label:  Total gross interest
       title: New Zealand interest
     - block: section
       children:
@@ -57,7 +56,7 @@
           format: '1,234.10'
           label: Total dividend RWT credits
         - id:  dividendIncome_totalGrossDividends
-          label: Total gross dividends      
+          label: Total gross dividends
       title: New Zealand dividends
     - block: section
       children:
@@ -66,7 +65,7 @@
           label: Total Māori authority credits
         - id: maoriAuthorityDistributions_totalMADistributions
           format: '1,234.10'
-          label: Total Māori authority distributions    
+          label: Total Māori authority distributions
       title: Māori authority distributions
     - block: section
       children:
@@ -75,8 +74,8 @@
           label: Total partnership, estate or trust tax credits
         - id: partnershipIncome_totalIncome
           format: '1,234.10'
-          label: Total partnership, estate or trust income     
-      title: Partnership, estate or trust income 
+          label: Total partnership, estate or trust income
+      title: Partnership, estate or trust income
     - block:  section
       children:
       - id: ltcIncome_totalTaxCredits
@@ -102,7 +101,7 @@
           label: Total overseas tax paid
         - id: overseasIncome_totalIncome
           format: '1,234.10'
-          label: Total overseas income     
+          label: Total overseas income
       title: Overseas income
     - block: section
       children:
@@ -115,7 +114,7 @@
         - id: residentialRentalIncome_residentialRentalDeductions
           label: Residential rental deduction current year
           format: 1,234.10
-      title: Ring fencing rental losses 
+      title: Ring fencing rental losses
     - block: section
       children:
         - id: pieIncome_totalTaxCredits
@@ -123,7 +122,7 @@
           label: General PIE tax credits
         - id:  pieIncome_totalIncome
           format: '1,234.10'
-          label: Attributed PIE income/loss     
+          label: Attributed PIE income/loss
       title: PIE income
     - block: section
       children:

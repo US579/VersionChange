@@ -5,14 +5,14 @@ model:
     <<: !include
       source: ../../../Common/taxcalculatormodel.yml
       path: taxCalculatorFields
-    
+
     <<: !include
       source: ../../../Common/provCalculatorModel.yml
       path: provCalculatorFields
- 
+
     entityType:
       type: text
-      defaultValue:  C
+      defaultValue: M
     taxYear:
       type: number
       decimals: 0
@@ -165,7 +165,7 @@ model:
       value: =residentialRentalIncome_netIncome + saleOfProperty + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + overseasIncome_totalIncome + netRentalIncome + netTradingIncome + otherIncome
     # donationsMade:
     #   decimals: 2
-    #   type: number     
+    #   type: number
     lossesBroughtForward:
       decimals: 2
       type: number
@@ -175,7 +175,7 @@ model:
     # incomeAfterNetLosses:
     #   decimals: 2
     #   type: number
-    #   value: = totalIncomeSubtotal - donationsMade -lossesClaimedThisYear  
+    #   value: = totalIncomeSubtotal - donationsMade -lossesClaimedThisYear
     # netLossesToFrom:
     #   decimals: 2
     #   type: number
@@ -202,7 +202,9 @@ model:
       value:  =ROUNDDOWN(totalIncomeSubtotal + adjustmentsOutsideFinancialAccounts - donationsMade - lossesClaimedThisYear,0)
     # taxOnTaxableIncome:
     #   decimals: 2
+    #   # type: number
     #   type: number
+      
     overseasIncometotalTaxPaid:
       decimals: 2
       type: number
@@ -235,7 +237,7 @@ model:
     taxAfterRDCredits:
       type: number
       decimals: 2
-      value:  =IF(taxAfterImpCredits >= researchAndDevelopment_nonrefundableCredit , 
+      value:  =IF(taxAfterImpCredits >= researchAndDevelopment_nonrefundableCredit ,
                 taxAfterImpCredits - researchAndDevelopment_nonrefundableCredit ,0)
     rlwt_Credit:
       decimals: 2
@@ -282,7 +284,7 @@ model:
       fields:
         transferIrdNumber:
           type: number
-          decimals: 0     
+          decimals: 0
         transferAccountType:
           options:
             - label: Income tax
@@ -336,7 +338,7 @@ model:
     transferTotal:
       decimals: 2
       type: number
-      value:  =SUM(transferRefundTo:transferAmount)    
+      value:  =SUM(transferRefundTo:transferAmount)
     transferRemaining:
       decimals: 2
       type: number
@@ -375,7 +377,7 @@ model:
       defaultValue: false
     disclosureOfForeignInterestRequired:
       type: boolean
-      defaultValue: false    
+      defaultValue: false
     repurchasedRedeemedCancelledShares:
       type: number
       decimals: 2

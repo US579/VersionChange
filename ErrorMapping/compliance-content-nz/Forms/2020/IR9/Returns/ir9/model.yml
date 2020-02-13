@@ -5,18 +5,17 @@ model:
     <<: !include
       source: ../../../Common/taxcalculatormodel.yml
       path: taxCalculatorFields
-    
+
     <<: !include
       source: ../../../Common/provCalculatorModel.yml
       path: provCalculatorFields
- 
+
     taxYear:
       type: number
       decimals: 0
       defaultValue:  "2020"
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     nonResidentIndicator:
       defaultValue: false
@@ -99,13 +98,13 @@ model:
       type: number
       decimals: 2
       value: =IF(residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear = 0,
-              NULL,residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear)       
+              NULL,residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear)
     saleOfProperty:
       decimals: 2
       type: number
     uifriendlyNetIncome:
       decimals: 2
-      type: number     
+      type: number
     friendlyNetIncome:
       decimals: 2
       type: number
@@ -113,101 +112,89 @@ model:
     interestIncome_totalTaxPaid:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXinterestIncome_totalTaxPaid, uiinterestIncome_totalTaxPaid))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXinterestIncome_totalTaxPaid, uiAinterestIncome_totalTaxPaid))
     interestIncome_totalIncome:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXinterestIncome_totalIncome, uiinterestIncome_totalIncome))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXinterestIncome_totalIncome, uiAinterestIncome_totalIncome))
     dividendIncome_totalImputationCredits:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXdividendIncome_totalImputationCredits, uidividendIncome_totalImputationCredits))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXdividendIncome_totalImputationCredits, uiAdividendIncome_totalImputationCredits))
     dividendIncome_totalRWTCredits:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXdividendIncome_totalRWTCredits, uidividendIncome_totalRWTCredits))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXdividendIncome_totalRWTCredits, uiAdividendIncome_totalRWTCredits))
     dividendIncome_totalGrossDividends:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXdividendIncome_totalGrossDividends, uidividendIncome_totalGrossDividends))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXdividendIncome_totalGrossDividends, uiAdividendIncome_totalGrossDividends))
     maoriAuthorityDistributions_totalMACredits:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXmaoriAuthorityDistributions_totalMACredits, uimaoriAuthorityDistributions_totalMACredits))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXmaoriAuthorityDistributions_totalMACredits, uiAmaoriAuthorityDistributions_totalMACredits))
     maoriAuthorityDistributions_totalMADistributions:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXmaoriAuthorityDistributions_totalMADistributions, uimaoriAuthorityDistributions_totalMADistributions))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXmaoriAuthorityDistributions_totalMADistributions, uiAmaoriAuthorityDistributions_totalMADistributions))
     overseasIncome_totalTaxPaid:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXoverseasIncome_totalTaxPaid, uioverseasIncome_totalTaxPaid))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXoverseasIncome_totalTaxPaid, uiAoverseasIncome_totalTaxPaid))
     overseasIncome_totalIncome:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXoverseasIncome_totalIncome, uioverseasIncome_totalIncome))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXoverseasIncome_totalIncome, uiAoverseasIncome_totalIncome))
     taxableMADistributions:
       decimals: 2
       type: number
     otherIncome:
       decimals: 2
       type: number
-      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXotherIncome, uiotherIncome))
+      value: =IF(typeOfClubOrSociety = "F", NULL,IF(typeOfClubOrSociety = "X",uiXotherIncome, uiAotherIncome))
     incomeBeforeDeduction:
       decimals: 2
       type: number
-      value: =IF(AND(typeOfClubOrSociety <> "X",typeOfClubOrSociety <> "F"),calcincomeBeforeDeduction,NULL)
+      value: = saleOfProperty + residentialRentalIncome_netIncome + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + overseasIncome_totalIncome + otherIncome
     incomeTaxDeductionForNonProfit:
       decimals: 2
       type: number
-      value: =IF(AND(typeOfClubOrSociety <> "X",typeOfClubOrSociety <> "F"),calcincomeTaxDeductionForNonProfit,NULL)
+      value: =IF(incomeBeforeDeduction > 1000,1000, incomeBeforeDeduction)
     totalIncome:
       decimals: 2
       type: number
-      value: =IF(AND(typeOfClubOrSociety <> "X",typeOfClubOrSociety <> "F"),calctotalIncome,NULL)
-    # START OF A TYPE SOCIETY
-    uiinterestIncome_totalTaxPaid:
-      decimals: 2
-      type: number
-    uiinterestIncome_totalIncome:
-      decimals: 2
-      type: number
-    uidividendIncome_totalImputationCredits:
-      decimals: 2
-      type: number
-    uidividendIncome_totalRWTCredits:
-      decimals: 2
-      type: number
-    uidividendIncome_totalGrossDividends:
-      decimals: 2
-      type: number
-    uimaoriAuthorityDistributions_totalMACredits:
-      decimals: 2
-      type: number
-    uimaoriAuthorityDistributions_totalMADistributions:
-      decimals: 2
-      type: number
-    uioverseasIncome_totalTaxPaid:
-      decimals: 2
-      type: number
-    uioverseasIncome_totalIncome:
-      decimals: 2
-      type: number
-    uiotherIncome:
-      decimals: 2
-      type: number
-    calcincomeBeforeDeduction:
-      decimals: 2
-      type: number
-      value: =interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + overseasIncome_totalIncome + otherIncome
-    calcincomeTaxDeductionForNonProfit:
-      decimals: 2
-      type: number
-      value: =IF(incomeBeforeDeduction > 1000,1000, incomeBeforeDeduction)
-    calctotalIncome:
-      decimals: 2
-      type: number
       value: =incomeBeforeDeduction - incomeTaxDeductionForNonProfit
+    # START OF A TYPE SOCIETY
+    uiAinterestIncome_totalTaxPaid:
+      decimals: 2
+      type: number
+    uiAinterestIncome_totalIncome:
+      decimals: 2
+      type: number
+    uiAdividendIncome_totalImputationCredits:
+      decimals: 2
+      type: number
+    uiAdividendIncome_totalRWTCredits:
+      decimals: 2
+      type: number
+    uiAdividendIncome_totalGrossDividends:
+      decimals: 2
+      type: number
+    uiAmaoriAuthorityDistributions_totalMACredits:
+      decimals: 2
+      type: number
+    uiAmaoriAuthorityDistributions_totalMADistributions:
+      decimals: 2
+      type: number
+    uiAoverseasIncome_totalTaxPaid:
+      decimals: 2
+      type: number
+    uiAoverseasIncome_totalIncome:
+      decimals: 2
+      type: number
+    uiAotherIncome:
+      decimals: 2
+      type: number
     # END OF A TYPE SOCIETY
 
     # START OF X TYPE SOCIETY
@@ -256,7 +243,7 @@ model:
     netIncomeBeforeDonations:
       decimals: 2
       type: number
-      value: =residentialRentalIncome_netIncome + saleOfProperty +friendlyNetIncome +  interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + overseasIncome_totalIncome + otherIncome 
+      value: =IF(typeOfClubOrSociety = "A",residentialRentalIncome_netIncome + saleOfProperty + friendlyNetIncome +  interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + overseasIncome_totalIncome + otherIncome - incomeTaxDeductionForNonProfit , residentialRentalIncome_netIncome + saleOfProperty + friendlyNetIncome +  interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + overseasIncome_totalIncome + otherIncome )
     lossesBroughtForward:
       decimals: 2
       type: number
@@ -291,7 +278,7 @@ model:
       type: number
       decimals: 2
       #value: taxAfterImpCredits - researchAndDevelopment_nonrefundableCredit
-      value:  =IF(taxAfterImpCredits >= researchAndDevelopment_nonrefundableCredit , 
+      value:  =IF(taxAfterImpCredits >= researchAndDevelopment_nonrefundableCredit ,
                 taxAfterImpCredits - researchAndDevelopment_nonrefundableCredit ,0)
     imputationCreditsReceived:
       decimals: 2
@@ -319,14 +306,18 @@ model:
     totalRWTDeducted:
       decimals: 2
       type: number
+      value: =interestIncome_totalTaxPaid + dividendIncome_totalRWTCredits
     rlwtCredit:
       decimals: 2
       type: number
     otherTaxCredits:
       decimals: 2
       type: number
-      #value:  taxAfterRDCredits - totalRWTDeducted - rlwtCredit
+      value:  =IF(OR(typeOfClubOrSociety = "A", typeOfClubOrSociety = "X"), maoriAuthorityDistributions_totalMACredits, otherTaxCreditsF )
       # subtotal - rew withhold - rwt no limit
+    otherTaxCreditsF:
+      decimals: 2
+      type: number
     residualIncomeTax:
       decimals: 2
       type: number
@@ -384,7 +375,7 @@ model:
       fields:
         transferIrdNumber:
           type: number
-          decimals: 0     
+          decimals: 0
         transferAccountType:
           options:
             - label: Income tax
@@ -438,7 +429,7 @@ model:
     transferTotal:
       decimals: 2
       type: number
-      value:  =SUM(transferRefundTo:transferAmount)    
+      value:  =SUM(transferRefundTo:transferAmount)
     transferRemaining:
       decimals: 2
       type: number

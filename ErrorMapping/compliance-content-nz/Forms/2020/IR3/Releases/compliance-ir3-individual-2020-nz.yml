@@ -1,5 +1,5 @@
 ---
-version: 0.0.43
+version: 0.0.45
 type: 'Compliance-IR3-Individual-2020-NZ'
 
 params:
@@ -13,7 +13,7 @@ params:
 
 rules:
   tax-forms-nz.ir3:
-    version: '2020.0.38'
+    version: '2020.0.40'
     params:
       type: 'TaxReturn'
       lodgeable: true
@@ -22,7 +22,7 @@ rules:
       rolloverFromOnline: true
       rolloverWithDataOnline: true
   tax-forms-nz.ir10:
-    version: '2020.0.24'
+    version: '2020.0.25'
     params:
       name: 'IR10 Financial statements summary'
       type: 'Schedule'
@@ -30,7 +30,7 @@ rules:
       min: 0
       max: 1
   tax-forms-nz.ir833:
-    version: '2020.0.24'
+    version: '2020.0.25'
     params:
       name: 'IR833 Property sale information'
       type: 'Schedule'
@@ -38,7 +38,7 @@ rules:
       min: 0
       max: 20
   tax-forms-nz.ir215:
-    version: '2020.0.20'
+    version: '2020.0.21'
     params:
       name: 'IR215 Adjusting income for student loan and WfFTC'
       type: 'Schedule'
@@ -46,7 +46,7 @@ rules:
       min:  0
       max:  1
   tax-forms-nz.sl:
-    version: '2020.0.25'
+    version: '2020.0.26'
     params:
       name: 'Student loan'
       type: 'Schedule'
@@ -54,7 +54,7 @@ rules:
       min:  0
       max:  1
   tax-forms-nz.ir3nr:
-    version: '2020.0.6'
+    version: '2020.0.7'
     params:
       name: 'IR3NR Non-resident individual'
       type: 'Schedule'

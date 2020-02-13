@@ -3,8 +3,7 @@ name: IR7 Look-through company return
 model:
   fields:
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     nonResidentIndicator:
       defaultValue: false
@@ -53,7 +52,7 @@ model:
       type: number
     pieIncome_totalIncome:
       decimals: 2
-      type: number      
+      type: number
     dividendIncome_totalImputationCredits:
       decimals: 2
       type: number
@@ -91,7 +90,7 @@ model:
       decimals: 2
       type: number
       value:  =IF(ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed > 0,
-               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed, 
+               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed,
                NULL)
     overseasIncome_totalTaxPaid:
       decimals: 2
@@ -132,8 +131,8 @@ model:
     totalIncome:
       decimals: 2
       type: number
-      value:  =schedularPayments_totalIncome + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions + 
-                partnershipIncome_totalIncome + ltcAdjustedIncome + overseasIncome_totalIncome + pieIncome_totalIncome + businessIncome + netRentalIncome + otherIncome + 
+      value:  =schedularPayments_totalIncome + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions +
+                partnershipIncome_totalIncome + ltcAdjustedIncome + overseasIncome_totalIncome + pieIncome_totalIncome + businessIncome + netRentalIncome + otherIncome +
                 saleOfProperty + residentialRentalIncome_totalIncome
     totalExpenses:
       decimals: 2
@@ -207,7 +206,7 @@ model:
         incomeAttribution_totalIncome:
           type: number
           decimals: 2
-          value:  =partnerLTCRepeat#CURR#incomeAttribution_shareOfInterestIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfDividendIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfMADistributions + partnerLTCRepeat#CURR#incomeAttribution_shareOfOverseasIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfRentalIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfPassiveIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfOtherIncome
+          value:  =partnerLTCRepeat#CURR#incomeAttribution_shareOfInterestIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfDividendIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfMADistributions + partnerLTCRepeat#CURR#incomeAttribution_shareOfOverseasIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfRentalIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfPassiveIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfOtherIncome + partnerLTCRepeat#CURR#incomeAttribution_shareOfResidentialRentalIncome
         incomeAttribution_deductionForExtinguishedLoss:
           type: number
           decimals: 2
@@ -237,5 +236,4 @@ model:
           decimals: 2
 
 
-          
-    
+

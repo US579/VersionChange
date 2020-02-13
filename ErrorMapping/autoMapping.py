@@ -43,14 +43,15 @@ def form2mappings(dic,form,row):
     if form in ['CALC','44','44E','3N+D44','3NR','REB']:return
     if form =='ALL':
         for item in dic[form]:
-            with open(item "a", encoding="utf-8") as f1:
+            with open(item ,"a", encoding="utf-8") as f1:
                 f1.write('    '+str(row['Standard codes'])+':\n')
                 f1.write('      Standard message: '+row['Standard message']+'\n')
                 f1.write('      description: '+row['Description']+'\n')
-    with open(dic[form], "a", encoding="utf-8") as f1:
-        f1.write('    '+str(row['Standard codes'])+':\n')
-        f1.write('      Standard message: '+row['Standard message']+'\n')
-        f1.write('      description: '+row['Description']+'\n')
+    else:
+        with open(dic[form], "a", encoding="utf-8") as f1:
+            f1.write('    '+str(row['Standard codes'])+':\n')
+            f1.write('      Standard message: '+row['Standard message']+'\n')
+            f1.write('      description: '+row['Description']+'\n')
 
 def wirteTitle(file):
     for i in file:
@@ -67,5 +68,5 @@ if __name__ == "__main__":
     dic['ALL'] = tags
     wirteTitle(tags)
     print(dic)
-    # append(dic)
+    append(dic)
     

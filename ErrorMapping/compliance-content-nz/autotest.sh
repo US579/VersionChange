@@ -24,7 +24,8 @@ for name in ${dir[*]};do
     for i in $array;do
       cd $i
       pwd
-      forms-engine validate
+       fe upload -a 
+      # forms-engine validate
       cd - > /dev/null
     done
 done

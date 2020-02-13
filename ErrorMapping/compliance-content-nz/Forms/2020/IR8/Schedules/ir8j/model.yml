@@ -30,9 +30,8 @@ model:
       decimals: 2
       type: number
     irdNumber:
+      type: text
       mandatory: true
-      type: number
-      decimals: 0
     openingBalance:
       decimals: 2
       type: number

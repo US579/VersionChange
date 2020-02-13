@@ -1,5 +1,5 @@
 ---
-version: 0.0.40
+version: 0.0.42
 type: 'Compliance-IR4-Company-2020-NZ'
 
 params:
@@ -13,7 +13,7 @@ params:
 
 rules:
   tax-forms-nz.ir4:
-    version: '2020.0.39'
+    version: '2020.0.41'
     params:
       type: 'TaxReturn'
       lodgeable: true
@@ -22,7 +22,7 @@ rules:
       rolloverFromOnline: true
       rolloverWithDataOnline: true
   tax-forms-nz.ir10:
-    version: '2020.0.24'
+    version: '2020.0.25'
     params:
       name: 'IR10 Financial statements summary'
       type: 'Schedule'
@@ -30,7 +30,7 @@ rules:
       min: 0
       max: 1
   tax-forms-nz.ir833:
-    version: '2020.0.24'
+    version: '2020.0.25'
     params:
       name: 'IR833 Property sale information'
       type: 'Schedule'
@@ -38,7 +38,7 @@ rules:
       min: 0
       max: 20
   tax-forms-nz.ir4j:
-    version: '2020.0.19'
+    version: '2020.0.20'
     params:
       name: 'IR4J Annual imputation return'
       type: 'Schedule'

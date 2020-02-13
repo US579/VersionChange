@@ -3,8 +3,7 @@ name: IR526 Tax credit claim form
 model:
   fields:
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     isNilReturn:
       defaultValue: false

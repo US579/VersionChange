@@ -178,9 +178,9 @@ lodgement:
             source: fe/eligibleForIETC
           OverseasExclusionDates:
           - ExcludedOverseasIncomeStartDate:
-              source: fe/exclusionDateRange_excludedOverseasIncomeStartDate
+              source: fe/exclusionDateRange/excludedOverseasIncomeStartDate
             ExcludedOverseasIncomeEndDate:
-              source: fe/exclusionDateRange_excludedOverseasIncomeEndDate
+              source: fe/exclusionDateRange/excludedOverseasIncomeEndDate
           NumberOfQualifyingMonths: 
           AmountOfIETCClaimed:
             source: fe/amountOfIETCClaimed

@@ -1,5 +1,5 @@
 ---
-version: 0.0.35
+version: 0.0.36
 type: 'Compliance-IR4-Company-2019-NZ'
 
 params:
@@ -13,7 +13,7 @@ params:
 
 rules:
   tax-forms-nz.ir4:
-    version: '2019.0.26'
+    version: '2019.0.27'
     params:
       type: 'TaxReturn'
       lodgeable: true
@@ -22,7 +22,7 @@ rules:
       rolloverFromOnline: true
       rolloverWithDataOnline: true
   tax-forms-nz.ir10:
-    version: '2019.0.23'
+    version: '2019.0.24'
     params:
       name: 'Financial statements summary'
       type: 'Schedule'
@@ -38,7 +38,7 @@ rules:
   #     min: 0
   #     max: 20
   tax-forms-nz.ir4j:
-    version: '2019.0.15'
+    version: '2019.0.16'
     params:
       name: 'Annual imputation return'
       type: 'Schedule'
@@ -47,7 +47,7 @@ rules:
       max: 1
   # specific workpapers
   workpapers-nz.CurrentAccountInterest:
-    version: '2019.0.9'
+    version: '2019.0.10'
     params:
       type: 'TrialBalanceWorkpaper'
       lodgeable: false
@@ -60,7 +60,7 @@ rules:
           - liability
         disabled: false
   workpapers-nz.ShareholderContinuity:
-    version: '2019.0.9'
+    version: '2019.0.10'
     params:
       type: 'TrialBalanceWorkpaper'
       lodgeable: false

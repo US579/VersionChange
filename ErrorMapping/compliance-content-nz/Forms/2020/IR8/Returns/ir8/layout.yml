@@ -56,13 +56,13 @@
     - block: section
       children:
       - id: saleOfProperty
-        label: Profit/loss from sale of property
+        label: Profit/(loss) from sale of property
         format: '(1,234.10)'
       title: Sale of property
     - block: section
       children:
       - id: interestIncome_totalTaxPaid
-        label: Total RWT and/or NRWT
+        label: Total resident withholding tax (RWT) and/or non-resident withholding tax (NRWT)
         format: '1,234.10'
       - id: interestIncome_totalIncome
         label:  Total gross interest
@@ -184,7 +184,7 @@
           label: Total tax credits
           style: subtotal
           tooltip:
-            description: all the credits excluding overseas and imputation
+            description: All the credits excluding overseas and imputation
         - id: totalIncomeSubtotal
           label: Income subtotal
           style: subtotal
@@ -224,7 +224,7 @@
       label: Taxable income or loss to carry forward
       style: total
       format: '(1,234.10)'
-  title:  Taxable income/loss
+  title:  Taxable Income/(loss)
 - block: section
   children:
     - id: taxOnTaxableIncome
@@ -351,7 +351,7 @@
     - block:  section
       children:
         - id: disclosureOfForeignInterestRequired
-          label:  CFC/FIF income calculated - disclosure required
+          label:  Controlled foreign company (CFC) or foreign investment funds (FIF) income calculated - disclosure required
           showAs: radio
       title:  Foreign income disclosure
   title:  Disclosures

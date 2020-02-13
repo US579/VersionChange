@@ -5,11 +5,11 @@ model:
     <<: !include
       source: ../../../Common/taxcalculatormodel.yml
       path: taxCalculatorFields
-    
+
     <<: !include
       source: ../../../Common/provCalculatorModel.yml
       path: provCalculatorFields
- 
+
     entityType:
       type: text
       defaultValue:  I
@@ -18,8 +18,7 @@ model:
       decimals: 0
       defaultValue:  "2020"
     irdNumber:
-      type: number
-      decimals: 0
+      type: text
       mandatory: true
     nonResidentIndicator:
       defaultValue: false
@@ -112,7 +111,7 @@ model:
       type: number
     pieIncome_totalIncome:
       decimals: 2
-      type: number      
+      type: number
     dividendIncome_totalImputationCredits:
       decimals: 2
       type: number
@@ -171,7 +170,7 @@ model:
       decimals: 2
       type: number
       value:  =IF(ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed > 0,
-               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed, 
+               ltcIncome_totalIncome + ltcNonAllowableDeductions - ltcPriorYearNonAllowableDeductionsClaimed,
                NULL)
     totalShareholderEmployeeSalary:
       decimals: 2
@@ -185,15 +184,15 @@ model:
     totalTaxCredits:
       decimals: 2
       type: number
-      value: = totalTaxDeducted + taxDeductedFromSchedularPayments + interestIncome_totalTaxPaid + dividendIncome_totalRWTCredits + 
-               maoriAuthorityDistributions_totalMACredits + totalTaxPaidByTrustees + pieIncome_totalTaxCredits + 
+      value: = totalTaxDeducted + taxDeductedFromSchedularPayments + interestIncome_totalTaxPaid + dividendIncome_totalRWTCredits +
+               maoriAuthorityDistributions_totalMACredits + totalTaxPaidByTrustees + pieIncome_totalTaxCredits +
               partnershipIncome_totalTaxCredits + ltcIncome_totalTaxCredits + shareholderAIMTaxPaid + rlwtCredit
     totalIncomeSubtotal:
       decimals: 2
       type: number
-      value: = totalGrossIncome + netSchedularPayments + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions +   
-              totalEstateOrTrustIncome + totalTaxableDistributionFromNCTrusts + overseasIncome_totalIncome + pieIncome_totalIncome + partnershipIncome_totalIncome + 
-              totalShareholderEmployeeSalary + ltcAdjustedIncome 
+      value: = totalGrossIncome + netSchedularPayments + interestIncome_totalIncome + dividendIncome_totalGrossDividends + maoriAuthorityDistributions_totalMADistributions +
+              totalEstateOrTrustIncome + totalTaxableDistributionFromNCTrusts + overseasIncome_totalIncome + pieIncome_totalIncome + partnershipIncome_totalIncome +
+              totalShareholderEmployeeSalary + ltcAdjustedIncome
     residentialRentalIncome_Indicator:
       type: select
       options:
@@ -225,7 +224,7 @@ model:
       decimals: 2
       value: =IF(residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear = 0,
                NULL,residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear)
-      # value: =residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear     
+      # value: =residentialRentalIncome_totalIncome - residentialRentalIncome_deductionsClaimedThisYear
     netRentalIncome:
       decimals: 2
       type: number
@@ -241,7 +240,7 @@ model:
     totalIncome:
       decimals: 2
       type: number
-      value:  =totalIncomeSubtotal + residentialRentalIncome_netIncome + netRentalIncome + selfEmployedIncome + saleOfProperty + otherIncome 
+      value:  =totalIncomeSubtotal + residentialRentalIncome_netIncome + netRentalIncome + selfEmployedIncome + saleOfProperty + otherIncome
     otherExpenses:
       decimals: 2
       type: number
@@ -266,10 +265,13 @@ model:
     eligibleForIETC:
       type: boolean
       defaultValue: false
-    exclusionDateRange_excludedOverseasIncomeStartDate:
-      type: date
-    exclusionDateRange_excludedOverseasIncomeEndDate:
-      type: date
+    exclusionDateRange:
+      type: list
+      fields:
+        excludedOverseasIncomeStartDate:
+          type: date
+        excludedOverseasIncomeEndDate:
+          type: date
     numberOfQualifyingMonths:
       type: number
       valid:
@@ -337,8 +339,8 @@ model:
     totalremainingTaxCredits:
       decimals: 2
       type: number
-      value:  =totalTaxDeducted + taxDeductedFromSchedularPayments + interestIncome_totalTaxPaid + dividendIncome_totalRWTCredits + 
-              maoriAuthorityDistributions_totalMACredits + totalTaxPaidByTrustees + pieIncome_totalTaxCredits + 
+      value:  =totalTaxDeducted + taxDeductedFromSchedularPayments + interestIncome_totalTaxPaid + dividendIncome_totalRWTCredits +
+              maoriAuthorityDistributions_totalMACredits + totalTaxPaidByTrustees + pieIncome_totalTaxCredits +
               partnershipIncome_totalTaxCredits + ltcIncome_totalTaxCredits + shareholderAIMTaxPaid + rlwtCredit
     taxCreditsForTM:
       type: number
@@ -392,7 +394,7 @@ model:
       fields:
         transferIrdNumber:
           type: number
-          decimals: 0     
+          decimals: 0
         transferAccountType:
           options:
             - label: Income tax
@@ -446,7 +448,7 @@ model:
     transferTotal:
       decimals: 2
       type: number
-      value:  =SUM(transferRefundTo:transferAmount)    
+      value:  =SUM(transferRefundTo:transferAmount)
     transferRemaining:
       decimals: 2
       type: number
@@ -482,10 +484,10 @@ model:
       defaultValue: false
     foreignInterestDisclosure:
       type: boolean
-      defaultValue: false   
+      defaultValue: false
     partYearReturnIndicator:
       type: boolean
-      defaultValue: false         
+      defaultValue: false
     partYearReason:
       type: select
       mandatory:  =partYearReturnIndicator = TRUE
