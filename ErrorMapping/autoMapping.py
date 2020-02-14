@@ -1,4 +1,3 @@
-
 from pandas import read_excel
 import re
 import os
@@ -24,36 +23,17 @@ def append(dic):
     my_sheet = 'errors'
     file_name = '2020IRerrors.xlsx' 
     df = read_excel(file_name, sheet_name = my_sheet,header=1,keep_default_na=False,)
-    # print(df['minorFormType'])
 
     for index, row in df.iterrows():
         if 'CFC' in str(row['minorFormType']).split(','): continue
-        # print([i.strip() for i in str(row['minorFormType']).split(',')])
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
-            # print(form)
             form2mappings(dic,form.lower(),row)
        
 def form2mappings(dic,form,row):
-    # print('minorFormType:',str(row['minorFormType']).split(','))
-    # print('Standard codes:',row['Standard codes'])
-    # print('Description:',row['Description'])
-    # print('Standard message:',row['Standard message'])
     colDic = {'3':'Ir3','3nr':'IR3NR','4':'IR4','6':'IR6','7':'IR7','8':'IR8','9':'IR9','833':'IR833','526':'REB - IR526','reb':'REB - IR526','215':'IR215'}
-    # print(row['REB - IR526'])
-    # if form == 'all':
-    #      print('[[[[[[[[[[[[]]]]]]]]]]]]')
-    #     #  print(row['Ir3'])
-    # if not row['Ir3'] or row['REB - IR526'] !='NA':
-    #     print('==========================')
-    # if row['REB - IR526'] !='NA':
-    #     print(row['REB - IR526'])
-    #     print('[[[[[[[[[[[[]]]]]]]]]]]]')
     if form in ['calc','44','44e','3N+D44',]:return
     if form =='all':
         for item, v in dic[form]:
-            # print(item) 
-            # if not row['Ir3'] or row['REB - IR526'] !='NA':
-            #     print('==========================')
             with open(item ,"a", encoding="utf-8") as f1:
                 f1.write('    '+str(row['Standard codes'])+':\n')
                 f1.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
@@ -62,8 +42,6 @@ def form2mappings(dic,form,row):
                     return
                 f1.write('      formsengineField: '+'"'+row[colDic[v]]+'"'+'\n')
     else:
-        # print(form)
-        # print(dic[form])
         with open(dic[form], "a", encoding="utf-8") as f1:
             f1.write('    '+str(row['Standard codes'])+':\n')
             f1.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
@@ -91,8 +69,5 @@ if __name__ == "__main__":
         if name not in minorForm:dic[name] = i
     dic['all'] = [[i,i.split('/')[-2][2:]] for i in tags if i.split('/')[-2][2:] not in minorForm ]
     wirteTitle(tags)
-    # print(dic)
-    # for i in dic:
-    #     print(dic[i])
     append(dic)
     
