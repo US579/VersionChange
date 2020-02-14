@@ -1,6 +1,0 @@
----
-name: Interest expense
-classificationGroups:
-  - expense
-  - otherExpense
-disabled: false

@@ -1,6 +1,0 @@
----
-name: Expense
-classificationGroups:
-  - expense
-  - otherExpense
-disabled: false

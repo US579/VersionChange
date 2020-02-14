@@ -1,6 +1,0 @@
----
-name: Home office expense
-classificationGroups:
-  - expense
-  - otherExpense
-disabled: false

@@ -1,6 +1,0 @@
----
-name: Mixed use assets
-classificationGroups:
-  - expense
-  - otherExpense
-disabled: false

@@ -23,7 +23,7 @@ def findfile(start, name, Noinclude):
 def append(dic):
     my_sheet = 'errors'
     file_name = '2020IRerrors.xlsx' 
-    df = read_excel(file_name, sheet_name = my_sheet,header=1)
+    df = read_excel(file_name, sheet_name = my_sheet,header=1,keep_default_na=False,)
     # print(df['minorFormType'])
 
     for index, row in df.iterrows():
@@ -40,23 +40,37 @@ def form2mappings(dic,form,row):
     # print('Standard codes:',row['Standard codes'])
     # print('Description:',row['Description'])
     # print('Standard message:',row['Standard message'])
-    print(row['Ir3'])
+    colDic = {'3':'Ir3','3nr':'IR3NR','4':'IR4','6':'IR6','7':'IR7','8':'IR8','9':'IR9','833':'IR833','reb':'REB - IR526','215':'IR215'}
+    # print(row['REB - IR526'])
+    # if form == 'all':
+    #      print('[[[[[[[[[[[[]]]]]]]]]]]]')
+    #     #  print(row['Ir3'])
+    # if not row['Ir3'] or row['REB - IR526'] !='NA':
+    #     print('==========================')
+    # if row['REB - IR526'] !='NA':
+    #     print(row['REB - IR526'])
+    #     print('[[[[[[[[[[[[]]]]]]]]]]]]')
     if form in ['calc','44','44e','3N+D44',]:return
     if form =='all':
-        for item in dic[form]:
+        for item, v in dic[form]:
+            # if not row['Ir3'] or row['REB - IR526'] !='NA':
+            #     print('==========================')
             with open(item ,"a", encoding="utf-8") as f1:
-                # f1.write('    '+str(row['Standard codes'])+':\n')
-                # f1.write('      Standard message: '+row['Standard message']+'\n')
-                # f1.write('      description: '+row['Description']+'\n')
-                pass
+                f1.write('    '+str(row['Standard codes'])+':\n')
+                f1.write('      Standard message: '+row['Standard message']+'\n')
+                f1.write('      description: '+row['Description']+'\n')
+                if not row[colDic[v]] or row[colDic[v]] !='NA':
+                    f1.write('      formsengineField: '+row[colDic[form]]+'\n')
     else:
-        print(form)
-        print(dic[form])
+        # print(form)
+        # print(dic[form])
         with open(dic[form], "a", encoding="utf-8") as f1:
-            # f1.write('    '+str(row['Standard codes'])+':\n')
-            # f1.write('      Standard message: '+row['Standard message']+'\n')
-            # f1.write('      description: '+row['Description']+'\n')
-            pass
+            f1.write('    '+str(row['Standard codes'])+':\n')
+            f1.write('      Standard message: '+row['Standard message']+'\n')
+            f1.write('      description: '+row['Description']+'\n')
+            if not row[colDic[v]] or row[colDic[v]] !='NA':
+                    f1.write('      formsengineField: '+row[colDic[form]]+'\n')
+
 
 def wirteTitle(file):
     for i in file:
@@ -69,14 +83,15 @@ if __name__ == "__main__":
     tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
     tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
+    minorForm = ['4j','8j']
     for i in tags:
-        if i.split('/')[-2][2:] == '526':
-            dic['reb'] = i
-        dic[i.split('/')[-2][2:]] = i
-    dic['all'] = tags
+        name = i.split('/')[-2][2:]
+        if name == '526':dic['reb'] = i
+        if name not in minorForm:dic[name] = i
+    dic['all'] = [[i,i.split('/')[-2][2:]] for i in tags if i.split('/')[-2][2:] not in minorForm ]
     # wirteTitle(tags)
     print(dic)
     # for i in dic:
     #     print(dic[i])
-    append(dic)
+    # append(dic)
     

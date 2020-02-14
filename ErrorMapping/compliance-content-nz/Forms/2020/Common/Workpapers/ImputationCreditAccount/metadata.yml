@@ -1,7 +1,0 @@
----
-name: Imputation credit account reconciliation
-classificationGroups:
-  - equity
-  - asset
-  - liability
-disabled: false

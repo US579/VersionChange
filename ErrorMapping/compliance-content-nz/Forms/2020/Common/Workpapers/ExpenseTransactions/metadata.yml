@@ -1,6 +1,0 @@
----
-name: EXpense trnasaction analysis
-classificationGroups:
-  - Expense
-  - OtherExpense
-disabled: false

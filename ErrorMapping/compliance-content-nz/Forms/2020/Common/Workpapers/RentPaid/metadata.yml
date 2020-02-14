@@ -1,6 +1,0 @@
----
-name: Recurring payments
-classificationGroups:
-  - Expense
-  - otherExpense
-disabled: false

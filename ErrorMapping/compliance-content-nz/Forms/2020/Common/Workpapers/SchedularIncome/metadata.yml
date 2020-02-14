@@ -1,6 +1,0 @@
----
-name: Schedular income
-classificationGroups:
-  - income
-  - otherIncome  
-disabled: false

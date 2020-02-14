@@ -1,6 +1,0 @@
----
-name: Income
-classificationGroups:
-  - Income
-  - otherIncome
-disabled: false
