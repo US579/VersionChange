@@ -23,32 +23,41 @@ def append(dic):
     my_sheet = 'errors'
     file_name = '2020IRerrors.xlsx' 
     df = read_excel(file_name, sheet_name = my_sheet,header=1,keep_default_na=False,)
-
+    # print(dic)
     for index, row in df.iterrows():
         if 'CFC' in str(row['minorFormType']).split(','): continue
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
+            
+            # print(form.lower())
+          
             form2mappings(dic,form.lower(),row)
        
 def form2mappings(dic,form,row):
     colDic = {'3':'Ir3','3nr':'IR3NR','4':'IR4','6':'IR6','7':'IR7','8':'IR8','9':'IR9','833':'IR833','526':'REB - IR526','reb':'REB - IR526','215':'IR215'}
     if form in ['calc','44','44e','3N+D44',]:return
     if form =='all':
+        print('in')
         for item, v in dic[form]:
-            with open(item ,"a", encoding="utf-8") as f1:
-                f1.write('    '+str(row['Standard codes'])+':\n')
-                f1.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
-                f1.write('      description: '+'"'+row['Description']+'"'+'\n')
+            print(item)
+            print(row['Standard codes'])
+            print(row['Standard message'])
+            with open(item ,"a", encoding="utf-8") as f2:
+                f2.write('    '+str(row['Standard codes'])+':\n')
+                f2.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
+                f2.write('      description: '+'"'+row['Description']+'"'+'\n')
                 if not row[colDic[v]] or row[colDic[v]] =='NA':
-                    return
-                f1.write('      formsengineField: '+'"'+row[colDic[v]]+'"'+'\n')
+                    continue
+                f2.write('      formsengineField: '+'"'+row[colDic[v]]+'"'+'\n')
+    
     else:
         with open(dic[form], "a", encoding="utf-8") as f1:
             f1.write('    '+str(row['Standard codes'])+':\n')
             f1.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
             f1.write('      description: '+'"'+row['Description']+'"'+'\n')
             if not row[colDic[form]] or row[colDic[form]] =='NA':
-                return
+                return 
             f1.write('      formsengineField: '+'"'+row[colDic[form]]+'"'+'\n')
+
 
 
 def wirteTitle(file):
