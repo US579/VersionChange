@@ -36,7 +36,6 @@ def form2mappings(dic,form,row):
     colDic = {'3':'Ir3','3nr':'IR3NR','4':'IR4','6':'IR6','7':'IR7','8':'IR8','9':'IR9','833':'IR833','526':'REB - IR526','reb':'REB - IR526','215':'IR215'}
     if form in ['calc','44','44e','3N+D44',]:return
     if form =='all':
-        print('in')
         for item, v in dic[form]:
             # print(item)
             # print(row['Standard codes'])
