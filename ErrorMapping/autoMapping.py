@@ -73,7 +73,7 @@ if __name__ == "__main__":
     except:
         print('usage: python3 autoMapping.py <the absoult path to your compliance-content-nz>')
         tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
-    #compatiable to windows environment
+    #compatible to windows path
     tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
     minorForm = ['4j','8j']
