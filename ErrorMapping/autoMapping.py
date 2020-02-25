@@ -43,7 +43,7 @@ def form2mappings(dic,form,row):
             print(row['Standard message'])
             with open(item ,"a", encoding="utf-8") as f2:
                 f2.write('    '+str(row['Standard codes'])+':\n')
-                f2.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
+                f2.write('      standardMessage: '+'"'+row['Standard message']+'"'+'\n')
                 f2.write('      description: '+'"'+row['Description']+'"'+'\n')
                 if not row[colDic[v]] or row[colDic[v]] =='NA':
                     continue
@@ -52,7 +52,7 @@ def form2mappings(dic,form,row):
     else:
         with open(dic[form], "a", encoding="utf-8") as f1:
             f1.write('    '+str(row['Standard codes'])+':\n')
-            f1.write('      Standard message: '+'"'+row['Standard message']+'"'+'\n')
+            f1.write('      standardMessage: '+'"'+row['Standard message']+'"'+'\n')
             f1.write('      description: '+'"'+row['Description']+'"'+'\n')
             if not row[colDic[form]] or row[colDic[form]] =='NA':
                 return 
