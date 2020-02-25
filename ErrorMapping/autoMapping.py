@@ -38,9 +38,9 @@ def form2mappings(dic,form,row):
     if form =='all':
         print('in')
         for item, v in dic[form]:
-            print(item)
-            print(row['Standard codes'])
-            print(row['Standard message'])
+            # print(item)
+            # print(row['Standard codes'])
+            # print(row['Standard message'])
             with open(item ,"a", encoding="utf-8") as f2:
                 f2.write('    '+str(row['Standard codes'])+':\n')
                 f2.write('      standardMessage: '+'"'+row['Standard message']+'"'+'\n')
@@ -59,7 +59,6 @@ def form2mappings(dic,form,row):
             f1.write('      formsengineField: '+'"'+row[colDic[form]]+'"'+'\n')
 
 
-
 def wirteTitle(file):
     for i in file:
         with open(i, "a", encoding="utf-8") as f1:
@@ -68,7 +67,13 @@ def wirteTitle(file):
 
 if __name__ == "__main__":
     Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
-    tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
+
+    try:
+        tags,release = findfile(sys.argv[1], 'mappings.yml',Noinclude)
+    except:
+        print('usage: python3 autoMapping.py <the absoult path to your compliance-content-nz>')
+        tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
+    #compatiable to windows environment
     tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
     minorForm = ['4j','8j']
