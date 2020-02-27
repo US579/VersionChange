@@ -21,15 +21,11 @@ def findfile(start, name, Noinclude):
 
 def append(dic):
     my_sheet = 'errors'
-    file_name = '2020IRerrors.xlsx' 
+    file_name = 'errors.xlsx' 
     df = read_excel(file_name, sheet_name = my_sheet,header=1,keep_default_na=False,)
-    # print(dic)
     for index, row in df.iterrows():
         if 'CFC' in str(row['minorFormType']).split(','): continue
         for form in [i.strip() for i in str(row['minorFormType']).split(',')]:
-            
-            # print(form.lower())
-          
             form2mappings(dic,form.lower(),row)
        
 def form2mappings(dic,form,row):
@@ -37,9 +33,6 @@ def form2mappings(dic,form,row):
     if form in ['calc','44','44e','3N+D44',]:return
     if form =='all':
         for item, v in dic[form]:
-            # print(item)
-            # print(row['Standard codes'])
-            # print(row['Standard message'])
             with open(item ,"a", encoding="utf-8") as f2:
                 f2.write('    '+str(row['Standard codes'])+':\n')
                 f2.write('      standardMessage: '+'"'+row['Standard message']+'"'+'\n')
@@ -47,7 +40,6 @@ def form2mappings(dic,form,row):
                 if not row[colDic[v]] or row[colDic[v]] =='NA':
                     continue
                 f2.write('      formsengineField: '+'"'+row[colDic[v]]+'"'+'\n')
-    
     else:
         with open(dic[form], "a", encoding="utf-8") as f1:
             f1.write('    '+str(row['Standard codes'])+':\n')
@@ -65,13 +57,14 @@ def wirteTitle(file):
 
 
 if __name__ == "__main__":
-    Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
-
     try:
-        tags,release = findfile(sys.argv[1], 'mappings.yml',Noinclude)
+        sys.argv[1]
+        sys.argv[2]
     except:
-        print('usage: python3 autoMapping.py <the absoult path to your compliance-content-nz>')
-        tags,release = findfile('/Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz', 'mappings.yml',Noinclude)
+        print('usage: python3 autoMapping.py <year> <the absoult path to your compliance-content-nz>')
+        sys.exit()
+    Noinclude = ['Snippets','Workpapers','Common_Releases','Calculator','Declarations']
+    tags,release = findfile(sys.argv[2], 'mappings.yml',Noinclude)
     #compatible to windows path
     tags = ['/'.join(item.split('\\')) for item in tags if 'ir10' not in item]
     dic = {}
@@ -79,8 +72,8 @@ if __name__ == "__main__":
     for i in tags:
         name = i.split('/')[-2][2:]
         if name == '526':dic['reb'] = i
-        if name not in minorForm:dic[name] = i
-    dic['all'] = [[i,i.split('/')[-2][2:]] for i in tags if i.split('/')[-2][2:] not in minorForm ]
+        if name not in minorForm and sys.argv[1] in i:dic[name] = i
+    dic['all'] = [[i,i.split('/')[-2][2:]] for i in tags if i.split('/')[-2][2:] not in minorForm and sys.argv[1] in i]
     wirteTitle(tags)
     append(dic)
-    
+
