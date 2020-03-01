@@ -41,6 +41,8 @@ if you want increament all the version add `-i`  flag behind
 ```
 # Compliance-content-nz errormapping
 
+Please check the format before using the script, the format need to be same as errors.xlsx
+
 ## how to run 
 ```
  python3 autoMapping.py <year> <the absoult path to your compliance-content-nz>
@@ -50,4 +52,3 @@ Example
 ```
 >> python3 autoMapping.py 2020 /Users/steven.liu/Desktop/VersionChange/ErrorMapping/compliance-content-nz
 ```
-Please check the format before using the script, the format need to be same as errors.xlsx
